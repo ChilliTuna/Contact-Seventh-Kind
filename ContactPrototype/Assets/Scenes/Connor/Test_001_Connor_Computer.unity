@@ -1908,6 +1908,7 @@ GameObject:
   - component: {fileID: 257346416}
   - component: {fileID: 257346415}
   - component: {fileID: 257346414}
+  - component: {fileID: 257346417}
   m_Layer: 5
   m_Name: Button_Admin
   m_TagString: Untagged
@@ -1977,7 +1978,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 257346415}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350478130}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &257346415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,6 +2026,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257346412}
   m_CullTransparentMesh: 0
+--- !u!114 &257346417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257346412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec5b0444005f204ca7f456e909ba270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromScreen: {fileID: 190778581}
+  toScreen: {fileID: 11775880}
+  thisButton: {fileID: 257346414}
 --- !u!1 &258899915
 GameObject:
   m_ObjectHideFlags: 0
@@ -6311,6 +6338,7 @@ GameObject:
   - component: {fileID: 1104274184}
   - component: {fileID: 1104274183}
   - component: {fileID: 1104274182}
+  - component: {fileID: 1104274185}
   m_Layer: 5
   m_Name: Button_User2
   m_TagString: Untagged
@@ -6417,6 +6445,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104274180}
   m_CullTransparentMesh: 0
+--- !u!114 &1104274185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104274180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec5b0444005f204ca7f456e909ba270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromScreen: {fileID: 190778581}
+  toScreen: {fileID: 11775880}
+  thisButton: {fileID: 1104274182}
 --- !u!1 &1176908378
 GameObject:
   m_ObjectHideFlags: 0
@@ -11332,6 +11375,7 @@ GameObject:
   - component: {fileID: 2000773078}
   - component: {fileID: 2000773077}
   - component: {fileID: 2000773076}
+  - component: {fileID: 2000773079}
   m_Layer: 5
   m_Name: Button_User3
   m_TagString: Untagged
@@ -11438,6 +11482,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000773074}
   m_CullTransparentMesh: 0
+--- !u!114 &2000773079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000773074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec5b0444005f204ca7f456e909ba270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromScreen: {fileID: 190778581}
+  toScreen: {fileID: 11775880}
+  thisButton: {fileID: 2000773076}
 --- !u!1 &2002740875
 GameObject:
   m_ObjectHideFlags: 0
@@ -11605,6 +11664,7 @@ GameObject:
   - component: {fileID: 2006959244}
   - component: {fileID: 2006959243}
   - component: {fileID: 2006959242}
+  - component: {fileID: 2006959245}
   m_Layer: 5
   m_Name: Button_User1
   m_TagString: Untagged
@@ -11711,6 +11771,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006959240}
   m_CullTransparentMesh: 0
+--- !u!114 &2006959245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006959240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec5b0444005f204ca7f456e909ba270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromScreen: {fileID: 190778581}
+  toScreen: {fileID: 11775880}
+  thisButton: {fileID: 2006959242}
 --- !u!1 &2010430832
 GameObject:
   m_ObjectHideFlags: 0
