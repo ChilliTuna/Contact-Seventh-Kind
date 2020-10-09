@@ -19,11 +19,6 @@ public class ComputerButtonScript : MonoBehaviour
         ChangeMenus();
     }
 
-    private void OnDisable()
-    {
-        thisButton.onClick.RemoveAllListeners();
-    }
-
     public void ChangeMenus()
     {
         fromScreen.SetActive(false);
