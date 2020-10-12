@@ -5,25 +5,31 @@ using UnityEngine.UI;
 
 public class ComputerMainScript : MonoBehaviour
 {
+    #region Variables
+
     public List<User> users = new List<User>();
 
+    [Header("Admin Details")]
     public string adminName;
     public string adminPassword;
     public string adminHint;
+    public Button adminButton;
+    [Header("User 1 Details")]
     public string user1Name;
     public string user1Password;
     public string user1Hint;
+    public Button user1Button;
+    [Header("User 2 Details")]
     public string user2Name;
     public string user2Password;
     public string user2Hint;
+    public Button user2Button;
+    [Header("User 3 Details")]
     public string user3Name;
     public string user3Password;
     public string user3Hint;
+    public Button user3Button;
 
-    public Button userButtonAdmin;
-    public Button userButton1;
-    public Button userButton2;
-    public Button userButton3;
 
     private GameObject loginScreen1;
     private GameObject loginScreen2;
@@ -35,7 +41,7 @@ public class ComputerMainScript : MonoBehaviour
 
     private User activeUser;
     private bool isLoggedIn;
-
+    
     public enum EnumUsers
     {
         None,
@@ -45,6 +51,8 @@ public class ComputerMainScript : MonoBehaviour
         User3
     }
 
+    #endregion
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -52,28 +60,24 @@ public class ComputerMainScript : MonoBehaviour
         GetChildMenus();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
+    #region Core
     private void CreateUsers()
     {
-        users.Add(new User(adminName, adminPassword));
-        users.Add(new User(user1Name, user1Password));
-        users.Add(new User(user2Name, user2Password));
-        users.Add(new User(user3Name, user3Password));
+        users.Add(new User(adminName, adminPassword, adminHint));
+        users.Add(new User(user1Name, user1Password, user1Hint));
+        users.Add(new User(user2Name, user2Password, user2Hint));
+        users.Add(new User(user3Name, user3Password, user3Hint));
     }
 
     private void GetChildMenus()
     {
-        loginScreen1 = gameObject.transform.Find("Login Screen").gameObject;
-        loginScreen2 = gameObject.transform.Find("Login Screen 2").gameObject;
-        emailScreen1 = gameObject.transform.Find("Email Screen").gameObject;
-        emailScreen2 = gameObject.transform.Find("Email Screen 2").gameObject;
-        notesScreen1 = gameObject.transform.Find("Notes Screen").gameObject;
-        notesScreen2 = gameObject.transform.Find("Notes Screen 2").gameObject;
-        appsScreen2 = gameObject.transform.Find("Apps Screen").gameObject;
+        loginScreen1 = GetChildAtPath("Login Screen");
+        loginScreen2 = GetChildAtPath("Login Screen 2");
+        emailScreen1 = GetChildAtPath("Email Screen");
+        emailScreen2 = GetChildAtPath("Email Screen 2");
+        notesScreen1 = GetChildAtPath("Notes Screen");
+        notesScreen2 = GetChildAtPath("Notes Screen 2");
+        appsScreen2 = GetChildAtPath("Apps Screen");
     }
 
     public void ActivateGameObject(GameObject gameObject)
@@ -86,12 +90,8 @@ public class ComputerMainScript : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ChooseUser(EnumUsers p_user)
-    {
-        activeUser = ConvertEnumToUser(p_user);
-    }
-
-    private User ConvertEnumToUser(EnumUsers p_user)
+    [HideInInspector]
+    public User ConvertEnumToUser(EnumUsers p_user)
     {
         switch (p_user)
         {
@@ -159,51 +159,40 @@ public class ComputerMainScript : MonoBehaviour
             return "";
         }
     }
+    #endregion
 
-    //Login System
+    #region Login System
+
+    public void ChooseUser(EnumUsers p_user)
+    {
+        activeUser = ConvertEnumToUser(p_user);
+    }
+
     private void OnEnable()
     {
         AddUserListeners();
     }
 
-    private void SetUserAdmin()
+    private void SetUser(EnumUsers p_user)
     {
-        ChooseUser(EnumUsers.Admin);
-        SetLoginText();
-    }
-
-    private void SetUser1()
-    {
-        ChooseUser(EnumUsers.User1);
-        SetLoginText();
-    }
-
-    private void SetUser2()
-    {
-        ChooseUser(EnumUsers.User2);
-        SetLoginText();
-    }
-
-    private void SetUser3()
-    {
-        ChooseUser(EnumUsers.User3);
+        ChooseUser(p_user);
         SetLoginText();
     }
 
     private void OnDisable()
     {
-        userButtonAdmin.onClick.RemoveAllListeners();
-        userButton1.onClick.RemoveAllListeners();
-        userButton2.onClick.RemoveAllListeners();
-        userButton3.onClick.RemoveAllListeners();
+        adminButton.onClick.RemoveAllListeners();
+        user1Button.onClick.RemoveAllListeners();
+        user2Button.onClick.RemoveAllListeners();
+        user3Button.onClick.RemoveAllListeners();
     }
 
     private void AddUserListeners()
     {
-        userButtonAdmin.onClick.AddListener(() => SetUserAdmin());
-        userButton1.onClick.AddListener(() => SetUser1());
-        userButton2.onClick.AddListener(() => SetUser2());
-        userButton3.onClick.AddListener(() => SetUser3());
+        adminButton.onClick.AddListener(() => SetUser(EnumUsers.Admin));
+        user1Button.onClick.AddListener(() => SetUser(EnumUsers.User1));
+        user2Button.onClick.AddListener(() => SetUser(EnumUsers.User2));
+        user3Button.onClick.AddListener(() => SetUser(EnumUsers.User3));
     }
 
     private void SetLoginText()
@@ -237,8 +226,16 @@ public class ComputerMainScript : MonoBehaviour
         else
         {
             GetChildAtPath("Login Screen 2/Text_WrongPassword").SetActive(true);
+            isLoggedIn = false;
         }
     }
+    #endregion
+
+    #region Notes System
+
+
+
+    #endregion
 }
 
 public class User
@@ -250,10 +247,11 @@ public class User
     public List<Note> notes;
     public List<Email> emails;
 
-    public User(string p_name, string p_password)
+    public User(string p_name, string p_password, string p_passwordHint)
     {
         name = p_name;
         password = p_password;
+        passwordHint = p_passwordHint;
     }
 }
 
