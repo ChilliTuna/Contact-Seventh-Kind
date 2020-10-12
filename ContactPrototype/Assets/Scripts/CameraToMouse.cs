@@ -26,13 +26,15 @@ public class CameraToMouse : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        Debug.Log(mouseX);
-        Debug.Log(mouseY);
+       // Debug.Log(mouseX);
+       // Debug.Log(mouseY);
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -lookClampRange, lookClampRange);
         // cannot be above or below a certain range. 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playertarget.Rotate(Vector3.up * (mouseX));
+
+       playertarget.transform.RotateAround(playertarget.transform.position, Vector3.up, mouseX);
+    
     }
 }
