@@ -9,10 +9,14 @@ public class GrabItem : MonoBehaviour
     public GameObject desiredLocation; // where you want the picked up item to be flung
     public float pullSpeed; // How fast the object moves towards the desired location
 
+    public float mouseSensitivity;
+
    public  Vector3 newLocation;
 
     public bool isGrabbing;
+    public bool isInvestigating;
 
+    public CameraToMouse CameraMouseTarget;
 
     // Update is called once per frame
     void Update()
@@ -23,33 +27,73 @@ public class GrabItem : MonoBehaviour
      void OnTriggerExit(Collider other)
     {
         //  If flinged off will drop to the ground
-        isGrabbing = false;
-        other.GetComponent<Rigidbody>().useGravity = true;
+        if (other.tag == "Grabbable")
+        {
+
+            isGrabbing = false;
+            other.GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 
     void OnTriggerStay(Collider other)
     {
-       
-     if (other.tag == "Grabbable") {
-
+        if (other.tag == "Grabbable")
+        {
+            //One press of left click
             if (Input.GetKeyDown(KeyCode.Mouse0))
+            {      
+                    if (isGrabbing  && !isInvestigating)
+                    {
+                        isGrabbing = false;
+                        other.GetComponent<Rigidbody>().useGravity = true;
+                        Debug.Log("Dropped");
+                    }
+                    else
+                    {
+                        isGrabbing = true;
+                        other.GetComponent<Rigidbody>().useGravity = false;
+
+                        Debug.Log("Grabbed");
+                    }
+          
+            }
+
+            //One press of right 
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                if (isGrabbing)
+                if (isGrabbing && !isInvestigating)
                 {
-                    isGrabbing = false;
-                    other.GetComponent<Rigidbody>().useGravity = true;
-                    Debug.Log("Dropped");
+                    isInvestigating = true;
+                    CameraMouseTarget.TurnOff();
                 }
                 else
                 {
-                    isGrabbing = true;
-                    other.GetComponent<Rigidbody>().useGravity = false;
+                    isInvestigating = false;
+                    CameraMouseTarget.TurnOn();
+                }
+            }
+            
+            //constant check of left click
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                if (isInvestigating)
+                {
+                    // moves 
+                    float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+                    //    float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-                    Debug.Log("Grabbed");
+
+                    other.transform.RotateAround(other.transform.position, Vector3.up, mouseX);
+                    //  playertarget.transform.RotateAround(playertarget.transform.position, Vector3.up, mouseX);
+
                 }
             }
 
-            if (isGrabbing)
+            if (isInvestigating)
+            {
+
+            }
+            else if (isGrabbing)
             {
                 // x
                 if (other.transform.position.x != desiredLocation.transform.position.x)

@@ -372,8 +372,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredLocation: {fileID: 2009423938}
   pullSpeed: 6
+  mouseSensitivity: 0
   newLocation: {x: 0, y: 0, z: 0}
   isGrabbing: 0
+  isInvestigating: 0
+  CameraMouseTarget: {fileID: 1079732233}
 --- !u!23 &254553554
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -635,6 +638,7 @@ MonoBehaviour:
   mouseSensitivity: 90
   playertarget: {fileID: 1677899351}
   lookClampRange: 80
+  inUse: 0
 --- !u!114 &1079732234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,8 +1494,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredLocation: {fileID: 0}
   pullSpeed: 11.16
+  mouseSensitivity: 0
   newLocation: {x: 0, y: 0, z: 0}
   isGrabbing: 0
+  isInvestigating: 0
+  CameraMouseTarget: {fileID: 0}
 --- !u!135 &2125130067
 SphereCollider:
   m_ObjectHideFlags: 0
