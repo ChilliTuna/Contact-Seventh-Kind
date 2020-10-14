@@ -29,7 +29,6 @@ public class GrabItem : MonoBehaviour
         //  If flinged off will drop to the ground
         if (other.tag == "Grabbable")
         {
-
             isGrabbing = false;
             other.GetComponent<Rigidbody>().useGravity = true;
         }
@@ -72,19 +71,20 @@ public class GrabItem : MonoBehaviour
                     CameraMouseTarget.TurnOn();
                 }
             }
-            
+
+
             //constant check of left click
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 if (isInvestigating)
                 {
                     // moves 
-                    float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-                    //    float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-
-                    other.transform.RotateAround(other.transform.position, Vector3.up, mouseX);
-                    //  playertarget.transform.RotateAround(playertarget.transform.position, Vector3.up, mouseX);
+                    float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
+                    float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
+                    other.transform.RotateAround(other.transform.position, Vector3.up, -(mouseX * mouseSensitivity) );
+                other.transform.RotateAround(other.transform.position, Vector3.left, -(mouseY * mouseSensitivity));
+                    Debug.Log(mouseX.ToString());
 
                 }
             }
@@ -154,7 +154,7 @@ public class GrabItem : MonoBehaviour
                 }
 
                 other.transform.position = newLocation;
-                Debug.Log("X: " + newLocation.x.ToString() + " Y: " + newLocation.y.ToString() + " Z: " + newLocation.z.ToString());
+              //  Debug.Log("X: " + newLocation.x.ToString() + " Y: " + newLocation.y.ToString() + " Z: " + newLocation.z.ToString());
             }
         }
     }

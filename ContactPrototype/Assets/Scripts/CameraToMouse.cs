@@ -30,6 +30,7 @@ public class CameraToMouse : MonoBehaviour
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+         //   Debug.Log( "camera mouse x: " + mouseX.ToString() + "camera mouse y: " + mouseY.ToString());
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -lookClampRange, lookClampRange);
             // cannot be above or below a certain range. 
