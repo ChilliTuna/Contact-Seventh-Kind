@@ -7,7 +7,7 @@ public class ComputerMainScript : MonoBehaviour
 {
     #region Variables
 
-    public List<User> users = new List<User>();
+    public List<User> users = new List<User>() {new User(), new User(), new User(), new User() };
 
     [Header("Admin Details")]
     public string adminName;
@@ -63,10 +63,10 @@ public class ComputerMainScript : MonoBehaviour
     #region Core
     private void CreateUsers()
     {
-        users.Add(new User(adminName, adminPassword, adminHint));
-        users.Add(new User(user1Name, user1Password, user1Hint));
-        users.Add(new User(user2Name, user2Password, user2Hint));
-        users.Add(new User(user3Name, user3Password, user3Hint));
+        users[0] = new User(adminName, adminPassword, adminHint);
+        users[1] = new User(user1Name, user1Password, user1Hint);
+        users[2] = new User(user2Name, user2Password, user2Hint);
+        users[3] = new User(user3Name, user3Password, user3Hint);
     }
 
     private void GetChildMenus()
@@ -80,12 +80,12 @@ public class ComputerMainScript : MonoBehaviour
         appsScreen2 = GetChildAtPath("Apps Screen");
     }
 
-    public void ActivateGameObject(GameObject gameObject)
+    public static void ActivateGameObject(GameObject gameObject)
     {
         gameObject.SetActive(true);
     }
 
-    public void DeactivateGameObject(GameObject gameObject)
+    public static void DeactivateGameObject(GameObject gameObject)
     {
         gameObject.SetActive(false);
     }
@@ -142,7 +142,8 @@ public class ComputerMainScript : MonoBehaviour
         return gameObject.transform.Find(path).gameObject;
     }
 
-    private string FixUnityText(string p_text)
+    [HideInInspector]
+    public static string FixUnityText(string p_text)
     {
         if (p_text.Length > 0)
         {
@@ -238,14 +239,20 @@ public class ComputerMainScript : MonoBehaviour
     #endregion
 }
 
+[System.Serializable]
 public class User
 {
     public string name;
     public string password;
     public string passwordHint;
 
-    public List<Note> notes;
-    public List<Email> emails;
+    public List<Note> notes = new List<Note>();
+    public List<Email> emails = new List<Email>();
+
+    public User()
+    {
+
+    }
 
     public User(string p_name, string p_password, string p_passwordHint)
     {
@@ -255,16 +262,18 @@ public class User
     }
 }
 
+[System.Serializable]
 public class Note
 {
-    public string subject;
-    public string content;
+    public string subject = "Subject";
+    public string content = "Content";
 }
 
+[System.Serializable]
 public class Email
 {
-    public string subject;
-    public string recipient;
-    public string sender;
-    public string content;
+    public string subject = "Subject";
+    public string recipient = "Recipient";
+    public string sender = "Sender";
+    public string content = "Content";
 }
