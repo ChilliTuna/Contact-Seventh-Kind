@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,29 +9,42 @@ public class ComputerMainScript : MonoBehaviour
 {
     #region Variables
 
-    public List<User> users = new List<User>() {new User(), new User(), new User(), new User() };
+    [HideInInspector]
+    public List<User> users = new List<User>() { new User(), new User(), new User(), new User() };
+
+    private List<Button> noteButtons;
+    private List<Button> emailButtons;
+
+    [HideInInspector]
+    public static string fileName = "ComputerData.dat";
 
     [Header("Admin Details")]
     public string adminName;
+
     public string adminPassword;
     public string adminHint;
     public Button adminButton;
+
     [Header("User 1 Details")]
     public string user1Name;
+
     public string user1Password;
     public string user1Hint;
     public Button user1Button;
+
     [Header("User 2 Details")]
     public string user2Name;
+
     public string user2Password;
     public string user2Hint;
     public Button user2Button;
+
     [Header("User 3 Details")]
     public string user3Name;
+
     public string user3Password;
     public string user3Hint;
     public Button user3Button;
-
 
     private GameObject loginScreen1;
     private GameObject loginScreen2;
@@ -41,7 +56,7 @@ public class ComputerMainScript : MonoBehaviour
 
     private User activeUser;
     private bool isLoggedIn;
-    
+
     public enum EnumUsers
     {
         None,
@@ -51,22 +66,53 @@ public class ComputerMainScript : MonoBehaviour
         User3
     }
 
-    #endregion
+    #endregion Variables
 
     // Start is called before the first frame update
     private void Start()
     {
-        CreateUsers();
+        InitializeUsers();
         GetChildMenus();
+        SetLoginMenuText();
     }
 
     #region Core
-    private void CreateUsers()
+
+    private void InitializeUsers()
     {
-        users[0] = new User(adminName, adminPassword, adminHint);
-        users[1] = new User(user1Name, user1Password, user1Hint);
-        users[2] = new User(user2Name, user2Password, user2Hint);
-        users[3] = new User(user3Name, user3Password, user3Hint);
+        LoadUsers();
+
+        //Admin details
+        users[0].name = adminName;
+        users[0].password = adminPassword;
+        users[0].passwordHint = adminHint;
+
+        //User 1 details
+        users[1].name = user1Name;
+        users[1].password = user1Password;
+        users[1].passwordHint = user1Hint;
+
+        //User 2 details
+        users[2].name = user2Name;
+        users[2].password = user2Password;
+        users[2].passwordHint = user2Hint;
+
+        //User 3 details
+        users[3].name = user3Name;
+        users[3].password = user3Password;
+        users[3].passwordHint = user3Hint;
+    }
+
+    private void LoadUsers()
+    {
+        using (MemoryStream mStream = new MemoryStream())
+        {
+            byte[] readInput = File.ReadAllBytes(fileName);
+            BinaryFormatter bFormatter = new BinaryFormatter();
+            mStream.Write(readInput, 0, readInput.Length);
+            mStream.Position = 0;
+            users = (List<User>)bFormatter.Deserialize(mStream);
+        }
     }
 
     private void GetChildMenus()
@@ -78,6 +124,14 @@ public class ComputerMainScript : MonoBehaviour
         notesScreen1 = GetChildAtPath("Notes Screen");
         notesScreen2 = GetChildAtPath("Notes Screen 2");
         appsScreen2 = GetChildAtPath("Apps Screen");
+    }
+
+    private void SetLoginMenuText()
+    {
+        GetChildAtPath("Login Screen/Button_Admin/Text (TMP)").GetComponent<TextMeshProUGUI>().text = users[0].name;
+        GetChildAtPath("Login Screen/Button_User1/Text (TMP)").GetComponent<TextMeshProUGUI>().text = users[1].name;
+        GetChildAtPath("Login Screen/Button_User2/Text (TMP)").GetComponent<TextMeshProUGUI>().text = users[2].name;
+        GetChildAtPath("Login Screen/Button_User3/Text (TMP)").GetComponent<TextMeshProUGUI>().text = users[3].name;
     }
 
     public static void ActivateGameObject(GameObject gameObject)
@@ -160,7 +214,17 @@ public class ComputerMainScript : MonoBehaviour
             return "";
         }
     }
-    #endregion
+
+    [HideInInspector]
+    public static void ResetList<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i >= 0; i--)
+        {
+            list.RemoveAt(i);
+        }
+    }
+
+    #endregion Core
 
     #region Login System
 
@@ -230,13 +294,44 @@ public class ComputerMainScript : MonoBehaviour
             isLoggedIn = false;
         }
     }
-    #endregion
+
+    #endregion Login System
 
     #region Notes System
 
+    public void LoadNotesMenu(Button buttonType)
+    {
+        ResetList(noteButtons);
+        GameObject content = GetChildAtPath("Notes Screen/Window Background/Scroll View/Viewport/Content");
+        content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, activeUser.notes.Count * 80);
+        if (activeUser.notes.Count > 0)
+        {
+            buttonType.gameObject.SetActive(true);
+            content.transform.Find("Text_NoNotes").gameObject.SetActive(false);
+            buttonType.transform.Find("Text_Subject").GetComponent<TextMeshProUGUI>().text = activeUser.notes[0].subject;
+            noteButtons.Add(buttonType);
+            for (int i = 0; i < activeUser.notes.Count; i++)
+            {
+                if (i > 0)
+                {
+                    Button newButton = Instantiate(buttonType);
+                    newButton.transform.Find("Text_Subject").GetComponent<TextMeshProUGUI>().text = activeUser.notes[i].subject;
+                    newButton.transform.SetParent(buttonType.transform.parent);
+                    Vector3 newPos = noteButtons[i - 1].transform.position;
+                    newPos.y -= 80;
+                    newButton.transform.position = newPos;
+                    noteButtons.Add(newButton);
+                }
+            }
+        }
+        else
+        {
+            buttonType.gameObject.SetActive(false);
+            content.transform.Find("Text_NoNotes").gameObject.SetActive(true);
+        }
+    }
 
-
-    #endregion
+    #endregion Notes System
 }
 
 [System.Serializable]
@@ -248,18 +343,6 @@ public class User
 
     public List<Note> notes = new List<Note>();
     public List<Email> emails = new List<Email>();
-
-    public User()
-    {
-
-    }
-
-    public User(string p_name, string p_password, string p_passwordHint)
-    {
-        name = p_name;
-        password = p_password;
-        passwordHint = p_passwordHint;
-    }
 }
 
 [System.Serializable]

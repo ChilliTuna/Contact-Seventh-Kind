@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class UserEditor : EditorWindow
 {
-    private string fileName = "ComputerData.dat";
     private bool hasLoaded = false;
 
     public GameObject computerObject;
@@ -14,6 +13,8 @@ public class UserEditor : EditorWindow
 
     private ComputerMainScript computer;
     private User currentUser;
+
+    Vector2 scrollPos = new Vector2();
 
     [MenuItem("Window/User Editor")]
     public static void ShowWindow()
@@ -35,6 +36,7 @@ public class UserEditor : EditorWindow
         }
         else
         {
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, false);
             if (computerObject)
             {
                 chosenUser = (ComputerMainScript.EnumUsers)EditorGUILayout.EnumPopup("User", chosenUser);
@@ -49,7 +51,7 @@ public class UserEditor : EditorWindow
                     {
                         EditorGUILayout.LabelField("Note #" + (i + 1).ToString());
                         currentUser.notes[i].subject = EditorGUILayout.TextField(currentUser.notes[i].subject);
-                        currentUser.notes[i].content = EditorGUILayout.TextArea(currentUser.notes[i].content);
+                        currentUser.notes[i].content = EditorGUILayout.TextArea(currentUser.notes[i].content, GUILayout.Height(80));
                     }
                 }
 
@@ -71,8 +73,8 @@ public class UserEditor : EditorWindow
                     {
                         EditorGUILayout.LabelField("Email #" + (i + 1).ToString());
                         currentUser.emails[i].subject = EditorGUILayout.TextField(currentUser.emails[i].subject);
-                        currentUser.emails[i].subject = EditorGUILayout.TextField(currentUser.emails[i].recipient);
-                        currentUser.emails[i].subject = EditorGUILayout.TextField(currentUser.emails[i].sender);
+                        currentUser.emails[i].recipient = EditorGUILayout.TextField(currentUser.emails[i].recipient);
+                        currentUser.emails[i].sender = EditorGUILayout.TextField(currentUser.emails[i].sender);
                         currentUser.emails[i].content = EditorGUILayout.TextArea(currentUser.emails[i].content, GUILayout.Height(80));
                     }
                 }
@@ -86,20 +88,28 @@ public class UserEditor : EditorWindow
                 {
                     currentUser.emails.RemoveAt(currentUser.emails.Count - 1);
                 }
-            }
-        }
-    }
 
-    private void OnDestroy()
-    {
-        SaveUsers();
+                EditorGUILayout.Space(10);
+
+                if (GUILayout.Button("Save"))
+                {
+                    SaveUsers();
+                }
+
+                if (GUILayout.Button("Cancel"))
+                {
+                    LoadUsers();
+                }
+            }
+            EditorGUILayout.EndScrollView();
+        }
     }
 
     private void SaveUsers()
     {
         if (computer)
         {
-            using (BinaryWriter writer = new BinaryWriter(File.Open(fileName, FileMode.Create)))
+            using (BinaryWriter writer = new BinaryWriter(File.Open(ComputerMainScript.fileName, FileMode.Create)))
             {
                 byte[] writeData;
                 using (MemoryStream mStream = new MemoryStream())
@@ -117,7 +127,7 @@ public class UserEditor : EditorWindow
     {
         using (MemoryStream mStream = new MemoryStream())
         {
-            byte[] readInput = File.ReadAllBytes(fileName);
+            byte[] readInput = File.ReadAllBytes(ComputerMainScript.fileName);
             BinaryFormatter bFormatter = new BinaryFormatter();
             mStream.Write(readInput, 0, readInput.Length);
             mStream.Position = 0;
