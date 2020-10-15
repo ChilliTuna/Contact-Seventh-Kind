@@ -12,8 +12,11 @@ public class ComputerMainScript : MonoBehaviour
     [HideInInspector]
     public List<User> users = new List<User>() { new User(), new User(), new User(), new User() };
 
-    private List<Button> noteButtons;
-    private List<Button> emailButtons;
+    private List<Button> noteButtons = new List<Button>();
+    private List<Button> emailButtons = new List<Button>();
+
+    private Note currentNote;
+    private Email currentEmail;
 
     [HideInInspector]
     public static string fileName = "ComputerData.dat";
@@ -134,12 +137,12 @@ public class ComputerMainScript : MonoBehaviour
         GetChildAtPath("Login Screen/Button_User3/Text (TMP)").GetComponent<TextMeshProUGUI>().text = users[3].name;
     }
 
-    public static void ActivateGameObject(GameObject gameObject)
+    public void ActivateGameObject(GameObject gameObject)
     {
         gameObject.SetActive(true);
     }
 
-    public static void DeactivateGameObject(GameObject gameObject)
+    public void DeactivateGameObject(GameObject gameObject)
     {
         gameObject.SetActive(false);
     }
@@ -216,11 +219,16 @@ public class ComputerMainScript : MonoBehaviour
     }
 
     [HideInInspector]
-    public static void ResetList<T>(List<T> list)
+    public static void ResetButtonList(List<Button> list)
     {
-        for (int i = list.Count - 1; i >= 0; i--)
+        if (list.Count > 0)
         {
-            list.RemoveAt(i);
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                DestroyImmediate(list[i].gameObject);
+                list.RemoveAt(i);
+            }
+            list.RemoveAt(0);
         }
     }
 
@@ -273,7 +281,6 @@ public class ComputerMainScript : MonoBehaviour
         CheckPassword();
         if (isLoggedIn)
         {
-            GetChildAtPath("Login Screen 2/Input_Password/Text Area/Text").GetComponent<TextMeshProUGUI>().text = "";
             GetChildAtPath("Login Screen 2/Text_WrongPassword").SetActive(false);
             GetChildAtPath("Login Screen 2/Button_ForgotPassword/Text_Hint").SetActive(false);
             GetChildAtPath("Login Screen 2/Button_ForgotPassword/Text_Forgot").SetActive(true);
@@ -301,14 +308,17 @@ public class ComputerMainScript : MonoBehaviour
 
     public void LoadNotesMenu(Button buttonType)
     {
-        ResetList(noteButtons);
+        ResetButtonList(noteButtons);
         GameObject content = GetChildAtPath("Notes Screen/Window Background/Scroll View/Viewport/Content");
-        content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, activeUser.notes.Count * 80);
+        content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, activeUser.notes.Count * 150);
         if (activeUser.notes.Count > 0)
         {
             buttonType.gameObject.SetActive(true);
             content.transform.Find("Text_NoNotes").gameObject.SetActive(false);
             buttonType.transform.Find("Text_Subject").GetComponent<TextMeshProUGUI>().text = activeUser.notes[0].subject;
+            Vector3 firstPos = buttonType.transform.localPosition;
+            firstPos.y = -110;
+            buttonType.transform.localPosition = firstPos;
             noteButtons.Add(buttonType);
             for (int i = 0; i < activeUser.notes.Count; i++)
             {
@@ -317,9 +327,10 @@ public class ComputerMainScript : MonoBehaviour
                     Button newButton = Instantiate(buttonType);
                     newButton.transform.Find("Text_Subject").GetComponent<TextMeshProUGUI>().text = activeUser.notes[i].subject;
                     newButton.transform.SetParent(buttonType.transform.parent);
-                    Vector3 newPos = noteButtons[i - 1].transform.position;
-                    newPos.y -= 80;
-                    newButton.transform.position = newPos;
+                    Vector3 newPos = noteButtons[i - 1].transform.localPosition;
+                    newPos.y -= 150;
+                    newButton.transform.localPosition = newPos;
+                    newButton.transform.localScale = noteButtons[i - 1].transform.localScale;
                     noteButtons.Add(newButton);
                 }
             }
@@ -329,6 +340,86 @@ public class ComputerMainScript : MonoBehaviour
             buttonType.gameObject.SetActive(false);
             content.transform.Find("Text_NoNotes").gameObject.SetActive(true);
         }
+    }
+
+    public void GetChosenNote()
+    {
+        for (int i = 0; i < noteButtons.Count; i++)
+        {
+            if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == noteButtons[i].gameObject)
+            {
+                currentNote = activeUser.notes[i];
+            }
+        }
+    }
+
+    public void SetNoteText()
+    {
+        GameObject subjectText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Text_Subject");
+        subjectText.GetComponent<TextMeshProUGUI>().text = currentNote.subject;
+        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Text_NoteContent");
+        contentText.GetComponent<TextMeshProUGUI>().text = currentNote.content;
+    }
+
+    #endregion Notes System
+
+    #region Emails System
+
+    public void LoadEmailsMenu(Button buttonType)
+    {
+        ResetButtonList(emailButtons);
+        GameObject content = GetChildAtPath("Email Screen/Window Background/Scroll View/Viewport/Content");
+        content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, activeUser.emails.Count * 150);
+        if (activeUser.emails.Count > 0)
+        {
+            buttonType.gameObject.SetActive(true);
+            content.transform.Find("Text_NoEmails").gameObject.SetActive(false);
+            buttonType.transform.Find("Text_EmailSubject").GetComponent<TextMeshProUGUI>().text = activeUser.emails[0].subject;
+            buttonType.transform.Find("Text_OtherText").GetComponent<TextMeshProUGUI>().text = activeUser.emails[0].sender;
+            Vector3 firstPos = buttonType.transform.localPosition;
+            firstPos.y = -110;
+            buttonType.transform.localPosition = firstPos;
+            emailButtons.Add(buttonType);
+            for (int i = 0; i < activeUser.emails.Count; i++)
+            {
+                if (i > 0)
+                {
+                    Button newButton = Instantiate(buttonType);
+                    newButton.transform.Find("Text_EmailSubject").GetComponent<TextMeshProUGUI>().text = activeUser.emails[i].subject;
+                    buttonType.transform.Find("Text_OtherText").GetComponent<TextMeshProUGUI>().text = activeUser.emails[i].sender;
+                    newButton.transform.SetParent(buttonType.transform.parent);
+                    Vector3 newPos = emailButtons[i - 1].transform.localPosition;
+                    newPos.y -= 150;
+                    newButton.transform.localPosition = newPos;
+                    newButton.transform.localScale = emailButtons[i - 1].transform.localScale;
+                    emailButtons.Add(newButton);
+                }
+            }
+        }
+        else
+        {
+            buttonType.gameObject.SetActive(false);
+            content.transform.Find("Text_NoEmails").gameObject.SetActive(true);
+        }
+    }
+
+    public void GetChosenEmail()
+    {
+        for (int i = 0; i < noteButtons.Count; i++)
+        {
+            if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == noteButtons[i].gameObject)
+            {
+                currentNote = activeUser.notes[i];
+            }
+        }
+    }
+
+    public void SetEmailText()
+    {
+        GameObject subjectText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Text_Subject");
+        subjectText.GetComponent<TextMeshProUGUI>().text = currentNote.subject;
+        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Text_NoteContent");
+        contentText.GetComponent<TextMeshProUGUI>().text = currentNote.content;
     }
 
     #endregion Notes System
