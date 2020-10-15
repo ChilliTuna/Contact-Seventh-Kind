@@ -405,24 +405,28 @@ public class ComputerMainScript : MonoBehaviour
 
     public void GetChosenEmail()
     {
-        for (int i = 0; i < noteButtons.Count; i++)
+        for (int i = 0; i < emailButtons.Count; i++)
         {
-            if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == noteButtons[i].gameObject)
+            if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == emailButtons[i].gameObject)
             {
-                currentNote = activeUser.notes[i];
+                currentEmail = activeUser.emails[i];
             }
         }
     }
 
     public void SetEmailText()
     {
-        GameObject subjectText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Text_Subject");
-        subjectText.GetComponent<TextMeshProUGUI>().text = currentNote.subject;
-        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Text_NoteContent");
-        contentText.GetComponent<TextMeshProUGUI>().text = currentNote.content;
+        GameObject subjectText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Text_Subject");
+        subjectText.GetComponent<TextMeshProUGUI>().text = currentEmail.subject;
+        GameObject recipientText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Participants Background/Text_Recipient");
+        recipientText.GetComponent<TextMeshProUGUI>().text = "Recipient: " + currentEmail.recipient;
+        GameObject senderText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Participants Background/Text_Sender");
+        senderText.GetComponent<TextMeshProUGUI>().text = "Sender: " + currentEmail.sender;
+        GameObject contentText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Email Text Background/Text_EmailContent");
+        contentText.GetComponent<TextMeshProUGUI>().text = currentEmail.content;
     }
 
-    #endregion Notes System
+    #endregion Emails System
 }
 
 [System.Serializable]
