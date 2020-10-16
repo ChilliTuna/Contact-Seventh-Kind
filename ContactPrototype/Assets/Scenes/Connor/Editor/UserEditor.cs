@@ -26,7 +26,7 @@ public class UserEditor : EditorWindow
     {
         if (!hasLoaded)
         {
-            computerObject = (GameObject)EditorGUILayout.ObjectField("Computer", computerObject, typeof(GameObject), true);
+            computerObject = (GameObject)EditorGUILayout.ObjectField("Computer screen", computerObject, typeof(GameObject), true);
             if (computerObject)
             {
                 computer = computerObject.GetComponent<ComputerMainScript>();
