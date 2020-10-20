@@ -1,1 +1,0 @@
-contact_seventh_kind
