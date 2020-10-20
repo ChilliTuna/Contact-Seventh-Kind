@@ -15,24 +15,42 @@ public class CameraToMouse : MonoBehaviour
 
     float xRotation = 0f; // handles up and down
 
+    public bool inUse;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        TurnOn();
         // Cursor doesn't move.
     }
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        if (inUse)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        Debug.Log(mouseX);
-        Debug.Log(mouseY);
+         //   Debug.Log( "camera mouse x: " + mouseX.ToString() + "camera mouse y: " + mouseY.ToString());
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -lookClampRange, lookClampRange);
+            // cannot be above or below a certain range. 
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -lookClampRange, lookClampRange);
-        // cannot be above or below a certain range. 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playertarget.Rotate(Vector3.up * (mouseX));
+            playertarget.transform.RotateAround(playertarget.transform.position, Vector3.up, mouseX);
+
+        }
     }
+
+    public void TurnOn()
+    {
+        inUse = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor doesn't move.
+    }
+    public void TurnOff()
+    {
+        inUse = false;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
 }
