@@ -14,7 +14,7 @@ public class UserEditor : EditorWindow
     private ComputerMainScript computer;
     private User currentUser;
 
-    Vector2 scrollPos = new Vector2();
+    private Vector2 scrollPos = new Vector2();
 
     [MenuItem("Window/User Editor")]
     public static void ShowWindow()
@@ -62,7 +62,7 @@ public class UserEditor : EditorWindow
 
                 if (GUILayout.Button("Remove last note"))
                 {
-                    currentUser.notes.RemoveAt(currentUser.notes.Count-1);
+                    currentUser.notes.RemoveAt(currentUser.notes.Count - 1);
                 }
 
                 EditorGUILayout.Space(10);
@@ -127,9 +127,16 @@ public class UserEditor : EditorWindow
     {
         using (MemoryStream mStream = new MemoryStream())
         {
-            byte[] readInput = File.ReadAllBytes(ComputerMainScript.fileName);
+            try
+            {
+                byte[] readInput = File.ReadAllBytes(ComputerMainScript.fileName);
+                mStream.Write(readInput, 0, readInput.Length);
+            }
+            catch
+            {
+                return;
+            }
             BinaryFormatter bFormatter = new BinaryFormatter();
-            mStream.Write(readInput, 0, readInput.Length);
             mStream.Position = 0;
             computer.users = (List<User>)bFormatter.Deserialize(mStream);
         }

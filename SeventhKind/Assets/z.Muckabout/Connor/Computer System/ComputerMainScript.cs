@@ -110,9 +110,16 @@ public class ComputerMainScript : MonoBehaviour
     {
         using (MemoryStream mStream = new MemoryStream())
         {
-            byte[] readInput = File.ReadAllBytes(fileName);
+            try
+            {
+                byte[] readInput = File.ReadAllBytes(fileName);
+                mStream.Write(readInput, 0, readInput.Length);
+            }
+            catch
+            {
+                return;
+            }
             BinaryFormatter bFormatter = new BinaryFormatter();
-            mStream.Write(readInput, 0, readInput.Length);
             mStream.Position = 0;
             users = (List<User>)bFormatter.Deserialize(mStream);
         }
