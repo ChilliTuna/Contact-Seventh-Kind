@@ -6,33 +6,16 @@ using TMPro;
 public class SelfWritingNotepad : MonoBehaviour
 {
     public TextMeshProUGUI tm;
-    string Text;
-    // Start is called before the first frame update
-    void Start()
+    string text;
+
+    private void Update()
     {
-        tm = gameObject.GetComponent<TextMeshProUGUI>();
+        text = tm.text;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateNotepad(string newString)
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Text += "This is a test one. \n";
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Text += "This is a test two. \n";
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Text += "This is a test three. \n";
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Text += "This is a test four. \n";
-        }
-        tm.text = Text;
-        
+        text += ("\n" + newString);
+        tm.text = text;
     }
 }

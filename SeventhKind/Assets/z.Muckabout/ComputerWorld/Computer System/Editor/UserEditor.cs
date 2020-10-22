@@ -52,6 +52,7 @@ public class UserEditor : EditorWindow
                         EditorGUILayout.LabelField("Note #" + (i + 1).ToString());
                         currentUser.notes[i].subject = EditorGUILayout.TextField(currentUser.notes[i].subject);
                         currentUser.notes[i].content = EditorGUILayout.TextArea(currentUser.notes[i].content, GUILayout.Height(80));
+                        currentUser.notes[i].notepadText = EditorGUILayout.TextArea(currentUser.notes[i].notepadText, GUILayout.Height(80));
                     }
                 }
 
@@ -76,6 +77,7 @@ public class UserEditor : EditorWindow
                         currentUser.emails[i].recipient = EditorGUILayout.TextField(currentUser.emails[i].recipient);
                         currentUser.emails[i].sender = EditorGUILayout.TextField(currentUser.emails[i].sender);
                         currentUser.emails[i].content = EditorGUILayout.TextArea(currentUser.emails[i].content, GUILayout.Height(80));
+                        currentUser.emails[i].notepadText = EditorGUILayout.TextArea(currentUser.emails[i].notepadText, GUILayout.Height(80));
                     }
                 }
 
