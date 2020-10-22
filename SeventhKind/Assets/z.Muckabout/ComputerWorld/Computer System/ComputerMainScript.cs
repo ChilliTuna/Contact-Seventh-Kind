@@ -57,7 +57,8 @@ public class ComputerMainScript : MonoBehaviour
     private GameObject notesScreen2;
     private GameObject appsScreen2;
 
-    private User activeUser;
+    [HideInInspector]
+    public User activeUser;
     private bool isLoggedIn;
 
     public enum EnumUsers
@@ -177,7 +178,8 @@ public class ComputerMainScript : MonoBehaviour
         return null;
     }
 
-    private EnumUsers ConvertUserToEnum(User p_user)
+    [HideInInspector]
+    public EnumUsers ConvertUserToEnum(User p_user)
     {
         if (p_user == users[0])
         {
@@ -451,6 +453,8 @@ public class User
     public string name;
     public string password;
     public string passwordHint;
+
+    public bool hasProgressed = false;
 
     public List<Note> notes = new List<Note>();
     public List<Email> emails = new List<Email>();
