@@ -9,6 +9,8 @@ public class ComputerMainScript : MonoBehaviour
 {
     #region Variables
 
+    SelfWritingNotepad notepad;
+
     [HideInInspector]
     public List<User> users = new List<User>() { new User(), new User(), new User(), new User() };
 
@@ -57,7 +59,8 @@ public class ComputerMainScript : MonoBehaviour
     private GameObject notesScreen2;
     private GameObject appsScreen2;
 
-    private User activeUser;
+    [HideInInspector]
+    public User activeUser;
     private bool isLoggedIn;
 
     public enum EnumUsers
@@ -77,6 +80,8 @@ public class ComputerMainScript : MonoBehaviour
         InitializeUsers();
         GetChildMenus();
         SetLoginMenuText();
+
+        notepad = GetComponent<SelfWritingNotepad>();
     }
 
     #region Core
@@ -177,7 +182,8 @@ public class ComputerMainScript : MonoBehaviour
         return null;
     }
 
-    private EnumUsers ConvertUserToEnum(User p_user)
+    [HideInInspector]
+    public EnumUsers ConvertUserToEnum(User p_user)
     {
         if (p_user == users[0])
         {
@@ -375,6 +381,11 @@ public class ComputerMainScript : MonoBehaviour
         subjectText.GetComponent<TextMeshProUGUI>().text = currentNote.subject;
         GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Text_NoteContent");
         contentText.GetComponent<TextMeshProUGUI>().text = currentNote.content;
+        if (currentNote.unread && currentNote.notepadText != "")
+        {
+            notepad.UpdateNotepad(currentNote.notepadText);
+            currentNote.unread = false;
+        }
     }
 
     #endregion Notes System
@@ -440,6 +451,11 @@ public class ComputerMainScript : MonoBehaviour
         senderText.GetComponent<TextMeshProUGUI>().text = "Sender: " + currentEmail.sender;
         GameObject contentText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Email Text Background/Text_EmailContent");
         contentText.GetComponent<TextMeshProUGUI>().text = currentEmail.content;
+        if (currentEmail.unread && currentEmail.notepadText != "")
+        {
+            notepad.UpdateNotepad(currentEmail.notepadText);
+            currentEmail.unread = false;
+        }
     }
 
     #endregion Emails System
@@ -452,6 +468,8 @@ public class User
     public string password;
     public string passwordHint;
 
+    public bool hasProgressed = false;
+
     public List<Note> notes = new List<Note>();
     public List<Email> emails = new List<Email>();
 }
@@ -461,6 +479,8 @@ public class Note
 {
     public string subject = "Subject";
     public string content = "Content";
+    public string notepadText = "Notepad Text";
+    public bool unread = true;
 }
 
 [System.Serializable]
@@ -470,4 +490,6 @@ public class Email
     public string recipient = "Recipient";
     public string sender = "Sender";
     public string content = "Content";
+    public string notepadText = "Notepad Text";
+    public bool unread = true;
 }
