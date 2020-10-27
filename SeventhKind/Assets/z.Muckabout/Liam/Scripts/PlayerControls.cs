@@ -71,8 +71,8 @@ public class PlayerControls : MonoBehaviour
             }
             else
             {
-                Debug.Log("UP DOWN: " + forwardMovementAmount.ToString() + "  vAxis: " + vAxis.ToString());
-                Debug.Log("LEFT RIGHT: " + sideMovementAmount.ToString() + "  hAxis: " + hAxis.ToString());
+               // Debug.Log("UP DOWN: " + forwardMovementAmount.ToString() + "  vAxis: " + vAxis.ToString());
+               // Debug.Log("LEFT RIGHT: " + sideMovementAmount.ToString() + "  hAxis: " + hAxis.ToString());
             }
         }
     }
