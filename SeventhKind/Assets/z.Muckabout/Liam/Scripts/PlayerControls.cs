@@ -13,14 +13,14 @@ public class PlayerControls : MonoBehaviour
 
     public bool isMovementDisabled = false;
 
-    Rigidbody OurRigid;
+    public Rigidbody OurRigid;
 
     float hAxis;
     float vAxis;
 
     void Start()
     {
-        OurRigid = GetComponent<Rigidbody>();
+ 
         currentSpeed = startSpeed;
     }
 
@@ -71,8 +71,8 @@ public class PlayerControls : MonoBehaviour
             }
             else
             {
-                Debug.Log("UP DOWN: " + forwardMovementAmount.ToString() + "  vAxis: " + vAxis.ToString());
-                Debug.Log("LEFT RIGHT: " + sideMovementAmount.ToString() + "  hAxis: " + hAxis.ToString());
+               // Debug.Log("UP DOWN: " + forwardMovementAmount.ToString() + "  vAxis: " + vAxis.ToString());
+               // Debug.Log("LEFT RIGHT: " + sideMovementAmount.ToString() + "  hAxis: " + hAxis.ToString());
             }
         }
     }
