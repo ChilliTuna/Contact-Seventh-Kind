@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using UnityEngine;
 
 public class GrabItem : MonoBehaviour
@@ -25,24 +26,6 @@ public class GrabItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        
-        RaycastHit hit;
-
-        float epic = 2;
-        Debug.DrawRay(ray.origin, ray.direction, Color.blue, 10);
-
-        if (Physics.Raycast(ray, out hit, epic))
-        {
-            Debug.Log("EPIC");
-         //   hit.collider.gameObject.SetActive(false);
-           // hit.collider.tag;
-        }
-
-     
-
-
     }
 
      void OnTriggerExit(Collider other)
