@@ -324,6 +324,11 @@ public class ComputerMainScript : MonoBehaviour
         }
     }
 
+    public void ClearInputField(TMP_InputField inputField)
+    {
+        inputField.text = "";
+    }
+
     #endregion Login System
 
     #region Notes System
