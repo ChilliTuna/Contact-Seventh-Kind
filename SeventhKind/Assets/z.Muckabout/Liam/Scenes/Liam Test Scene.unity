@@ -524,18 +524,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1413743325 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4142722607401226206, guid: 8c4b66cf133779e42a28f283427fa919,
-    type: 3}
-  m_PrefabInstance: {fileID: 4142722608814968067}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98af2d769b730a344bbef00d02a202c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1697537219
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,21 +646,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4142722608337285215, guid: 8c4b66cf133779e42a28f283427fa919,
-        type: 3}
-      propertyPath: CameraTarget
-      value: 
-      objectReference: {fileID: 1413743325}
-    - target: {fileID: 4142722608337285215, guid: 8c4b66cf133779e42a28f283427fa919,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4142722608337285215, guid: 8c4b66cf133779e42a28f283427fa919,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4142722608680334546, guid: 8c4b66cf133779e42a28f283427fa919,
         type: 3}
       propertyPath: m_Name
