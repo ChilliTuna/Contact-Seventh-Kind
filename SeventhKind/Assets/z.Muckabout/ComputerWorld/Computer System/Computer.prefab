@@ -5258,26 +5258,8 @@ MonoBehaviour:
     password: 
     passwordHint: 
     hasProgressed: 0
-    notes:
-    - subject: Test
-      content: Potato
-      notepadText: Notepad Text
-      unread: 1
-    - subject: Another test
-      content: Content
-      notepadText: Notepad Text
-      unread: 1
-    - subject: Yet another test
-      content: Content
-      notepadText: Notepad Text
-      unread: 1
-    emails:
-    - subject: Test
-      recipient: John
-      sender: Bib
-      content: Lemons
-      notepadText: Notepad Text
-      unread: 1
+    notes: []
+    emails: []
   - name: 
     password: 
     passwordHint: 
@@ -5325,15 +5307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35813a2667e63e478592b1a7b12532b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldStates:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  worldStates: []
 --- !u!114 &4229802491022772159
 MonoBehaviour:
   m_ObjectHideFlags: 0
