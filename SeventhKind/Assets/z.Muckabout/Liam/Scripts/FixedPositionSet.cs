@@ -9,17 +9,7 @@ public class FixedPositionSet : MonoBehaviour
     // GrabFixedPosition is a script which interacts with this script 
 
     // position and rotation is where you would like the player to be. 
-    public Vector3 desiredLocation;
-    public Vector3 deisredRotation;
+    public Vector3 desiredPosition;
+    public Vector3 desiredRotation;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
