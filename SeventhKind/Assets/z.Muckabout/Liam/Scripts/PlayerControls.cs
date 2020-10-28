@@ -13,14 +13,14 @@ public class PlayerControls : MonoBehaviour
 
     public bool isMovementDisabled = false;
 
-    Rigidbody OurRigid;
+    public Rigidbody OurRigid;
 
     float hAxis;
     float vAxis;
 
     void Start()
     {
-        OurRigid = GetComponent<Rigidbody>();
+ 
         currentSpeed = startSpeed;
     }
 
