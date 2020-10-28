@@ -23,23 +23,15 @@ public class GrabFixedPosition : MonoBehaviour
 
     public CameraToMouse CameraTarget;
 
-
     float xMovementAmount = 0;
     float yMovementAmount = 0;
     float zMovementAmount = 0;
 
-    public float xRotationAmount = 0;
-    public float yRotationAmount = 0;
-    public float zRotationAmount = 0;
-
-    public float wRotationAmount;
 
 
     // Update is called once per frame
     void Update()
     {
-        wRotationAmount = playerMainBody.transform.rotation.w;
-
 
         if (movementPathSet)
         {
@@ -102,23 +94,14 @@ public class GrabFixedPosition : MonoBehaviour
                 zMovementAmount += movementSpeed * Time.deltaTime;
             }
 
-            //rotation
-
-
-
-
-
             // moves the player but how much needs to move them this frame 
             playerMainBody.transform.position = new Vector3(playerMainBody.transform.position.x + xMovementAmount,  playerMainBody.transform.position.y + yMovementAmount, playerMainBody.transform.position.z+ zMovementAmount);
 
 
             if ((playerMainBody.transform.position.x == desiredPositionCopy.x) && (playerMainBody.transform.position.y == desiredPositionCopy.y) && (playerMainBody.transform.position.z == desiredPositionCopy.z))
             {
-                movementFinsihed = true;
-                
-            }
-
-         
+                movementFinsihed = true;          
+            }     
         }
 
     }
@@ -135,6 +118,7 @@ public class GrabFixedPosition : MonoBehaviour
                 desiredPositionCopy = other.GetComponent<FixedPositionSet>().desiredPosition;
                 desiredRotationCopy = other.GetComponent<FixedPositionSet>().desiredRotation;
                 playerMainBody.transform.rotation = Quaternion.Euler(desiredRotationCopy.x, desiredRotationCopy.y, desiredRotationCopy.z);
+                // forces player into the right rotation
                 TurnOffFreeMovement();
             }
         }
