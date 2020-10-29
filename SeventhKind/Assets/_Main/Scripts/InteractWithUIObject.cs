@@ -52,7 +52,7 @@ public class InteractWithUIObject : MonoBehaviour
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = false;
         mainCamera.GetComponent<CameraToMouse>().TurnOn();
         HUD.SetActive(true);
-        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
     }
 
@@ -62,7 +62,7 @@ public class InteractWithUIObject : MonoBehaviour
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = true;
         mainCamera.GetComponent<CameraToMouse>().TurnOff();
         HUD.SetActive(false);
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
     }
 }
