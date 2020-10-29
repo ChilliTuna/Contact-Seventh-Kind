@@ -63,6 +63,9 @@ public class ComputerMainScript : MonoBehaviour
     public User activeUser;
     private bool isLoggedIn;
 
+    [HideInInspector]
+    public GameObject currentPlayer;
+
     public enum EnumUsers
     {
         None,
@@ -322,6 +325,18 @@ public class ComputerMainScript : MonoBehaviour
             GetChildAtPath("Login Screen 2/Text_WrongPassword").SetActive(true);
             isLoggedIn = false;
         }
+    }
+
+    public void ClearInputField(TMP_InputField inputField)
+    {
+        inputField.text = "";
+    }
+
+    public void ExitComputer()
+    {
+        DeactivateGameObject(gameObject);
+        InteractWithUIObject playerScript = currentPlayer.GetComponent<InteractWithUIObject>();
+        playerScript.ExitInteraction();
     }
 
     #endregion Login System

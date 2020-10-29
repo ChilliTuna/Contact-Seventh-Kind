@@ -20,6 +20,10 @@ public class UserEditor : EditorWindow
     public static void ShowWindow()
     {
         GetWindow<UserEditor>("User Editor");
+        EditorStyles.textArea.wordWrap = true;
+        EditorStyles.textArea.stretchWidth = true;
+        EditorStyles.textField.wordWrap = true;
+        EditorStyles.textField.stretchWidth = true;
     }
 
     private void OnGUI()
@@ -50,9 +54,11 @@ public class UserEditor : EditorWindow
                     for (int i = 0; i < currentUser.notes.Count; i++)
                     {
                         EditorGUILayout.LabelField("Note #" + (i + 1).ToString());
-                        currentUser.notes[i].subject = EditorGUILayout.TextField(currentUser.notes[i].subject);
-                        currentUser.notes[i].content = EditorGUILayout.TextArea(currentUser.notes[i].content, GUILayout.Height(80));
-                        currentUser.notes[i].notepadText = EditorGUILayout.TextArea(currentUser.notes[i].notepadText, GUILayout.Height(80));
+                        {
+                            currentUser.notes[i].subject = EditorGUILayout.TextField(currentUser.notes[i].subject, EditorStyles.textField);
+                            currentUser.notes[i].content = EditorGUILayout.TextArea(currentUser.notes[i].content, EditorStyles.textArea, GUILayout.Height(80));
+                            currentUser.notes[i].notepadText = EditorGUILayout.TextArea(currentUser.notes[i].notepadText, EditorStyles.textArea, GUILayout.Height(80));
+                        }
                     }
                 }
 
@@ -73,11 +79,13 @@ public class UserEditor : EditorWindow
                     for (int i = 0; i < currentUser.emails.Count; i++)
                     {
                         EditorGUILayout.LabelField("Email #" + (i + 1).ToString());
-                        currentUser.emails[i].subject = EditorGUILayout.TextField(currentUser.emails[i].subject);
-                        currentUser.emails[i].recipient = EditorGUILayout.TextField(currentUser.emails[i].recipient);
-                        currentUser.emails[i].sender = EditorGUILayout.TextField(currentUser.emails[i].sender);
-                        currentUser.emails[i].content = EditorGUILayout.TextArea(currentUser.emails[i].content, GUILayout.Height(80));
-                        currentUser.emails[i].notepadText = EditorGUILayout.TextArea(currentUser.emails[i].notepadText, GUILayout.Height(80));
+                        {
+                            currentUser.emails[i].subject = EditorGUILayout.TextField(currentUser.emails[i].subject, EditorStyles.textField);
+                            currentUser.emails[i].recipient = EditorGUILayout.TextField(currentUser.emails[i].recipient, EditorStyles.textField);
+                            currentUser.emails[i].sender = EditorGUILayout.TextField(currentUser.emails[i].sender, EditorStyles.textField);
+                            currentUser.emails[i].content = EditorGUILayout.TextArea(currentUser.emails[i].content, EditorStyles.textArea, GUILayout.Height(80));
+                            currentUser.emails[i].notepadText = EditorGUILayout.TextArea(currentUser.emails[i].notepadText, EditorStyles.textArea, GUILayout.Height(80));
+                        }
                     }
                 }
 

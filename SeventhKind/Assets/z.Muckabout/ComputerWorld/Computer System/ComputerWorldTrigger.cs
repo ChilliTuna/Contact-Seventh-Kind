@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class ComputerWorldTrigger : MonoBehaviour
 {
@@ -16,9 +15,12 @@ public class ComputerWorldTrigger : MonoBehaviour
     {
         if (!computer.activeUser.hasProgressed)
         {
-            worldStates[currentWorldState].SetActive(true);
-            currentWorldState++;
-            computer.activeUser.hasProgressed = true;
+            if (currentWorldState < worldStates.Length)
+            {
+                worldStates[currentWorldState].SetActive(!worldStates[currentWorldState].activeInHierarchy);
+                currentWorldState++;
+                computer.activeUser.hasProgressed = true;
+            }
         }
     }
 }
