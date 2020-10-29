@@ -20,10 +20,28 @@ public class GrabItem : MonoBehaviour
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
 
+    public float epic = 2;
 
     // Update is called once per frame
     void Update()
     {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        
+        RaycastHit hit;
+
+        float epic = 2;
+        Debug.DrawRay(ray.origin, ray.direction, Color.blue, 10);
+
+        if (Physics.Raycast(ray, out hit, epic))
+        {
+            Debug.Log("EPIC");
+         //   hit.collider.gameObject.SetActive(false);
+           // hit.collider.tag;
+        }
+
+     
+
 
     }
 
