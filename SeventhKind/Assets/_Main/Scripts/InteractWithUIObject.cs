@@ -6,10 +6,11 @@ public class InteractWithUIObject : MonoBehaviour
     public float maxDistance;
     public int interactionLayer;
     public float newDistance;
+    public float newHeight;
     public GameObject HUD;
 
-    [HideInInspector]
-    public Vector3 previousPos;
+    private Vector3 previousPos;
+    private Quaternion previousRotation;
 
     private RaycastHit raycastHit;
 
@@ -37,7 +38,8 @@ public class InteractWithUIObject : MonoBehaviour
                     computer.currentPlayer = gameObject;
                     
                 }
-                Vector3 newPos = raycastTarget.transform.TransformPoint(raycastTarget.transform.lossyScale.x / 2, -1.675f, -newDistance);
+                Vector3 newPos = raycastTarget.transform.TransformPoint(raycastTarget.transform.lossyScale.x / 2, 0, -newDistance);
+                newPos.y = newHeight;
                 Vector3 newRotation = raycastTarget.transform.rotation.eulerAngles;
                 gameObject.transform.position = newPos;
                 gameObject.transform.rotation = Quaternion.Euler(newRotation);
@@ -49,6 +51,7 @@ public class InteractWithUIObject : MonoBehaviour
     public void ExitInteraction()
     {
         gameObject.transform.position = previousPos;
+        gameObject.transform.rotation = previousRotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = false;
         mainCamera.GetComponent<CameraToMouse>().TurnOn();
         HUD.SetActive(true);
@@ -59,6 +62,7 @@ public class InteractWithUIObject : MonoBehaviour
     public void EnterInteraction()
     {
         previousPos = gameObject.transform.position;
+        previousRotation = gameObject.transform.rotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = true;
         mainCamera.GetComponent<CameraToMouse>().TurnOff();
         HUD.SetActive(false);
