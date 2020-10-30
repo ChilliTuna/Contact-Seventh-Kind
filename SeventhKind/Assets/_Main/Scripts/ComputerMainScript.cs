@@ -25,29 +25,29 @@ public class ComputerMainScript : MonoBehaviour
 
     [Header("Admin Details")]
     public string adminName;
-
     public string adminPassword;
     public string adminHint;
+    public bool adminWorldStates = true;
     public Button adminButton;
 
     [Header("User 1 Details")]
     public string user1Name;
-
     public string user1Password;
     public string user1Hint;
+    public bool user1WorldStates = true;
     public Button user1Button;
 
     [Header("User 2 Details")]
     public string user2Name;
-
     public string user2Password;
     public string user2Hint;
+    public bool user2WorldStates = true;
     public Button user2Button;
 
     [Header("User 3 Details")]
     public string user3Name;
-
     public string user3Password;
+    public bool user3WorldStates = true;
     public string user3Hint;
     public Button user3Button;
 
@@ -97,21 +97,25 @@ public class ComputerMainScript : MonoBehaviour
         users[0].name = adminName;
         users[0].password = adminPassword;
         users[0].passwordHint = adminHint;
+        users[0].progressesWorld = adminWorldStates;
 
         //User 1 details
         users[1].name = user1Name;
         users[1].password = user1Password;
         users[1].passwordHint = user1Hint;
+        users[1].progressesWorld = user1WorldStates;
 
         //User 2 details
         users[2].name = user2Name;
         users[2].password = user2Password;
         users[2].passwordHint = user2Hint;
+        users[2].progressesWorld = user2WorldStates;
 
         //User 3 details
         users[3].name = user3Name;
         users[3].password = user3Password;
         users[3].passwordHint = user3Hint;
+        users[3].progressesWorld = user3WorldStates;
     }
 
     private void LoadUsers()
@@ -483,7 +487,7 @@ public class User
     public string password;
     public string passwordHint;
 
-    public bool hasProgressed = false;
+    public bool progressesWorld;
 
     public List<Note> notes = new List<Note>();
     public List<Email> emails = new List<Email>();

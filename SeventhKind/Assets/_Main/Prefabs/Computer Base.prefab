@@ -1037,13 +1037,13 @@ MonoBehaviour:
   - name: 
     password: 
     passwordHint: 
-    hasProgressed: 0
+    progressesWorld: 0
     notes: []
     emails: []
   - name: 
     password: 
     passwordHint: 
-    hasProgressed: 0
+    progressesWorld: 0
     notes:
     - subject: Mushroom research data
       content: On the 2nd day, we found 3 mushrooms. But by the 4th day, we found
@@ -1054,36 +1054,40 @@ MonoBehaviour:
   - name: 
     password: 
     passwordHint: 
-    hasProgressed: 0
+    progressesWorld: 0
     notes: []
     emails: []
   - name: 
     password: 
     passwordHint: 
-    hasProgressed: 0
+    progressesWorld: 0
     notes: []
     emails: []
   adminName: Admin
   adminPassword: adminpassword
   adminHint: admin hint
+  adminWorldStates: 1
   adminButton: {fileID: 2777806110950522240}
   user1Name: John
   user1Password: John
   user1Hint: your name
+  user1WorldStates: 1
   user1Button: {fileID: 7100722392549087478}
   user2Name: User 2
   user2Password: password2
   user2Hint: hint 2
+  user2WorldStates: 1
   user2Button: {fileID: 4884778671461460810}
   user3Name: User 3
   user3Password: password3
+  user3WorldStates: 1
   user3Hint: hint 3
   user3Button: {fileID: 2625100476834486611}
   activeUser:
     name: 
     password: 
     passwordHint: 
-    hasProgressed: 0
+    progressesWorld: 0
     notes: []
     emails: []
   currentPlayer: {fileID: 0}
@@ -1099,6 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35813a2667e63e478592b1a7b12532b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statesPerEvent: 0
   worldStates: []
 --- !u!114 &1324965822062258974
 MonoBehaviour:
@@ -3163,7 +3168,7 @@ GameObject:
   - component: {fileID: 2940990820856620456}
   - component: {fileID: 2940990820856620457}
   m_Layer: 8
-  m_Name: Computer Base 1
+  m_Name: Computer Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
