@@ -2,8 +2,10 @@
 
 public class ComputerWorldTrigger : MonoBehaviour
 {
-    private ComputerMainScript computer;
+    public int statesPerEvent;
     public GameObject[] worldStates;
+
+    private ComputerMainScript computer;
     private int currentWorldState = 0;
 
     private void Start()
@@ -13,13 +15,16 @@ public class ComputerWorldTrigger : MonoBehaviour
 
     public void ProgressWorldState()
     {
-        if (!computer.activeUser.hasProgressed)
+        if (!computer.activeUser.progressesWorld)
         {
-            if (currentWorldState < worldStates.Length)
+            for (int i = 0; i > statesPerEvent; i++)
             {
-                worldStates[currentWorldState].SetActive(!worldStates[currentWorldState].activeInHierarchy);
-                currentWorldState++;
-                computer.activeUser.hasProgressed = true;
+                if (currentWorldState < worldStates.Length)
+                {
+                    worldStates[currentWorldState].SetActive(!worldStates[currentWorldState].activeInHierarchy);
+                    currentWorldState++;
+                    computer.activeUser.progressesWorld = true;
+                }
             }
         }
     }
