@@ -11,7 +11,7 @@ public class InteractWithUIObject : MonoBehaviour
 
     private Vector3 previousPos;
     private Quaternion previousRotation;
-
+    private GameObject currentInteraction;
     private RaycastHit raycastHit;
 
     // Start is called before the first frame update
@@ -30,20 +30,27 @@ public class InteractWithUIObject : MonoBehaviour
             {
                 Debug.Log("E");
                 EnterInteraction();
-                GameObject raycastTarget = raycastHit.collider.gameObject;
-                if (raycastTarget.name == "Computer Base")
+                currentInteraction = raycastHit.collider.gameObject;
+                if (currentInteraction.name == "Computer Base")
                 {
-                    ComputerMainScript computer = raycastTarget.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
+                    ComputerMainScript computer = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
                     computer.gameObject.SetActive(true);
                     computer.currentPlayer = gameObject;
-                    
                 }
-                Vector3 newPos = raycastTarget.transform.TransformPoint(raycastTarget.transform.lossyScale.x / 2, 0, -newDistance);
+                Vector3 newPos = currentInteraction.transform.TransformPoint(currentInteraction.transform.lossyScale.x / 2, 0, newDistance);
                 newPos.y = newHeight;
-                Vector3 newRotation = raycastTarget.transform.rotation.eulerAngles;
+                Vector3 newRotation = currentInteraction.transform.rotation.eulerAngles;
+                newRotation.y -= 180;
                 gameObject.transform.position = newPos;
                 gameObject.transform.rotation = Quaternion.Euler(newRotation);
                 mainCamera.transform.localRotation = Quaternion.identity;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentInteraction.name != "Computer Base")
+            {
+                ExitInteraction();
             }
         }
     }
