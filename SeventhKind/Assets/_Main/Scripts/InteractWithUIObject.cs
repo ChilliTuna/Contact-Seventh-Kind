@@ -5,30 +5,30 @@ public class InteractWithUIObject : MonoBehaviour
     public Camera mainCamera;
     public float maxDistance;
     public int interactionLayer;
-    public float newDistance;
-    public float newHeight;
     public GameObject HUD;
+
+    [HideInInspector]
+    public GameObject currentInteraction;
 
     private Vector3 previousPos;
     private Quaternion previousRotation;
-    private GameObject currentInteraction;
     private RaycastHit raycastHit;
 
     // Start is called before the first frame update
     private void Start()
     {
+
     }
 
     private void FixedUpdate()
     {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out raycastHit, maxDistance, 1 << interactionLayer))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.DrawLine(ray.origin, raycastHit.point);
-            Debug.Log("Raycast Hit");
-            if (Input.GetKeyDown(KeyCode.E))
+            Debug.Log("E");
+            Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+            if (Physics.Raycast(ray, out raycastHit, maxDistance, 1 << interactionLayer))
             {
-                Debug.Log("E");
+                Debug.Log("Raycast Hit");
                 EnterInteraction();
                 currentInteraction = raycastHit.collider.gameObject;
                 if (currentInteraction.name == "Computer Base")
@@ -37,8 +37,9 @@ public class InteractWithUIObject : MonoBehaviour
                     computer.gameObject.SetActive(true);
                     computer.currentPlayer = gameObject;
                 }
-                Vector3 newPos = currentInteraction.transform.TransformPoint(currentInteraction.transform.lossyScale.x / 2, 0, newDistance);
-                newPos.y = newHeight;
+                Interactable interactDetails = currentInteraction.GetComponent<Interactable>();
+                Vector3 newPos = currentInteraction.transform.TransformPoint(interactDetails.xOffset, 0, interactDetails.viewDistance);
+                newPos.y = interactDetails.viewHeight;
                 Vector3 newRotation = currentInteraction.transform.rotation.eulerAngles;
                 newRotation.y -= 180;
                 gameObject.transform.position = newPos;
@@ -46,11 +47,14 @@ public class InteractWithUIObject : MonoBehaviour
                 mainCamera.transform.localRotation = Quaternion.identity;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (currentInteraction != null)
         {
-            if (currentInteraction.name != "Computer Base")
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                ExitInteraction();
+                if (currentInteraction.name != "Computer Base")
+                {
+                    ExitInteraction();
+                }
             }
         }
     }
@@ -64,6 +68,7 @@ public class InteractWithUIObject : MonoBehaviour
         HUD.SetActive(true);
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
+        currentInteraction = null;
     }
 
     public void EnterInteraction()
