@@ -1064,24 +1064,25 @@ MonoBehaviour:
     notes: []
     emails: []
   adminName: Admin
-  adminPassword: adminpassword
-  adminHint: admin hint
-  adminWorldStates: 1
+  adminPassword: password123
+  adminHint: most common password
   adminButton: {fileID: 2777806110950522240}
   user1Name: John
-  user1Password: John
-  user1Hint: your name
-  user1WorldStates: 1
+  user1Password: AnimeSucks
+  user1Hint: In da bedroom
   user1Button: {fileID: 7100722392549087478}
   user2Name: User 2
-  user2Password: password2
-  user2Hint: hint 2
-  user2WorldStates: 1
+  user2Password: RoombaOverlord
+  user2Hint: I for one welcome our robotic overlords
   user2Button: {fileID: 4884778671461460810}
   user3Name: User 3
-  user3Password: password3
-  user3WorldStates: 1
-  user3Hint: hint 3
+  user3Password: BladleBlue
+  user3Hint: So get this, it's like a ladel, right, a soup ladel, but, okay, listening?
+    good, but with a blade attached. Cool right? So you can make your soup, AND Attack
+    people, or well, defend yourself from attackers, if that's more your style. oh,
+    and it's blue, because it's, like, themeatic, or something, I don't know I just
+    came up with the idea of the ladel knife, a ladel with a blade, a bladle, if
+    you will.
   user3Button: {fileID: 2625100476834486611}
   activeUser:
     name: 
@@ -1103,8 +1104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35813a2667e63e478592b1a7b12532b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statesPerEvent: 0
-  worldStates: []
+  worldStates:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1324965822062258974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,7 +1116,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305242049011201368}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0bf9593da2b18543902dd95f79acee9, type: 3}
   m_Name: 
@@ -3228,7 +3232,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
