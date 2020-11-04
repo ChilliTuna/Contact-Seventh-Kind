@@ -14,12 +14,6 @@ public class InteractWithUIObject : MonoBehaviour
     private Quaternion previousRotation;
     private RaycastHit raycastHit;
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -39,7 +33,7 @@ public class InteractWithUIObject : MonoBehaviour
                 }
                 else
                 {
-                    Interactable interactionScript = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<Interactable>();
+                    Interactable interactionScript = currentInteraction.GetComponent<Interactable>();
                     interactionScript.currentPlayer = gameObject;
                 }
                 Interactable interactDetails = currentInteraction.GetComponent<Interactable>();
