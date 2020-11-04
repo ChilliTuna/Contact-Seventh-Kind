@@ -442,9 +442,8 @@ MonoBehaviour:
   mainCamera: {fileID: 8735655368536775595}
   maxDistance: 10
   interactionLayer: 8
-  newDistance: 0.8
-  newHeight: 0.43
   HUD: {fileID: 0}
+  currentInteraction: {fileID: 0}
 --- !u!1 &8735655369714656294
 GameObject:
   m_ObjectHideFlags: 0

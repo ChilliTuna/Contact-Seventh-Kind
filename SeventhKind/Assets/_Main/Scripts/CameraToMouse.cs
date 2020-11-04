@@ -41,12 +41,14 @@ public class CameraToMouse : MonoBehaviour
         }
     }
 
+    //Turn on mouse cursor
     public void TurnOn()
     {
         inUse = true;
         Cursor.lockState = CursorLockMode.Locked;
-        // Cursor doesn't move.
     }
+    
+    //Turn off mouse cursor
     public void TurnOff()
     {
         inUse = false;
