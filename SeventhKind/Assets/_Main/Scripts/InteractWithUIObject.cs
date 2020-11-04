@@ -33,9 +33,14 @@ public class InteractWithUIObject : MonoBehaviour
                 currentInteraction = raycastHit.collider.gameObject;
                 if (currentInteraction.name == "Computer Base")
                 {
-                    ComputerMainScript computer = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
-                    computer.gameObject.SetActive(true);
-                    computer.currentPlayer = gameObject;
+                    ComputerMainScript computerScript = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
+                    computerScript.gameObject.SetActive(true);
+                    computerScript.currentPlayer = gameObject;
+                }
+                else
+                {
+                    Interactable interactionScript = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<Interactable>();
+                    interactionScript.currentPlayer = gameObject;
                 }
                 Interactable interactDetails = currentInteraction.GetComponent<Interactable>();
                 Vector3 newPos = currentInteraction.transform.TransformPoint(interactDetails.xOffset, 0, interactDetails.viewDistance);

@@ -1103,8 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35813a2667e63e478592b1a7b12532b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statesPerEvent: 0
-  worldStates: []
+  gameMaster: {fileID: 0}
 --- !u!114 &1324965822062258974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3480,6 +3479,7 @@ MonoBehaviour:
   viewDistance: 0.75
   viewHeight: 0.43
   xOffset: 0.5
+  currentPlayer: {fileID: 0}
 --- !u!1 &2953239444504951844
 GameObject:
   m_ObjectHideFlags: 0
@@ -10190,7 +10190,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3105077921580035491}
-        m_MethodName: ProgressWorldState
+        m_MethodName: ComputerProgressWorldState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

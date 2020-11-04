@@ -458,6 +458,7 @@ MonoBehaviour:
   viewDistance: 2
   viewHeight: 0.4
   xOffset: 0
+  currentPlayer: {fileID: 0}
 --- !u!114 &1519819583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +478,20 @@ MonoBehaviour:
   failLight: {fileID: 913293690}
   passSound: {fileID: 8300000, guid: 52fbddad70010fa43bfbbe1316db22cc, type: 3}
   failSound: {fileID: 8300000, guid: f4941aceba85be046b90592ae528571e, type: 3}
+  OnSuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3726970771438285733
 GameObject:
   m_ObjectHideFlags: 0
