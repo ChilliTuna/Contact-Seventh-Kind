@@ -45,7 +45,7 @@ public class Keypad : MonoBehaviour
                             if (raycastHit.collider.gameObject.name == "0" + i + "_ButtonCollider")
                             {
                                 inputCode += i;
-                                Debug.Log("Boop");
+                                Debug.Log("Boop" + i);
                                 if (Convert.ToInt32(inputCode) == code)
                                 {
                                     Succeed();
