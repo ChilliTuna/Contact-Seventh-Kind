@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8735655368706445392
 Transform:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8735655368706445393}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -241,12 +241,12 @@ GameObject:
   - component: {fileID: 8735655369018985213}
   - component: {fileID: 8735655369018985185}
   m_Layer: 0
-  m_Name: item grab sensor
+  m_Name: Item Grab Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8735655369018985214
 Transform:
   m_ObjectHideFlags: 0
@@ -276,7 +276,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8735655369018985210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -319,8 +319,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.8730514, y: 1, z: 1}
+  m_Center: {x: -0.17556185, y: 0, z: -7.1852746e-16}
 --- !u!114 &8735655369018985185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,17 +336,13 @@ MonoBehaviour:
   tagToFind: Grabbable Item
   desiredLocation: {fileID: 8735655368706445393}
   pullSpeed: 5
-  SideMouseSensitivity: 0
-  UpDownMouseSensitivity: 0
+  SideMouseSensitivity: 360
+  UpDownMouseSensitivity: 240
   isGrabbing: 0
   isInvestigating: 0
   CameraMouseTarget: {fileID: 8735655368536775596}
   playerControlsTarget: {fileID: 8735655369539444902}
-  playerBody: {fileID: 0}
-  itemBeingHeld: {fileID: 0}
-  holdingPlayerRotationY: 0
-  YRotationAmount: 0
-  ZRotationAmount: 0
+  playerBody: {fileID: 8735655369539444896}
 --- !u!1 &8735655369539444896
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +356,8 @@ GameObject:
   - component: {fileID: 8735655369539444899}
   - component: {fileID: 8735655369539444902}
   - component: {fileID: 5806325365021645049}
-  m_Layer: 0
+  - component: {fileID: 5806325365051057448}
+  m_Layer: 9
   m_Name: ConnorPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,3 +445,18 @@ MonoBehaviour:
   interactionLayer: 8
   HUD: {fileID: 0}
   currentInteraction: {fileID: 0}
+--- !u!114 &5806325365051057448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735655369539444896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7605be3187c2fe2458169c98d03829f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportLocations:
+  - {fileID: 0}
+  - {fileID: 0}
