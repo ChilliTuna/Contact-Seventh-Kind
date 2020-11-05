@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//using System.Diagnostics;
 using UnityEngine;
 
 public class GrabItem : MonoBehaviour
@@ -10,181 +9,213 @@ public class GrabItem : MonoBehaviour
     public GameObject desiredLocation; // where you want the picked up item to be flung
     public float pullSpeed; // How fast the object moves towards the desired location
 
-    public float mouseSensitivity;
-
-  Vector3 newLocation;
+    public float SideMouseSensitivity;
+    public float UpDownMouseSensitivity;
 
     public bool isGrabbing;
     public bool isInvestigating;
 
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
+    public GameObject playerBody;
 
-    public float epic = 2;
+    public Collider itemBeingHeld;
 
-    // Update is called once per frame
+
+    public float holdingPlayerRotationY;
+    public float YRotationAmount;
+    public float ZRotationAmount;
+
+
     void Update()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        UpdateDifferencXYRotationAmounts();
+        Vector3 newLocation = new Vector3(0, 0, 0);
 
-        
-        RaycastHit hit;
-
-        float epic = 2;
-        Debug.DrawRay(ray.origin, ray.direction, Color.blue, 10);
-
-        if (Physics.Raycast(ray, out hit, epic))
+        //One press of right = turns on investigating
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Debug.Log("EPIC");
-         //   hit.collider.gameObject.SetActive(false);
-           // hit.collider.tag;
+
+            if (isGrabbing && !isInvestigating)
+            {
+                isInvestigating = true;
+                playerControlsTarget.isMovementDisabled = true;
+                CameraMouseTarget.TurnOff();
+            }
+            else
+            {
+                isInvestigating = false;
+                playerControlsTarget.isMovementDisabled = false;
+                CameraMouseTarget.TurnOn();
+            }
         }
 
-     
+  
 
-
-    }
-
-     void OnTriggerExit(Collider other)
-    {
-        //  If flinged off will drop to the ground
-        if (other.tag == tagToFind)
+        //constant check of left click
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            isGrabbing = false;
-            other.GetComponent<Rigidbody>().useGravity = true;
-            playerControlsTarget.isMovementDisabled = false;
+            if (isInvestigating)
+            {
+                float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
+                float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
+
+                UpdateDifferencXYRotationAmounts();
+
+              
+                // normal 
+                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.up, -(mouseX * SideMouseSensitivity));
+                
+                //y
+                itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * YRotationAmount * UpDownMouseSensitivity));
+                //z
+                itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.forward, (mouseY * ZRotationAmount * UpDownMouseSensitivity));
+
+                Debug.Log(mouseX.ToString());
+
+            }
         }
-    }
+
+        if (isGrabbing)
+        {
+          
+          // x
+
+              if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
+            && (itemBeingHeld.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
+            || itemBeingHeld.transform.position.x == desiredLocation.transform.position.x)
+              {
+                  // just round up 
+                  newLocation.x = desiredLocation.transform.position.x;
+              }
+              else if (itemBeingHeld.transform.position.x > desiredLocation.transform.position.x)
+              {
+                  newLocation.x = itemBeingHeld.transform.position.x - pullSpeed * Time.deltaTime;
+              }
+              else if (itemBeingHeld.transform.position.x < desiredLocation.transform.position.x)
+              {
+                  newLocation.x = itemBeingHeld.transform.position.x + pullSpeed * Time.deltaTime;
+              }
+
+            if (((itemBeingHeld.transform.position.y <= desiredLocation.transform.position.y + (pullSpeed * Time.deltaTime))
+     && (itemBeingHeld.transform.position.y >= desiredLocation.transform.position.y - (pullSpeed * Time.deltaTime)))
+     || itemBeingHeld.transform.position.y == desiredLocation.transform.position.y)
+            {
+                // just round up 
+                newLocation.y = desiredLocation.transform.position.y;
+            }
+            else if (itemBeingHeld.transform.position.y > desiredLocation.transform.position.y)
+            {
+                newLocation.y = itemBeingHeld.transform.position.y - pullSpeed * Time.deltaTime;
+            }
+            else if (itemBeingHeld.transform.position.y < desiredLocation.transform.position.y)
+            {
+                newLocation.y = itemBeingHeld.transform.position.y + pullSpeed * Time.deltaTime;
+            }
+
+
+            if (((itemBeingHeld.transform.position.z <= desiredLocation.transform.position.z + (pullSpeed * Time.deltaTime))
+     && (itemBeingHeld.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
+     || itemBeingHeld.transform.position.z == desiredLocation.transform.position.z)
+            {
+                // just round up 
+                newLocation.z = desiredLocation.transform.position.z;
+            }
+            else if (itemBeingHeld.transform.position.z > desiredLocation.transform.position.z)
+            {
+                newLocation.z = itemBeingHeld.transform.position.z - pullSpeed * Time.deltaTime;
+            }
+            else if (itemBeingHeld.transform.position.z < desiredLocation.transform.position.z)
+            {
+                newLocation.z = itemBeingHeld.transform.position.z+ pullSpeed * Time.deltaTime;
+            }
+
+
+            itemBeingHeld.transform.position = newLocation;
+          }
+
+        }
 
     void OnTriggerStay(Collider other)
     {
         if (other.tag == tagToFind)
         {
-            //One press of left click
+            //One press of left click = pick up 
             if (Input.GetKeyDown(KeyCode.Mouse0))
-            {      
-                    if (isGrabbing  && !isInvestigating)
+            {
+                itemBeingHeld = other;
+
+                if (isGrabbing  && !isInvestigating)
                     {
+                    //drop item 
                         isGrabbing = false;
                         other.GetComponent<Rigidbody>().useGravity = true;
-
-                        Debug.Log("Dropped");
-                    }
+                    playerControlsTarget.isMovementDisabled = false; 
+                }
                     else
                     {
+                    // item picked up
                         isGrabbing = true;
                         other.GetComponent<Rigidbody>().useGravity = false;
+                    playerControlsTarget.isMovementDisabled = true; // player stops moving
                     Debug.Log("Grabbed");
-                    }
-          
+                    }      
             }
+        }
+    }
 
-            //One press of right 
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                if (isGrabbing && !isInvestigating)
-                {
-                    isInvestigating = true;
-                    playerControlsTarget.isMovementDisabled = true;
-                    CameraMouseTarget.TurnOff();
-                }
-                else
-                {
-                    isInvestigating = false;
-                    playerControlsTarget.isMovementDisabled = false;
-                    CameraMouseTarget.TurnOn();
-                }
-            }
+    void UpdateDifferencXYRotationAmounts()
+    {
+        // 0 to 360 
 
+        holdingPlayerRotationY = playerBody.transform.eulerAngles.y;
 
-            //constant check of left click
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                if (isInvestigating)
-                {
-                    // moves 
+        YRotationAmount = 0;
 
-                    float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
-                    float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
+        //x
+        if (90 > holdingPlayerRotationY &&  holdingPlayerRotationY > 0)
+        {
+            //A 0=1
+            YRotationAmount = (90 - holdingPlayerRotationY) / 90;
+        }
+        else if (90 < holdingPlayerRotationY &&  holdingPlayerRotationY <180)
+        {
+            // B 180 =-1
+            YRotationAmount = (90 - holdingPlayerRotationY) / 90;
+        }
+        else if (180 < holdingPlayerRotationY && holdingPlayerRotationY < 270)
+        {
+            // C 180 =-1
+            YRotationAmount = (-270 + holdingPlayerRotationY) / 90;
+        }
+        else if (270 < holdingPlayerRotationY && holdingPlayerRotationY < 360)
+        {
+            // D 0 =1
+          YRotationAmount = (-270 + holdingPlayerRotationY) / 90;
+        }
 
-                  //  other.transform.Rotate(mouseY * mouseSensitivity, -mouseX * mouseSensitivity, 0);
-                  
+        ZRotationAmount = 0;
 
-
-                 other.transform.RotateAround(other.transform.position, Vector3.up, -(mouseX * mouseSensitivity) );
-               other.transform.RotateAround(other.transform.position, Vector3.left, -(mouseY * mouseSensitivity));
-                    Debug.Log(mouseX.ToString());
-
-                }
-            }
-
-            if (isInvestigating)
-            {
-
-            }
-            else if (isGrabbing)
-            {
-                // x
-                if (other.transform.position.x != desiredLocation.transform.position.x)
-                {
-                    if (((other.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
-                  && (other.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
-                  || other.transform.position.x == desiredLocation.transform.position.x)
-                    {
-                        // just round up 
-                        newLocation.x = desiredLocation.transform.position.x;
-                    }
-                    else if (other.transform.position.x > desiredLocation.transform.position.x)
-                    {
-                        newLocation.x = other.transform.position.x - pullSpeed * Time.deltaTime;
-                    }
-                    else if (other.transform.position.x < desiredLocation.transform.position.x)
-                    {
-                        newLocation.x = other.transform.position.x + pullSpeed * Time.deltaTime;
-                    }
-                }
-                // y 
-                if (other.transform.position.y != desiredLocation.transform.position.y)
-                {
-                    if (((other.transform.position.y <= desiredLocation.transform.position.y + (pullSpeed * Time.deltaTime))
-                  && (other.transform.position.y >= desiredLocation.transform.position.y - (pullSpeed * Time.deltaTime)))
-                  || other.transform.position.y == desiredLocation.transform.position.y)
-                    {
-                        // just round up 
-                        newLocation.y = desiredLocation.transform.position.y;
-                    }
-                    else if (other.transform.position.y > desiredLocation.transform.position.y)
-                    {
-                        newLocation.x = other.transform.position.y - pullSpeed * Time.deltaTime;
-                    }
-                    else if (other.transform.position.y < desiredLocation.transform.position.y)
-                    {
-                        newLocation.y = other.transform.position.y + pullSpeed * Time.deltaTime;
-                    }
-                }
-                // z 
-                if (other.transform.position.z != desiredLocation.transform.position.z)
-                {
-                    if (((other.transform.position.z <= desiredLocation.transform.position.z + (pullSpeed * Time.deltaTime))
-                  && (other.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
-                  || other.transform.position.z == desiredLocation.transform.position.z)
-                    {
-                        // just round up 
-                        newLocation.z = desiredLocation.transform.position.z;
-                    }
-                    else if (other.transform.position.z > desiredLocation.transform.position.z)
-                    {
-                        newLocation.z = other.transform.position.z - pullSpeed * Time.deltaTime;
-                    }
-                    else if (other.transform.position.z < desiredLocation.transform.position.z)
-                    {
-                        newLocation.z = other.transform.position.z + pullSpeed * Time.deltaTime;
-                    }
-                }
-
-                other.transform.position = newLocation;
-              //  Debug.Log("X: " + newLocation.x.ToString() + " Y: " + newLocation.y.ToString() + " Z: " + newLocation.z.ToString());
-            }
+        //y 
+        if (90 > holdingPlayerRotationY && holdingPlayerRotationY > 0)
+        {
+            //A 90 = -1
+            ZRotationAmount = (0 - holdingPlayerRotationY) / 90;
+        }
+        else if (90 < holdingPlayerRotationY && holdingPlayerRotationY < 180)
+        {
+            // B 90 =-1
+           ZRotationAmount = (-180 + holdingPlayerRotationY) / 90;
+        }
+        else if (180 < holdingPlayerRotationY && holdingPlayerRotationY < 270)
+        {
+            // C 270 = 1
+            ZRotationAmount = (-180 + holdingPlayerRotationY) / 90;
+        }
+        else if (270 < holdingPlayerRotationY && holdingPlayerRotationY < 360)
+        {
+            // D 270 = 1
+            ZRotationAmount = (360 - holdingPlayerRotationY) / 90;
         }
     }
 }
