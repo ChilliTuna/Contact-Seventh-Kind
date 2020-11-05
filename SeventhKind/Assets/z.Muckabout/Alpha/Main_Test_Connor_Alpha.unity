@@ -8537,7 +8537,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2214
+  m_Name: pb_Mesh-2480
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9797,75 +9797,20 @@ PrefabInstance:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 436781445}
-    - target: {fileID: 8735655368706445393, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+    - target: {fileID: 5806325365051057448, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655368706445394, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: SideMouseSensitivity
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: isGrabbing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: UpDownMouseSensitivity
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: playerBody
+      propertyPath: teleportLocations.Array.data[0]
       value: 
-      objectReference: {fileID: 5806325365051057447}
-    - target: {fileID: 8735655369018985210, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+      objectReference: {fileID: 1449071561}
+    - target: {fileID: 5806325365051057448, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985210, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Name
-      value: Item Grab Sensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985212, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985213, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.8730514
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985213, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.17556185
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369018985213, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -7.1852746e-16
-      objectReference: {fileID: 0}
+      propertyPath: teleportLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 541129079}
     - target: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
       propertyPath: m_Name
       value: ConnorPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8735655369539444903, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
@@ -9924,27 +9869,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ece4809f91ae34e838ca9a63cfbf2b, type: 3}
---- !u!1 &5806325365051057447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 5806325365051057446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5806325365051057448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5806325365051057447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7605be3187c2fe2458169c98d03829f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportLocations:
-  - {fileID: 1449071561}
-  - {fileID: 541129079}
 --- !u!1001 &7888828282992521928
 PrefabInstance:
   m_ObjectHideFlags: 0
