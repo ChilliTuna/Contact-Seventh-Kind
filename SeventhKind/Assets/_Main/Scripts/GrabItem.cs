@@ -12,19 +12,19 @@ public class GrabItem : MonoBehaviour
     public float SideMouseSensitivity;
     public float UpDownMouseSensitivity;
 
+    [HideInInspector]
     public bool isGrabbing;
+    [HideInInspector]
     public bool isInvestigating;
 
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
     public GameObject playerBody;
 
-    public Collider itemBeingHeld;
-
-
-    public float holdingPlayerRotationY;
-    public float YRotationAmount;
-    public float ZRotationAmount;
+    private Collider itemBeingHeld;
+    private float holdingPlayerRotationY;
+    private float YRotationAmount;
+    private float ZRotationAmount;
 
 
     void Update()
@@ -141,7 +141,7 @@ public class GrabItem : MonoBehaviour
         if (other.tag == tagToFind)
         {
             //One press of left click = pick up 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E))
             {
                 itemBeingHeld = other;
 
