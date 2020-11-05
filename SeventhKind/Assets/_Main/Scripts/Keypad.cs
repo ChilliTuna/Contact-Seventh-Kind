@@ -22,6 +22,7 @@ public class Keypad : MonoBehaviour
     private float timePassedGreen;
     private float timePassedRed;
     private AudioSource audio;
+    private bool doClick;
 
     private void Start()
     {
@@ -34,11 +35,15 @@ public class Keypad : MonoBehaviour
         {
             if (mainCamera.transform.parent.GetComponent<InteractWithUIObject>().currentInteraction == gameObject)
             {
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out raycastHit))
+                if (Input.GetMouseButtonDown(0))
                 {
+                    doClick = true;
+                }
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out raycastHit) && doClick)
+                {
+                    doClick = false;
                     gameObject.GetComponent<BoxCollider>().enabled = false;
-                    if (Input.GetMouseButtonDown(0))
                     {
                         for (int i = 0; i < 10; i++)
                         {

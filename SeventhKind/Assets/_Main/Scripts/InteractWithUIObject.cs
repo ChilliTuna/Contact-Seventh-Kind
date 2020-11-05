@@ -13,38 +13,41 @@ public class InteractWithUIObject : MonoBehaviour
     private Vector3 previousPos;
     private Quaternion previousRotation;
     private RaycastHit raycastHit;
+    private bool doInteraction;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("E");
-            Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-            if (Physics.Raycast(ray, out raycastHit, maxDistance, 1 << interactionLayer))
+            doInteraction = true;
+        }
+        Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        if (Physics.Raycast(ray, out raycastHit, maxDistance, 1 << interactionLayer) && doInteraction)
+        {
+            doInteraction = false;
+            Debug.Log("Raycast Hit");
+            EnterInteraction();
+            currentInteraction = raycastHit.collider.gameObject;
+            if (currentInteraction.name == "Computer Base")
             {
-                Debug.Log("Raycast Hit");
-                EnterInteraction();
-                currentInteraction = raycastHit.collider.gameObject;
-                if (currentInteraction.name == "Computer Base")
-                {
-                    ComputerMainScript computerScript = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
-                    computerScript.gameObject.SetActive(true);
-                    computerScript.currentPlayer = gameObject;
-                }
-                else
-                {
-                    Interactable interactionScript = currentInteraction.GetComponent<Interactable>();
-                    interactionScript.currentPlayer = gameObject;
-                }
-                Interactable interactDetails = currentInteraction.GetComponent<Interactable>();
-                Vector3 newPos = currentInteraction.transform.TransformPoint(interactDetails.xOffset, 0, interactDetails.viewDistance);
-                newPos.y = interactDetails.viewHeight;
-                Vector3 newRotation = currentInteraction.transform.rotation.eulerAngles;
-                newRotation.y -= 180;
-                gameObject.transform.position = newPos;
-                gameObject.transform.rotation = Quaternion.Euler(newRotation);
-                mainCamera.transform.localRotation = Quaternion.identity;
+                ComputerMainScript computerScript = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
+                computerScript.gameObject.SetActive(true);
+                computerScript.currentPlayer = gameObject;
             }
+            else
+            {
+                Interactable interactionScript = currentInteraction.GetComponent<Interactable>();
+                interactionScript.currentPlayer = gameObject;
+            }
+            Interactable interactDetails = currentInteraction.GetComponent<Interactable>();
+            Vector3 newPos = currentInteraction.transform.TransformPoint(interactDetails.xOffset, 0, interactDetails.viewDistance);
+            newPos.y = interactDetails.viewHeight;
+            Vector3 newRotation = currentInteraction.transform.rotation.eulerAngles;
+            newRotation.y -= 180;
+            gameObject.transform.position = newPos;
+            gameObject.transform.rotation = Quaternion.Euler(newRotation);
+            mainCamera.transform.localRotation = Quaternion.identity;
         }
         if (currentInteraction != null)
         {
