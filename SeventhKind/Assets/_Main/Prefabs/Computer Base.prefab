@@ -3484,6 +3484,7 @@ MonoBehaviour:
   viewDistance: 0.75
   viewHeight: 0.43
   xOffset: 0.5
+  currentPlayer: {fileID: 0}
 --- !u!1 &2953239444504951844
 GameObject:
   m_ObjectHideFlags: 0
@@ -10194,7 +10195,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3105077921580035491}
-        m_MethodName: ProgressWorldState
+        m_MethodName: ComputerProgressWorldState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

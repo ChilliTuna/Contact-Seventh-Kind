@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Keypad : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Keypad : MonoBehaviour
     public GameObject failLight;
     public AudioClip passSound;
     public AudioClip failSound;
+
+    public UnityEvent OnSuccess;
 
     private string inputCode = "";
     private RaycastHit raycastHit;
@@ -45,19 +48,11 @@ public class Keypad : MonoBehaviour
                                 Debug.Log("Boop");
                                 if (Convert.ToInt32(inputCode) == code)
                                 {
-                                    hasPassed = true;
-                                    shouldFlashGreen = true;
-                                    audio.clip = passSound;
-                                    audio.Play();
-                                    Debug.Log("Success");
+                                    Succeed();
                                 }
                                 else if (inputCode.Length > 3)
                                 {
-                                    inputCode = "";
-                                    shouldFlashRed = true;
-                                    audio.clip = failSound;
-                                    audio.Play();
-                                    Debug.Log("Failure");
+                                    Fail();
                                 }
                             }
                             else if (raycastHit.collider.gameObject.name == "Enter_ButtonCollider")
@@ -77,28 +72,47 @@ public class Keypad : MonoBehaviour
 
     private void FixedUpdate()
     {
-            if (shouldFlashRed)
+        if (shouldFlashRed)
+        {
+            failLight.SetActive(true);
+            timePassedRed += 0.02f;
+            if (timePassedRed >= flashTime)
             {
-                failLight.SetActive(true);
-                timePassedRed += 0.02f;
-                if (timePassedRed >= flashTime)
-                {
-                    failLight.SetActive(false);
-                    shouldFlashRed = false;
-                    timePassedRed = 0f;
-                }
+                failLight.SetActive(false);
+                shouldFlashRed = false;
+                timePassedRed = 0f;
             }
-            if (shouldFlashGreen)
+        }
+        if (shouldFlashGreen)
+        {
+            passLight.SetActive(true);
+            timePassedGreen += 0.02f;
+            if (timePassedGreen >= flashTime)
             {
-                passLight.SetActive(true);
-                timePassedGreen += 0.02f;
-                if (timePassedGreen >= flashTime)
-                {
-                    passLight.SetActive(false);
-                    shouldFlashGreen = false;
-                    timePassedGreen = 0f;
-                }
+                passLight.SetActive(false);
+                shouldFlashGreen = false;
+                timePassedGreen = 0f;
             }
-        
+        }
+    }
+
+    private void Succeed()
+    {
+        hasPassed = true;
+        shouldFlashGreen = true;
+        audio.clip = passSound;
+        audio.Play();
+        OnSuccess.Invoke();
+        gameObject.GetComponent<Interactable>().currentPlayer.GetComponent<InteractWithUIObject>().ExitInteraction();
+        Debug.Log("Success");
+    }
+
+    private void Fail()
+    {
+        inputCode = "";
+        shouldFlashRed = true;
+        audio.clip = failSound;
+        audio.Play();
+        Debug.Log("Failure");
     }
 }
