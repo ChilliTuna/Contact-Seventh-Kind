@@ -35,6 +35,7 @@ public class Keypad : MonoBehaviour
         {
             if (mainCamera.transform.parent.GetComponent<InteractWithUIObject>().currentInteraction == gameObject)
             {
+                gameObject.GetComponent<BoxCollider>().enabled = false;
                 if (Input.GetMouseButtonDown(0))
                 {
                     doClick = true;
@@ -43,7 +44,6 @@ public class Keypad : MonoBehaviour
                 if (Physics.Raycast(ray, out raycastHit) && doClick)
                 {
                     doClick = false;
-                    gameObject.GetComponent<BoxCollider>().enabled = false;
                     {
                         for (int i = 0; i < 10; i++)
                         {
