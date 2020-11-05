@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-//using System.Diagnostics;
+﻿//using System.Diagnostics;
 using UnityEngine;
 
 public class GrabItem : MonoBehaviour
@@ -11,23 +9,30 @@ public class GrabItem : MonoBehaviour
     public GameObject desiredLocation; // where you want the picked up item to be flung
     public float pullSpeed; // How fast the object moves towards the desired location
 
-    public float mouseSensitivity;
-
-
+    public float SideMouseSensitivity;
+    public float UpDownMouseSensitivity;
 
     public bool isGrabbing;
     public bool isInvestigating;
 
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
+    public GameObject playerBody;
 
     public Collider itemBeingHeld;
 
+
+    public float holdingPlayerRotationY;
+    public float YRotationAmount;
+    public float ZRotationAmount;
+
+
     void Update()
     {
+        UpdateDifferencXYRotationAmounts();
         Vector3 newLocation = new Vector3(0, 0, 0);
 
-        //One press of right = turns on moving object with mouse 
+        //One press of right = turns on investigating
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
 
@@ -45,6 +50,8 @@ public class GrabItem : MonoBehaviour
             }
         }
 
+  
+
         //constant check of left click
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -53,12 +60,17 @@ public class GrabItem : MonoBehaviour
                 float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
                 float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
 
-                itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.up, -(mouseX * mouseSensitivity));
-                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * mouseSensitivity));
+                UpdateDifferencXYRotationAmounts();
 
-            //    itemBeingHeld.transform.localRotation = Quaternion.Euler(itemBeingHeld.transform.localRotation.x + (mouseX * mouseSensitivity), itemBeingHeld.transform.localRotation.y, itemBeingHeld.transform.localRotation.z);
+              
+                // normal 
+                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.up, -(mouseX * SideMouseSensitivity));
+                
+                //y
+                itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * YRotationAmount * UpDownMouseSensitivity));
+                //z
+                itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.forward, (mouseY * ZRotationAmount * UpDownMouseSensitivity));
 
-                // itemBeingHeld.transform.eulerAngles = new Vector3(itemBeingHeld.transform.eulerAngles.x + (mouseY * mouseSensitivity), itemBeingHeld.transform.eulerAngles.y , itemBeingHeld.transform.eulerAngles.z);
                 Debug.Log(mouseX.ToString());
 
             }
@@ -122,7 +134,6 @@ public class GrabItem : MonoBehaviour
             itemBeingHeld.transform.position = newLocation;
           }
 
-          //  itemBeingHeld.transform.position = desiredLocation.transform.position;
         }
 
     void OnTriggerStay(Collider other)
@@ -150,6 +161,61 @@ public class GrabItem : MonoBehaviour
                     Debug.Log("Grabbed");
                     }      
             }
+        }
+    }
+
+    void UpdateDifferencXYRotationAmounts()
+    {
+        // 0 to 360 
+
+        holdingPlayerRotationY = playerBody.transform.eulerAngles.y;
+
+        YRotationAmount = 0;
+
+        //x
+        if (90 > holdingPlayerRotationY &&  holdingPlayerRotationY > 0)
+        {
+            //A 0=1
+            YRotationAmount = (90 - holdingPlayerRotationY) / 90;
+        }
+        else if (90 < holdingPlayerRotationY &&  holdingPlayerRotationY <180)
+        {
+            // B 180 =-1
+            YRotationAmount = (90 - holdingPlayerRotationY) / 90;
+        }
+        else if (180 < holdingPlayerRotationY && holdingPlayerRotationY < 270)
+        {
+            // C 180 =-1
+            YRotationAmount = (-270 + holdingPlayerRotationY) / 90;
+        }
+        else if (270 < holdingPlayerRotationY && holdingPlayerRotationY < 360)
+        {
+            // D 0 =1
+          YRotationAmount = (-270 + holdingPlayerRotationY) / 90;
+        }
+
+        ZRotationAmount = 0;
+
+        //y 
+        if (90 > holdingPlayerRotationY && holdingPlayerRotationY > 0)
+        {
+            //A 90 = -1
+            ZRotationAmount = (0 - holdingPlayerRotationY) / 90;
+        }
+        else if (90 < holdingPlayerRotationY && holdingPlayerRotationY < 180)
+        {
+            // B 90 =-1
+           ZRotationAmount = (-180 + holdingPlayerRotationY) / 90;
+        }
+        else if (180 < holdingPlayerRotationY && holdingPlayerRotationY < 270)
+        {
+            // C 270 = 1
+            ZRotationAmount = (-180 + holdingPlayerRotationY) / 90;
+        }
+        else if (270 < holdingPlayerRotationY && holdingPlayerRotationY < 360)
+        {
+            // D 270 = 1
+            ZRotationAmount = (360 - holdingPlayerRotationY) / 90;
         }
     }
 }
