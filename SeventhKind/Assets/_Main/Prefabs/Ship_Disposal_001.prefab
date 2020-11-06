@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8547722851154019653}
   m_Layer: 0
-  m_Name: Ship_Disposal_001 1
+  m_Name: Ship_Disposal_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7223796852284263776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6694459284996708385}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 64.949005, y: 109.63939, z: 64.439125}
+  m_Center: {x: -0.0023288727, y: -0.00017547607, z: -0.0056037903}
 --- !u!1001 &3442599864637325608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,6 +113,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1de95c41b79d7f74b94ff1e3226d811f, type: 3}
+--- !u!1 &6694459284996708385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1de95c41b79d7f74b94ff1e3226d811f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3442599864637325608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7691064701444008498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 1de95c41b79d7f74b94ff1e3226d811f,
