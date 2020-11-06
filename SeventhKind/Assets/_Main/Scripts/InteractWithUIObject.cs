@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.XR.WSA.Input;
 
 public class InteractWithUIObject : MonoBehaviour
 {
@@ -14,10 +15,17 @@ public class InteractWithUIObject : MonoBehaviour
     private Quaternion previousRotation;
     private RaycastHit raycastHit;
     private bool doInteraction;
+    private GrabItem grabSensorScript;
+
+    private void Start()
+    {
+        grabSensorScript = transform.Find("Main Camera").transform.Find("Item Grab Sensor").GetComponent<GrabItem>();
+        
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0)) && !grabSensorScript.isGrabbing)
         {
             Debug.Log("E");
             doInteraction = true;
@@ -59,6 +67,7 @@ public class InteractWithUIObject : MonoBehaviour
                 }
             }
         }
+        doInteraction = false;
     }
 
     public void ExitInteraction()
