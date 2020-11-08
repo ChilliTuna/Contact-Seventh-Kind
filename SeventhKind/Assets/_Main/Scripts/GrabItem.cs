@@ -9,23 +9,24 @@ public class GrabItem : MonoBehaviour
     public GameObject desiredLocation; // where you want the picked up item to be flung
     public float pullSpeed; // How fast the object moves towards the desired location
 
-    public float SideMouseSensitivity;
-    public float UpDownMouseSensitivity;
+    public float SideMouseSensitivity; // x rotation when investigating
+    public float UpDownMouseSensitivity; // y and z rotation when investigating
 
+    [HideInInspector]
     public bool isGrabbing;
+    [HideInInspector]
     public bool isInvestigating;
 
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
     public GameObject playerBody;
 
-    public Collider itemBeingHeld;
-
-
-    public float holdingPlayerRotationY;
-    public float YRotationAmount;
-    public float ZRotationAmount;
-
+    private bool shouldInteract;
+    private Collider itemBeingHeld;
+    private float holdingPlayerRotationY;
+    private float YRotationAmount;
+    private float ZRotationAmount;
+    private InteractWithUIObject interactScript;
 
     void Update()
     {
@@ -35,24 +36,21 @@ public class GrabItem : MonoBehaviour
         //One press of right = turns on investigating
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-
             if (isGrabbing && !isInvestigating)
             {
                 isInvestigating = true;
                 playerControlsTarget.isMovementDisabled = true;
-                CameraMouseTarget.TurnOff();
+                CameraMouseTarget.TurnOffUse();
             }
             else
             {
                 isInvestigating = false;
                 playerControlsTarget.isMovementDisabled = false;
-                CameraMouseTarget.TurnOn();
+                CameraMouseTarget.TurnOnUse();
             }
         }
 
-  
-
-        //constant check of left click
+        //constant check of left click = actually investiagte
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (isInvestigating)
@@ -62,46 +60,46 @@ public class GrabItem : MonoBehaviour
 
                 UpdateDifferencXYRotationAmounts();
 
-              
-                // normal 
+                // normal x
                  itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.up, -(mouseX * SideMouseSensitivity));
                 
                 //y
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * YRotationAmount * UpDownMouseSensitivity));
                 //z
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.forward, (mouseY * ZRotationAmount * UpDownMouseSensitivity));
-
-                Debug.Log(mouseX.ToString());
-
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E))
+        {
+            shouldInteract = true;
         }
 
         if (isGrabbing)
         {
-          
-          // x
-
-              if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
-            && (itemBeingHeld.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
-            || itemBeingHeld.transform.position.x == desiredLocation.transform.position.x)
-              {
-                  // just round up 
-                  newLocation.x = desiredLocation.transform.position.x;
-              }
-              else if (itemBeingHeld.transform.position.x > desiredLocation.transform.position.x)
-              {
-                  newLocation.x = itemBeingHeld.transform.position.x - pullSpeed * Time.deltaTime;
-              }
-              else if (itemBeingHeld.transform.position.x < desiredLocation.transform.position.x)
-              {
-                  newLocation.x = itemBeingHeld.transform.position.x + pullSpeed * Time.deltaTime;
-              }
-
-            if (((itemBeingHeld.transform.position.y <= desiredLocation.transform.position.y + (pullSpeed * Time.deltaTime))
-     && (itemBeingHeld.transform.position.y >= desiredLocation.transform.position.y - (pullSpeed * Time.deltaTime)))
-     || itemBeingHeld.transform.position.y == desiredLocation.transform.position.y)
+            // x
+            if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
+          && (itemBeingHeld.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
+          || itemBeingHeld.transform.position.x == desiredLocation.transform.position.x)
             {
                 // just round up 
+                newLocation.x = desiredLocation.transform.position.x;
+            }
+            else if (itemBeingHeld.transform.position.x > desiredLocation.transform.position.x)
+            {
+                newLocation.x = itemBeingHeld.transform.position.x - pullSpeed * Time.deltaTime;
+            }
+            else if (itemBeingHeld.transform.position.x < desiredLocation.transform.position.x)
+            {
+                newLocation.x = itemBeingHeld.transform.position.x + pullSpeed * Time.deltaTime;
+            }
+
+            //y 
+            if (((itemBeingHeld.transform.position.y <= desiredLocation.transform.position.y + (pullSpeed * Time.deltaTime))
+         && (itemBeingHeld.transform.position.y >= desiredLocation.transform.position.y - (pullSpeed * Time.deltaTime)))
+         || itemBeingHeld.transform.position.y == desiredLocation.transform.position.y)
+            {
+                // just round up
                 newLocation.y = desiredLocation.transform.position.y;
             }
             else if (itemBeingHeld.transform.position.y > desiredLocation.transform.position.y)
@@ -113,12 +111,12 @@ public class GrabItem : MonoBehaviour
                 newLocation.y = itemBeingHeld.transform.position.y + pullSpeed * Time.deltaTime;
             }
 
-
+            //z
             if (((itemBeingHeld.transform.position.z <= desiredLocation.transform.position.z + (pullSpeed * Time.deltaTime))
-     && (itemBeingHeld.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
-     || itemBeingHeld.transform.position.z == desiredLocation.transform.position.z)
+         && (itemBeingHeld.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
+         || itemBeingHeld.transform.position.z == desiredLocation.transform.position.z)
             {
-                // just round up 
+                // just round up
                 newLocation.z = desiredLocation.transform.position.z;
             }
             else if (itemBeingHeld.transform.position.z > desiredLocation.transform.position.z)
@@ -127,58 +125,54 @@ public class GrabItem : MonoBehaviour
             }
             else if (itemBeingHeld.transform.position.z < desiredLocation.transform.position.z)
             {
-                newLocation.z = itemBeingHeld.transform.position.z+ pullSpeed * Time.deltaTime;
+                newLocation.z = itemBeingHeld.transform.position.z + pullSpeed * Time.deltaTime;
             }
-
 
             itemBeingHeld.transform.position = newLocation;
           }
-
         }
+    }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.tag == tagToFind)
+        if (shouldInteract)
         {
-            //One press of left click = pick up 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (other.tag == tagToFind)
             {
                 itemBeingHeld = other;
 
-                if (isGrabbing  && !isInvestigating)
-                    {
+                if (isGrabbing && !isInvestigating)
+                {
                     //drop item 
-                        isGrabbing = false;
-                        other.GetComponent<Rigidbody>().useGravity = true;
-                    playerControlsTarget.isMovementDisabled = false; 
+                    isGrabbing = false;
+                    other.GetComponent<Rigidbody>().useGravity = true; ;
+                    playerControlsTarget.isMovementDisabled = false;
                 }
-                    else
-                    {
+                else
+                {
                     // item picked up
-                        isGrabbing = true;
-                        other.GetComponent<Rigidbody>().useGravity = false;
+                    isGrabbing = true;
+                    other.GetComponent<Rigidbody>().useGravity = false;
                     playerControlsTarget.isMovementDisabled = true; // player stops moving
                     Debug.Log("Grabbed");
-                    }      
+                }      
             }
         }
     }
 
-    void UpdateDifferencXYRotationAmounts()
+    private void UpdateDifferencXYRotationAmounts()
     {
         // 0 to 360 
-
         holdingPlayerRotationY = playerBody.transform.eulerAngles.y;
-
         YRotationAmount = 0;
 
         //x
-        if (90 > holdingPlayerRotationY &&  holdingPlayerRotationY > 0)
+        if (90 > holdingPlayerRotationY && holdingPlayerRotationY > 0)
         {
             //A 0=1
             YRotationAmount = (90 - holdingPlayerRotationY) / 90;
         }
-        else if (90 < holdingPlayerRotationY &&  holdingPlayerRotationY <180)
+        else if (90 < holdingPlayerRotationY && holdingPlayerRotationY < 180)
         {
             // B 180 =-1
             YRotationAmount = (90 - holdingPlayerRotationY) / 90;
@@ -191,12 +185,12 @@ public class GrabItem : MonoBehaviour
         else if (270 < holdingPlayerRotationY && holdingPlayerRotationY < 360)
         {
             // D 0 =1
-          YRotationAmount = (-270 + holdingPlayerRotationY) / 90;
+            YRotationAmount = (-270 + holdingPlayerRotationY) / 90;
         }
 
         ZRotationAmount = 0;
 
-        //y 
+        //y
         if (90 > holdingPlayerRotationY && holdingPlayerRotationY > 0)
         {
             //A 90 = -1
@@ -205,7 +199,7 @@ public class GrabItem : MonoBehaviour
         else if (90 < holdingPlayerRotationY && holdingPlayerRotationY < 180)
         {
             // B 90 =-1
-           ZRotationAmount = (-180 + holdingPlayerRotationY) / 90;
+            ZRotationAmount = (-180 + holdingPlayerRotationY) / 90;
         }
         else if (180 < holdingPlayerRotationY && holdingPlayerRotationY < 270)
         {
