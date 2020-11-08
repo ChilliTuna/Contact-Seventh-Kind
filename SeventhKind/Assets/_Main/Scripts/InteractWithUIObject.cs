@@ -78,7 +78,7 @@ public class InteractWithUIObject : MonoBehaviour
         gameObject.transform.position = previousPos;
         gameObject.transform.rotation = previousRotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = false;
-        mainCamera.GetComponent<CameraToMouse>().TurnOn();
+        mainCamera.GetComponent<CameraToMouse>().TurnOnUse();
         HUD.SetActive(true);
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
@@ -91,7 +91,7 @@ public class InteractWithUIObject : MonoBehaviour
         previousPos = gameObject.transform.position;
         previousRotation = gameObject.transform.rotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = true;
-        mainCamera.GetComponent<CameraToMouse>().TurnOff();
+        mainCamera.GetComponent<CameraToMouse>().TurnOffUse();
         HUD.SetActive(false);
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
