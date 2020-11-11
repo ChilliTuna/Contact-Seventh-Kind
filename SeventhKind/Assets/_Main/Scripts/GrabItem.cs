@@ -21,6 +21,8 @@ public class GrabItem : MonoBehaviour
     public PlayerControls playerControlsTarget;
     public GameObject playerBody;
 
+    public Vector3 defaultdesiredLocation;
+
     private bool shouldInteract;
     private Collider itemBeingHeld;
     private float holdingPlayerRotationY;
@@ -30,6 +32,7 @@ public class GrabItem : MonoBehaviour
 
     void Update()
     {
+     //  setDesiredLocation(0, 0, 10);
         UpdateDifferencXYRotationAmounts();
         Vector3 newLocation = new Vector3(0, 0, 0);
 
@@ -46,7 +49,7 @@ public class GrabItem : MonoBehaviour
             else
             {
                 isInvestigating = false;
-                UnFreezeHoldingObject();    
+                UnFreezeHoldingObject();
                 CameraMouseTarget.TurnOnUse();
             }
         }
@@ -161,7 +164,18 @@ public class GrabItem : MonoBehaviour
                     isGrabbing = true;
                     other.GetComponent<Rigidbody>().useGravity = false;
                     playerControlsTarget.isMovementDisabled = true; // player stops moving  
-                }      
+                    try
+                    {
+                        Vector3 holdingDesiredLocation = other.GetComponent<ItemsDistanceFromPlayer>().desiredDisatnceOffsetFromPlayer;
+
+                        setDesiredLocation(holdingDesiredLocation);
+                    }
+                    catch
+                    {
+                        setDesiredLocation(defaultdesiredLocation);
+                    }
+
+                }
             }
         }
     }
@@ -231,5 +245,11 @@ public class GrabItem : MonoBehaviour
         itemBeingHeld.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 
+    }
+
+    private void setDesiredLocation(Vector3 desiredLocation)
+    {
+        //desiredLocation.transform.position = new Vector3(x, y, z);
+        this.desiredLocation.transform.localPosition = new Vector3(desiredLocation.x, desiredLocation.y, desiredLocation.z);
     }
 }
