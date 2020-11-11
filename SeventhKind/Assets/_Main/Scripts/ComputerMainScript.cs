@@ -120,6 +120,7 @@ public class ComputerMainScript : MonoBehaviour
 
     private void LoadUsers()
     {
+        Debug.Log("Loading computer...");
         using (MemoryStream mStream = new MemoryStream())
         {
             try
@@ -134,6 +135,7 @@ public class ComputerMainScript : MonoBehaviour
             BinaryFormatter bFormatter = new BinaryFormatter();
             mStream.Position = 0;
             users = (List<User>)bFormatter.Deserialize(mStream);
+            Debug.Log("Loaded!");
         }
     }
 
