@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class UserEditor : EditorWindow
 {
-    private bool hasLoaded = false;
-
     public GameObject computerObject;
     public ComputerMainScript.EnumUsers chosenUser;
 
@@ -28,14 +26,13 @@ public class UserEditor : EditorWindow
 
     private void OnGUI()
     {
-        if (!hasLoaded)
+        if (!computer)
         {
             computerObject = (GameObject)EditorGUILayout.ObjectField("Computer screen", computerObject, typeof(GameObject), true);
             if (computerObject)
             {
                 computer = computerObject.GetComponent<ComputerMainScript>();
                 LoadUsers();
-                hasLoaded = true;
             }
         }
         else
@@ -119,6 +116,7 @@ public class UserEditor : EditorWindow
     {
         if (computer)
         {
+            Debug.Log("Saving...");
             using (BinaryWriter writer = new BinaryWriter(File.Open(ComputerMainScript.fileName, FileMode.Create)))
             {
                 byte[] writeData;
@@ -129,12 +127,14 @@ public class UserEditor : EditorWindow
                     writeData = mStream.ToArray();
                 }
                 writer.Write(writeData);
+                Debug.Log("Saved!");
             }
         }
     }
 
     private void LoadUsers()
     {
+        Debug.Log("Loading...");
         using (MemoryStream mStream = new MemoryStream())
         {
             try
@@ -149,6 +149,7 @@ public class UserEditor : EditorWindow
             BinaryFormatter bFormatter = new BinaryFormatter();
             mStream.Position = 0;
             computer.users = (List<User>)bFormatter.Deserialize(mStream);
+            Debug.Log("Loaded!");
         }
     }
 }
