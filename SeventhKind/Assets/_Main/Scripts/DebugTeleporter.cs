@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DebugTeleporter : MonoBehaviour
 {
@@ -8,11 +6,14 @@ public class DebugTeleporter : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < teleportLocations.Length; i++)
+        if (!gameObject.GetComponent<InteractWithUIObject>().isInteracting)
         {
-            if (Input.GetKey("" + (i + 1)))
+            for (int i = 0; i < teleportLocations.Length; i++)
             {
-                gameObject.transform.position = teleportLocations[i].transform.position;
+                if (Input.GetKey("" + (i + 1)) && Input.GetKey(KeyCode.LeftAlt))
+                {
+                    gameObject.transform.position = teleportLocations[i].transform.position;
+                }
             }
         }
     }

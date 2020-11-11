@@ -9,11 +9,13 @@ public class InteractWithUIObject : MonoBehaviour
 
     [HideInInspector]
     public GameObject currentInteraction;
+    [HideInInspector]
+    public bool isInteracting;
 
+    private bool doInteraction;
     private Vector3 previousPos;
     private Quaternion previousRotation;
     private RaycastHit raycastHit;
-    private bool doInteraction;
     private GrabItem grabSensorScript;
 
     private void Start()
@@ -26,7 +28,7 @@ public class InteractWithUIObject : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0)) && !grabSensorScript.isGrabbing)
         {
-            Debug.Log("E");
+            Debug.Log("Click!");
             doInteraction = true;
         }
         Ray ray = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
@@ -71,6 +73,7 @@ public class InteractWithUIObject : MonoBehaviour
 
     public void ExitInteraction()
     {
+        isInteracting = false;
         gameObject.transform.position = previousPos;
         gameObject.transform.rotation = previousRotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = false;
@@ -83,6 +86,7 @@ public class InteractWithUIObject : MonoBehaviour
 
     public void EnterInteraction()
     {
+        isInteracting = true;
         previousPos = gameObject.transform.position;
         previousRotation = gameObject.transform.rotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = true;
