@@ -46,6 +46,7 @@ public class CameraToMouse : MonoBehaviour
     {
         inUse = true;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     
     //Turn off mouse cursor
@@ -53,6 +54,7 @@ public class CameraToMouse : MonoBehaviour
     {
         inUse = false;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 }

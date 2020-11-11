@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void MenuButton(int SceneNumber)
     {
         SceneManager.LoadScene(SceneNumber);
@@ -14,7 +19,7 @@ public class MainMenu : MonoBehaviour
   
 
 
-    public void MenuExitButton(int SceneNumber)
+    public void MenuExitButton()
     {
         Application.Quit();
     }
