@@ -75,7 +75,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.25
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -445,6 +445,7 @@ MonoBehaviour:
   interactionLayer: 8
   HUD: {fileID: 0}
   currentInteraction: {fileID: 0}
+  isInteracting: 0
 --- !u!114 &5806325365051057448
 MonoBehaviour:
   m_ObjectHideFlags: 0
