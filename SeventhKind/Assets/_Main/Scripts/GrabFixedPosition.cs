@@ -126,12 +126,12 @@ public class GrabFixedPosition : MonoBehaviour
 
     void TurnOffFreeMovement()
     {
-        CameraTarget.TurnOff();
+        CameraTarget.TurnOffUse();
     }
 
     void TurnOnFreeMovement()
     {
-        CameraTarget.TurnOn();
+        CameraTarget.TurnOnUse();
     }
 
 
