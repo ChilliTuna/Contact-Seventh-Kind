@@ -322,7 +322,7 @@ public class ComputerMainScript : MonoBehaviour
 
     private void CheckPassword()
     {
-        if (FixUnityText(GetChildAtPath("Login Screen 2/Input_Password/Text Area/Text").GetComponent<TextMeshProUGUI>().text) == activeUser.password)
+        if (FixUnityText(GetChildAtPath("Login Screen 2/Input_Password/Text Area/Text").GetComponent<TextMeshProUGUI>().text.ToLower()) == activeUser.password)
         {
             isLoggedIn = true;
         }

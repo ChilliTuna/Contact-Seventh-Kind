@@ -4767,7 +4767,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2210
+  m_Name: pb_Mesh-2248
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9638,27 +9638,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 827267196574046432, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1151747308644433226, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 3003758488261967501}
-    - target: {fileID: 1305242049011201368, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690921341833062220, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
     - target: {fileID: 2940990820856620458, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: m_Name
@@ -9729,35 +9713,6 @@ PrefabInstance:
       propertyPath: gameMaster
       value: 
       objectReference: {fileID: 5128759584282399938}
-    - target: {fileID: 3967260593780187141, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
-    - target: {fileID: 4552682405914252965, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746146433801899561, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
-    - target: {fileID: 7313453533667699121, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
-    - target: {fileID: 8678776153704367150, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e8e94ac28194846b1288065d524b6f, type: 3}
 --- !u!20 &3003758488261967501 stripped
