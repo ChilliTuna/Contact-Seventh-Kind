@@ -8344,7 +8344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 4267401365305220461}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -8354,8 +8354,8 @@ MonoBehaviour:
   m_Viewport: {fileID: 4152713067338436315}
   m_HorizontalScrollbar: {fileID: 6158967144091723852}
   m_VerticalScrollbar: {fileID: 3753726326008210431}
-  m_HorizontalScrollbarVisibility: 2
-  m_VerticalScrollbarVisibility: 2
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: -3
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
