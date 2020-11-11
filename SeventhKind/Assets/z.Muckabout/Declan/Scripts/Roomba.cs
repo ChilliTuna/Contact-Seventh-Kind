@@ -23,7 +23,7 @@ public class Roomba : MonoBehaviour
     RaycastHit hitRight;
     RaycastHit hitFloor;
 
-
+    public float forcedYValue = 0.049f;
 
 
     //1-left
@@ -31,13 +31,10 @@ public class Roomba : MonoBehaviour
     public int direction = 0;
 
     Rigidbody rb;
-
-    public int interpolationFramesCount;
-
     Quaternion lerpTo;
 
     public float counter = 0;
-    public bool avoidance = false;
+    bool avoidance = false;
     Vector3 currentEulerAngles;
     private void Start()
     {
@@ -73,9 +70,9 @@ public class Roomba : MonoBehaviour
 
 
         //print(hitCentre.distance);
-        if (gameObject.transform.position.y != 0.049f)
+        if (gameObject.transform.position.y != forcedYValue)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0.049f, gameObject.transform.position.z);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, forcedYValue, gameObject.transform.position.z);
         }
         if (!avoidance)
         {
