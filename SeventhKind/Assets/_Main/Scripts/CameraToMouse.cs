@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraToMouse : MonoBehaviour
 {
-    // Liam 
-
     public float mouseSensitivity;
     //how much you rotate when moving mouse. 
 
@@ -19,8 +17,7 @@ public class CameraToMouse : MonoBehaviour
 
     void Start()
     {
-        TurnOn();
-        // Cursor doesn't move.
+        TurnOnUse();
     }
 
     void Update()
@@ -29,30 +26,28 @@ public class CameraToMouse : MonoBehaviour
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-         //   Debug.Log( "camera mouse x: " + mouseX.ToString() + "camera mouse y: " + mouseY.ToString());
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -lookClampRange, lookClampRange);
             // cannot be above or below a certain range. 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
             playertarget.transform.RotateAround(playertarget.transform.position, Vector3.up, mouseX);
-
         }
     }
 
-    //Turn on mouse cursor
-    public void TurnOn()
+    public void TurnOnUse()
     {
+        //Turn on mouse cursor
         inUse = true;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-    
-    //Turn off mouse cursor
-    public void TurnOff()
-    {
-        inUse = false;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
     }
 
+    public void TurnOffUse()
+    {
+        //Turn off mouse cursor
+        inUse = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }

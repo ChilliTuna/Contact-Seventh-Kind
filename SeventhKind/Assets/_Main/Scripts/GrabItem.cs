@@ -9,18 +9,19 @@ public class GrabItem : MonoBehaviour
     public GameObject desiredLocation; // where you want the picked up item to be flung
     public float pullSpeed; // How fast the object moves towards the desired location
 
-    public float SideMouseSensitivity;
-    public float UpDownMouseSensitivity;
+    public float SideMouseSensitivity; // x rotation when investigating
+    public float UpDownMouseSensitivity; // y and z rotation when investigating
 
     [HideInInspector]
     public bool isGrabbing;
-
     [HideInInspector]
     public bool isInvestigating;
 
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
     public GameObject playerBody;
+
+    public Vector3 defaultdesiredLocation;
 
     private bool shouldInteract;
     private Collider itemBeingHeld;
@@ -29,37 +30,31 @@ public class GrabItem : MonoBehaviour
     private float ZRotationAmount;
     private InteractWithUIObject interactScript;
 
-    private void Start()
+    void Update()
     {
-        interactScript = gameObject.transform.parent.parent.GetComponent<InteractWithUIObject>();
-    }
-
-    private void Update()
-    {
+     //  setDesiredLocation(0, 0, 10);
         UpdateDifferencXYRotationAmounts();
         Vector3 newLocation = new Vector3(0, 0, 0);
 
         //One press of right = turns on investigating
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (!interactScript.isInteracting)
+            if (isGrabbing && !isInvestigating)
             {
-                if (isGrabbing && !isInvestigating)
-                {
-                    isInvestigating = true;
-                    playerControlsTarget.isMovementDisabled = true;
-                    CameraMouseTarget.TurnOff();
-                }
-                else
-                {
-                    isInvestigating = false;
-                    playerControlsTarget.isMovementDisabled = false;
-                    CameraMouseTarget.TurnOn();
-                }
+                isInvestigating = true;
+                playerControlsTarget.isMovementDisabled = true;
+                CameraMouseTarget.TurnOffUse();
+                FreezeHoldingObject();
+            }
+            else
+            {
+                isInvestigating = false;
+                UnFreezeHoldingObject();
+                CameraMouseTarget.TurnOnUse();
             }
         }
 
-        //constant check of left click
+        //constant check of left click = actually investiagte
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (isInvestigating)
@@ -69,32 +64,34 @@ public class GrabItem : MonoBehaviour
 
                 UpdateDifferencXYRotationAmounts();
 
-                // normal
+                // normal x
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.up, -(mouseX * SideMouseSensitivity));
 
                 //y
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * YRotationAmount * UpDownMouseSensitivity));
                 //z
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.forward, (mouseY * ZRotationAmount * UpDownMouseSensitivity));
-
-                Debug.Log(mouseX.ToString());
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E))
         {
             shouldInteract = true;
+            Debug.Log("Button Pressed");
+        }
+        else
+        {
+            shouldInteract = false;
         }
 
         if (isGrabbing)
         {
             // x
-
             if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
           && (itemBeingHeld.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
           || itemBeingHeld.transform.position.x == desiredLocation.transform.position.x)
             {
-                // just round up
+                // just round up 
                 newLocation.x = desiredLocation.transform.position.x;
             }
             else if (itemBeingHeld.transform.position.x > desiredLocation.transform.position.x)
@@ -106,9 +103,10 @@ public class GrabItem : MonoBehaviour
                 newLocation.x = itemBeingHeld.transform.position.x + pullSpeed * Time.deltaTime;
             }
 
+            //y 
             if (((itemBeingHeld.transform.position.y <= desiredLocation.transform.position.y + (pullSpeed * Time.deltaTime))
-     && (itemBeingHeld.transform.position.y >= desiredLocation.transform.position.y - (pullSpeed * Time.deltaTime)))
-     || itemBeingHeld.transform.position.y == desiredLocation.transform.position.y)
+         && (itemBeingHeld.transform.position.y >= desiredLocation.transform.position.y - (pullSpeed * Time.deltaTime)))
+         || itemBeingHeld.transform.position.y == desiredLocation.transform.position.y)
             {
                 // just round up
                 newLocation.y = desiredLocation.transform.position.y;
@@ -122,9 +120,10 @@ public class GrabItem : MonoBehaviour
                 newLocation.y = itemBeingHeld.transform.position.y + pullSpeed * Time.deltaTime;
             }
 
+            //z
             if (((itemBeingHeld.transform.position.z <= desiredLocation.transform.position.z + (pullSpeed * Time.deltaTime))
-     && (itemBeingHeld.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
-     || itemBeingHeld.transform.position.z == desiredLocation.transform.position.z)
+         && (itemBeingHeld.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
+         || itemBeingHeld.transform.position.z == desiredLocation.transform.position.z)
             {
                 // just round up
                 newLocation.z = desiredLocation.transform.position.z;
@@ -152,19 +151,30 @@ public class GrabItem : MonoBehaviour
 
                 if (isGrabbing && !isInvestigating)
                 {
-                    //drop item
+                    //drop item 
                     isGrabbing = false;
-                    other.GetComponent<Rigidbody>().useGravity = true;
+                    other.GetComponent<Rigidbody>().useGravity = true; ;
                     playerControlsTarget.isMovementDisabled = false;
-                    shouldInteract = false;
+
+                    playerControlsTarget.isMovementDisabled = false;
                 }
                 else
                 {
                     // item picked up
                     isGrabbing = true;
                     other.GetComponent<Rigidbody>().useGravity = false;
-                    playerControlsTarget.isMovementDisabled = true; // player stops moving
-                    Debug.Log("Grabbed");
+                    playerControlsTarget.isMovementDisabled = true; // player stops moving  
+                    try
+                    {
+                        Vector3 holdingDesiredLocation = other.GetComponent<ItemsDistanceFromPlayer>().desiredDisatnceOffsetFromPlayer;
+
+                        setDesiredLocation(holdingDesiredLocation);
+                    }
+                    catch
+                    {
+                        setDesiredLocation(defaultdesiredLocation);
+                    }
+
                 }
             }
         }
@@ -172,10 +182,8 @@ public class GrabItem : MonoBehaviour
 
     private void UpdateDifferencXYRotationAmounts()
     {
-        // 0 to 360
-
+        // 0 to 360 
         holdingPlayerRotationY = playerBody.transform.eulerAngles.y;
-
         YRotationAmount = 0;
 
         //x
@@ -223,5 +231,25 @@ public class GrabItem : MonoBehaviour
             // D 270 = 1
             ZRotationAmount = (360 - holdingPlayerRotationY) / 90;
         }
+    }
+
+    private void FreezeHoldingObject()
+    {
+
+        itemBeingHeld.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void UnFreezeHoldingObject()
+    {
+
+        itemBeingHeld.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+
+    }
+
+    private void setDesiredLocation(Vector3 desiredLocation)
+    {
+        //desiredLocation.transform.position = new Vector3(x, y, z);
+        this.desiredLocation.transform.localPosition = new Vector3(desiredLocation.x, desiredLocation.y, desiredLocation.z);
     }
 }
