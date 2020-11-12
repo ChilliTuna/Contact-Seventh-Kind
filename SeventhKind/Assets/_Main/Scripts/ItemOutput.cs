@@ -15,6 +15,7 @@ public class ItemOutput : MonoBehaviour
         if (!hasInteracted)
         {
             onFirstInteract.Invoke();
+            hasInteracted = true;
         }
         onInteract.Invoke();
     }
