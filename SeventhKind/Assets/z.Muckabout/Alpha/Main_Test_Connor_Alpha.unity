@@ -8490,7 +8490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613127812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.72, y: 3.6, z: 27.83}
+  m_LocalPosition: {x: 3.05, y: 3.6, z: 29.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10190,6 +10190,11 @@ PrefabInstance:
       propertyPath: teleportLocations.Array.data[1]
       value: 
       objectReference: {fileID: 541129079}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: defaultdesiredLocation.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
       propertyPath: m_Name
