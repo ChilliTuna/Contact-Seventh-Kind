@@ -14,4 +14,9 @@ public class UniversalFunctions : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+
+    public void SwitchActiveState(GameObject gameObject)
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
 }

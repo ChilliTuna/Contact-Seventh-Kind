@@ -205,6 +205,11 @@ public class GrabItem : MonoBehaviour
                     {
                         setDesiredLocation(defaultdesiredLocation);
                     }
+                    try
+                    {
+                        itemBeingHeld.GetComponent<ItemOutput>().Interact();
+                    }
+                    catch {}
 
                 }
             }
