@@ -440,6 +440,7 @@ public class ComputerMainScript : MonoBehaviour
                     newPos.y -= 150;
                     newButton.transform.localPosition = newPos;
                     newButton.transform.localScale = emailButtons[i - 1].transform.localScale;
+                    newButton.transform.rotation = buttonType.transform.rotation;
                     emailButtons.Add(newButton);
                 }
             }
