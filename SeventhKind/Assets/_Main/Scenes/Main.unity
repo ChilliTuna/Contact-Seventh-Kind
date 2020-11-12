@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2812
+  m_Name: pb_Mesh-54854
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -791,7 +791,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16504
+  m_Name: pb_Mesh80782
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1806,11 +1806,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168030420787310163, guid: 30e64f3320b359e478a065af70eb52ba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 120c77f21f1a23e458e8c13f77b38a6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e64f3320b359e478a065af70eb52ba, type: 3}
 --- !u!4 &201139221 stripped
@@ -2231,7 +2226,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4172
+  m_Name: pb_Mesh-56306
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2639,6 +2634,7 @@ GameObject:
   - component: {fileID: 282634373}
   - component: {fileID: 282634375}
   - component: {fileID: 282634374}
+  - component: {fileID: 282634376}
   m_Layer: 10
   m_Name: Emily Locker Code
   m_TagString: Grabbable Item
@@ -2690,6 +2686,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2168031, y: 0.0149867525, z: 0.29342026}
   m_Center: {x: -0.0021282285, y: 0.00088036107, z: -0.0021282732}
+--- !u!114 &282634376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282634372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f810000734756e4b9aeac5b88049963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFirstInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1594861714}
+        m_MethodName: UpdateNotepad
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 3013
+          m_BoolArgument: 0
+        m_CallState: 2
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &298000547
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,7 +2964,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16366
+  m_Name: pb_Mesh80640
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4162,11 +4187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168030420787310163, guid: 30e64f3320b359e478a065af70eb52ba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 120c77f21f1a23e458e8c13f77b38a6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e64f3320b359e478a065af70eb52ba, type: 3}
 --- !u!4 &522993352 stripped
@@ -5740,7 +5760,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16174
+  m_Name: pb_Mesh80442
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7776,11 +7796,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168030420787310163, guid: 30e64f3320b359e478a065af70eb52ba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 120c77f21f1a23e458e8c13f77b38a6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e64f3320b359e478a065af70eb52ba, type: 3}
 --- !u!4 &865360451 stripped
@@ -7961,7 +7976,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16326
+  m_Name: pb_Mesh80594
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14438,7 +14453,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3114
+  m_Name: pb_Mesh-55248
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14815,11 +14830,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168030420787310163, guid: 30e64f3320b359e478a065af70eb52ba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 120c77f21f1a23e458e8c13f77b38a6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e64f3320b359e478a065af70eb52ba, type: 3}
 --- !u!4 &1280236857 stripped
@@ -15058,7 +15068,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16186
+  m_Name: pb_Mesh80454
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15898,7 +15908,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2996
+  m_Name: pb_Mesh-55130
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17250,6 +17260,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e8e94ac28194846b1288065d524b6f, type: 3}
+--- !u!114 &1594861714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1324965822062258974, guid: 01e8e94ac28194846b1288065d524b6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1594861713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bf9593da2b18543902dd95f79acee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1595909443
 Mesh:
   m_ObjectHideFlags: 0
@@ -19486,11 +19508,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168030420787310163, guid: 30e64f3320b359e478a065af70eb52ba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 120c77f21f1a23e458e8c13f77b38a6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e64f3320b359e478a065af70eb52ba, type: 3}
 --- !u!4 &1810137946 stripped
@@ -19638,11 +19655,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168030420787310163, guid: 30e64f3320b359e478a065af70eb52ba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 120c77f21f1a23e458e8c13f77b38a6c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e64f3320b359e478a065af70eb52ba, type: 3}
 --- !u!4 &1814528766 stripped
@@ -19909,6 +19921,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredDisatnceOffsetFromPlayer: {x: 0, y: 0, z: 0.5}
+--- !u!114 &1875423076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875423074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f810000734756e4b9aeac5b88049963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFirstInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1594861714}
+        m_MethodName: UpdateNotepad
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 'Bedroom Keypad: 7829'
+          m_BoolArgument: 0
+        m_CallState: 2
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1924503533
 GameObject:
   m_ObjectHideFlags: 0
@@ -20731,7 +20772,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16244
+  m_Name: pb_Mesh80512
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21515,6 +21556,7 @@ GameObject:
   - component: {fileID: 1667443157902471890}
   - component: {fileID: 5964833119991104436}
   - component: {fileID: 3896244820900102968}
+  - component: {fileID: 3896244820900102969}
   m_Layer: 10
   m_Name: Ship_StaplePaper_BedroomKeyPass_001 (1)
   m_TagString: Grabbable Item
@@ -21535,6 +21577,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredDisatnceOffsetFromPlayer: {x: 0, y: 0, z: 0.5}
+--- !u!114 &3896244820900102969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3896244820900102967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f810000734756e4b9aeac5b88049963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFirstInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1594861714}
+        m_MethodName: UpdateNotepad
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 'Janet Locker Code: 1120'
+          m_BoolArgument: 0
+        m_CallState: 2
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4223032225027625505
 MonoBehaviour:
   m_ObjectHideFlags: 0
