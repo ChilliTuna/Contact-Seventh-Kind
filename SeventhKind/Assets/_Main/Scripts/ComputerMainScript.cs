@@ -120,6 +120,7 @@ public class ComputerMainScript : MonoBehaviour
 
     private void LoadUsers()
     {
+        Debug.Log("Loading computer...");
         using (MemoryStream mStream = new MemoryStream())
         {
             try
@@ -134,6 +135,7 @@ public class ComputerMainScript : MonoBehaviour
             BinaryFormatter bFormatter = new BinaryFormatter();
             mStream.Position = 0;
             users = (List<User>)bFormatter.Deserialize(mStream);
+            Debug.Log("Loaded!");
         }
     }
 
@@ -320,7 +322,7 @@ public class ComputerMainScript : MonoBehaviour
 
     private void CheckPassword()
     {
-        if (FixUnityText(GetChildAtPath("Login Screen 2/Input_Password/Text Area/Text").GetComponent<TextMeshProUGUI>().text) == activeUser.password)
+        if (FixUnityText(GetChildAtPath("Login Screen 2/Input_Password/Text Area/Text").GetComponent<TextMeshProUGUI>().text.ToLower()) == activeUser.password)
         {
             isLoggedIn = true;
         }
@@ -372,6 +374,7 @@ public class ComputerMainScript : MonoBehaviour
                     newPos.y -= 150;
                     newButton.transform.localPosition = newPos;
                     newButton.transform.localScale = noteButtons[i - 1].transform.localScale;
+                    newButton.transform.rotation = buttonType.transform.rotation;
                     noteButtons.Add(newButton);
                 }
             }
@@ -398,7 +401,7 @@ public class ComputerMainScript : MonoBehaviour
     {
         GameObject subjectText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Text_Subject");
         subjectText.GetComponent<TextMeshProUGUI>().text = currentNote.subject;
-        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Text_NoteContent");
+        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Scroll View/Viewport/Content/Text_NoteContent");
         contentText.GetComponent<TextMeshProUGUI>().text = currentNote.content;
         if (currentNote.unread && currentNote.notepadText != "")
         {
@@ -438,6 +441,7 @@ public class ComputerMainScript : MonoBehaviour
                     newPos.y -= 150;
                     newButton.transform.localPosition = newPos;
                     newButton.transform.localScale = emailButtons[i - 1].transform.localScale;
+                    newButton.transform.rotation = buttonType.transform.rotation;
                     emailButtons.Add(newButton);
                 }
             }
@@ -468,7 +472,7 @@ public class ComputerMainScript : MonoBehaviour
         recipientText.GetComponent<TextMeshProUGUI>().text = "Recipient: " + currentEmail.recipient;
         GameObject senderText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Participants Background/Text_Sender");
         senderText.GetComponent<TextMeshProUGUI>().text = "Sender: " + currentEmail.sender;
-        GameObject contentText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Email Text Background/Text_EmailContent");
+        GameObject contentText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Email Text Background/Scroll View/Viewport/Content/Text_EmailContent");
         contentText.GetComponent<TextMeshProUGUI>().text = currentEmail.content;
         if (currentEmail.unread && currentEmail.notepadText != "")
         {
