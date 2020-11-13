@@ -10190,6 +10190,21 @@ PrefabInstance:
       propertyPath: defaultdesiredLocation.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: minScrollDesiredLocationOffset
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: maxScrollDesiredLocationOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: scrollAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
       propertyPath: m_Name
