@@ -10,6 +10,7 @@ public class PlayerControls : MonoBehaviour
     public float maxSpeed;
     public float backMovementPenality;
     public float accerlationAmount;
+    public float deaccerlationAmount;
 
     public bool isMovementDisabled = false;
 
@@ -26,6 +27,9 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
+        hAxis = 0;
+        vAxis = 0;
+
         if (!isMovementDisabled)
         {
             hAxis = Input.GetAxis("Horizontal");
@@ -42,13 +46,25 @@ public class PlayerControls : MonoBehaviour
             }
             else if (currentSpeed != startSpeed)
             {
-                currentSpeed -= accerlationAmount * Time.deltaTime;
+                currentSpeed -= deaccerlationAmount * Time.deltaTime;
                 if (currentSpeed < startSpeed)
                 {
                     currentSpeed = startSpeed;
                 }
             }
         }
+
+        // If the player isn't moving so we don't need to change the Y position. The slopes were pulling the player down. 
+        if (hAxis == 0 && vAxis == 0)
+        {
+            OurRigid.useGravity = false;
+            OurRigid.velocity = new UnityEngine.Vector3();
+        }
+        else
+        {
+            OurRigid.useGravity = true;      
+        }
+      
     }
 
     void FixedUpdate()
@@ -76,4 +92,5 @@ public class PlayerControls : MonoBehaviour
             }
         }
     }
+
 }
