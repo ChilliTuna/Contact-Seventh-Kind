@@ -10,17 +10,17 @@ public class PauseMenu : MonoBehaviour
     PlayerControls controlScript;
     CameraToMouse CamToMouse;
     public GameObject pauseMenu;
-    public Collider colliderInfrontOfPlayer;
     bool paused;
     InteractWithUIObject interactWithUIObject;
+    GrabItem grabbingItem;
 
     void Start()
     {
-        colliderInfrontOfPlayer.enabled = false;
-
         player = GameObject.FindGameObjectWithTag("Player");
         controlScript = player.GetComponent<PlayerControls>();
         interactWithUIObject = player.GetComponent<InteractWithUIObject>();
+        grabbingItem = player.GetComponentInChildren<GrabItem>();
+       
         CamToMouse = player.GetComponentInChildren<CameraToMouse>();
     }
 
@@ -31,6 +31,7 @@ public class PauseMenu : MonoBehaviour
         {
 
             interactWithUIObject.enabled = false;
+            grabbingItem.enabled = false;
             paused = true;
             controlScript.enabled = false;
             CamToMouse.enabled = false;
@@ -48,6 +49,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeButton()
     {
         interactWithUIObject.enabled = true;
+        grabbingItem.enabled = true;
 
         paused = false;
         controlScript.enabled = true;
