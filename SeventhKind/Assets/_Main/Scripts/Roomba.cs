@@ -84,20 +84,17 @@ public class Roomba : MonoBehaviour
                     {
                         if (hitRight.distance != 0)
                         {
-                            
                             lerpTo.y -= 30;
                             direction = 1;
                         }
                         else
                         {
-                            
                             lerpTo.y += 30;
                             direction = 1;
                         }
                     }
                     else
                     {
-                        
                         lerpTo.y -= 180;
                         direction = 1;
                     }
@@ -165,13 +162,6 @@ public class Roomba : MonoBehaviour
                         //gameObject.transform.rotation.eulerAngles = new Vector3(0, transform.rotation.y - 3, 0);
                     }
 
-
-
-
-
-
-
-                    
                 }
                 else
                 {
@@ -186,7 +176,6 @@ public class Roomba : MonoBehaviour
                         currentEulerAngles -= new Vector3(0, transform.rotation.eulerAngles.y - 5f, 0) * Time.deltaTime * 5;
                         transform.eulerAngles = currentEulerAngles;
                     }
-                    
                     //transform.Rotate(lerpTo * 1.5f * Time.deltaTime);
                     // transform.rotation = Quaternion.Slerp(transform.rotation, lerpTo, 15);
                     // transform.rotation = new Quaternion(0, Mathf.Lerp(transform.rotation.eulerAngles.y, lerpTo.y, 100 * Time.deltaTime), 0, 1);
@@ -234,7 +223,6 @@ public class Roomba : MonoBehaviour
 
         if (direction == 0)
         {
-            
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, followObject.transform.position, 0.033f);
 
             // print(hitCentre.distance);
