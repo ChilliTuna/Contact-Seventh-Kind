@@ -12,6 +12,12 @@ public class GrabItem : MonoBehaviour
     public float SideMouseSensitivity; // x rotation when investigating
     public float UpDownMouseSensitivity; // y and z rotation when investigating
 
+    public float maxScrollDesiredLocationOffset;
+    public float minScrollDesiredLocationOffset;
+
+    public float currentScrollDesiredLocationOffset;
+    public float scrollAmount;
+
     [HideInInspector]
     public bool isGrabbing;
     [HideInInspector]
@@ -32,7 +38,6 @@ public class GrabItem : MonoBehaviour
 
     void Update()
     {
-     //  setDesiredLocation(0, 0, 10);
         UpdateDifferencXYRotationAmounts();
         Vector3 newLocation = new Vector3(0, 0, 0);
 
@@ -84,8 +89,33 @@ public class GrabItem : MonoBehaviour
             shouldInteract = false;
         }
 
+  
+
         if (isGrabbing)
         {
+
+            // scrolling
+            float scrollDifference = Input.GetAxis("Mouse ScrollWheel");
+            if (scrollDifference > 0f)
+            {
+                currentScrollDesiredLocationOffset += scrollAmount * Time.deltaTime;
+                if (currentScrollDesiredLocationOffset > maxScrollDesiredLocationOffset)
+                {
+                    currentScrollDesiredLocationOffset = maxScrollDesiredLocationOffset;
+                }
+            }
+            else if (scrollDifference < 0f)
+            {
+                currentScrollDesiredLocationOffset -= scrollAmount * Time.deltaTime;
+                if (currentScrollDesiredLocationOffset < minScrollDesiredLocationOffset)
+                {
+                    currentScrollDesiredLocationOffset = minScrollDesiredLocationOffset;
+                }
+            }
+
+            setDesiredLocation(new Vector3(0, 0, 2.15f + currentScrollDesiredLocationOffset));
+
+
             // x
             if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
           && (itemBeingHeld.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
@@ -120,19 +150,20 @@ public class GrabItem : MonoBehaviour
                 newLocation.y = itemBeingHeld.transform.position.y + pullSpeed * Time.deltaTime;
             }
 
+            
             //z
-            if (((itemBeingHeld.transform.position.z <= desiredLocation.transform.position.z + (pullSpeed * Time.deltaTime))
-         && (itemBeingHeld.transform.position.z >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
-         || itemBeingHeld.transform.position.z == desiredLocation.transform.position.z)
+            if (((itemBeingHeld.transform.position.z  <= desiredLocation.transform.position.z + (pullSpeed * Time.deltaTime))
+         && (itemBeingHeld.transform.position.z  >= desiredLocation.transform.position.z - (pullSpeed * Time.deltaTime)))
+         || itemBeingHeld.transform.position.z  == desiredLocation.transform.position.z)
             {
                 // just round up
                 newLocation.z = desiredLocation.transform.position.z;
             }
-            else if (itemBeingHeld.transform.position.z > desiredLocation.transform.position.z)
+            else if (itemBeingHeld.transform.position.z > desiredLocation.transform.position.z )
             {
                 newLocation.z = itemBeingHeld.transform.position.z - pullSpeed * Time.deltaTime;
             }
-            else if (itemBeingHeld.transform.position.z < desiredLocation.transform.position.z)
+            else if (itemBeingHeld.transform.position.z < desiredLocation.transform.position.z )
             {
                 newLocation.z = itemBeingHeld.transform.position.z + pullSpeed * Time.deltaTime;
             }
@@ -155,7 +186,7 @@ public class GrabItem : MonoBehaviour
                     isGrabbing = false;
                     other.GetComponent<Rigidbody>().useGravity = true; ;
                     playerControlsTarget.isMovementDisabled = false;
-
+                    currentScrollDesiredLocationOffset = 0;
                     playerControlsTarget.isMovementDisabled = false;
                 }
                 else
@@ -252,9 +283,9 @@ public class GrabItem : MonoBehaviour
 
     }
 
-    private void setDesiredLocation(Vector3 desiredLocation)
+    private void setDesiredLocation(Vector3 newDesiredLocation)
     {
         //desiredLocation.transform.position = new Vector3(x, y, z);
-        this.desiredLocation.transform.localPosition = new Vector3(desiredLocation.x, desiredLocation.y, desiredLocation.z);
+       desiredLocation.transform.localPosition = new Vector3(newDesiredLocation.x, newDesiredLocation.y, newDesiredLocation.z);
     }
 }
