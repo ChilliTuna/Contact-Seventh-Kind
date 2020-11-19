@@ -4926,7 +4926,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2590
+  m_Name: pb_Mesh-38314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10036,6 +10036,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
       propertyPath: m_RootOrder
       value: 26
       objectReference: {fileID: 0}
@@ -10054,16 +10074,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2940990820856620461, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2940990820856620462, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: m_Mesh
@@ -10074,11 +10084,6 @@ PrefabInstance:
       propertyPath: gameMaster
       value: 
       objectReference: {fileID: 5128759584282399938}
-    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
-        type: 3}
-      propertyPath: user2Password
-      value: roombaoverlord
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e8e94ac28194846b1288065d524b6f, type: 3}
 --- !u!20 &3003758488261967501 stripped
@@ -10189,6 +10194,21 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultdesiredLocation.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: minScrollDesiredLocationOffset
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: maxScrollDesiredLocationOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: scrollAmount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
