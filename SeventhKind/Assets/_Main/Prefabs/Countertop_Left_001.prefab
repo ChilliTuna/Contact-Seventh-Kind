@@ -41,9 +41,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8092166550965069705}
+  - {fileID: 6557898373963000193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5544320906123696625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7639351566928091992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3311124, y: 1.2473999, z: 1.303808}
+  m_Center: {x: -0.04185614, y: 0, z: 0.028203994}
 --- !u!1001 &3834694497674693779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +125,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sideroom_CounterEnd_Flat_001_RightSide
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 04d7628f9ad3dbf46b4e528c19bf4de5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d7628f9ad3dbf46b4e528c19bf4de5, type: 3}
 --- !u!1 &5050363955500078490 stripped
@@ -124,4 +143,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 04d7628f9ad3dbf46b4e528c19bf4de5,
     type: 3}
   m_PrefabInstance: {fileID: 3834694497674693779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7016439334066146533
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8039908032764447671}
+    m_Modifications:
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850345423810672866, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+        type: 3}
+      propertyPath: m_Name
+      value: Sideroom_CounterEnd_Flat_001_LeftSide
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7c3c9c4f3f1bc24ba891579dfd175ca, type: 3}
+--- !u!4 &6557898373963000193 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4205574480090260836, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 7016439334066146533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7639351566928091992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 818260539691358141, guid: c7c3c9c4f3f1bc24ba891579dfd175ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 7016439334066146533}
   m_PrefabAsset: {fileID: 0}
