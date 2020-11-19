@@ -1158,12 +1158,11 @@ MonoBehaviour:
   pullSpeed: 5
   SideMouseSensitivity: 360
   UpDownMouseSensitivity: 240
-  maxScrollDesiredLocationOffset: 0
-  minScrollDesiredLocationOffset: 0
+  maxScrollDesiredLocationOffset: 5
+  minScrollDesiredLocationOffset: 5
   currentScrollDesiredLocationOffset: 0
   scrollAmount: 0
   isGrabbing: 0
-  isInvestigating: 0
   CameraMouseTarget: {fileID: 8735655369462509767}
   playerControlsTarget: {fileID: 8735655368596933581}
   playerBody: {fileID: 8735655368596933579}
@@ -1326,12 +1325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7083d355b023b4d89fd5831f498cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 4
+  minSpeed: 3
   currentSpeed: 0
-  maxSpeed: 12
+  maxSpeed: 6
   backMovementPenality: 2
   accerlationAmount: 1
-  deaccerlationAmount: 4
+  deaccerlationAmount: 1
   isMovementDisabled: 0
   OurRigid: {fileID: 8735655368596933576}
 --- !u!65 &8735655369364142904

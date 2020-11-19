@@ -20,8 +20,6 @@ public class GrabItem : MonoBehaviour
 
     [HideInInspector]
     public bool isGrabbing;
-    [HideInInspector]
-    public bool isInvestigating;
 
     public CameraToMouse CameraMouseTarget;
     public PlayerControls playerControlsTarget;
@@ -38,32 +36,18 @@ public class GrabItem : MonoBehaviour
 
     void Update()
     {
-        UpdateDifferencXYRotationAmounts();
-        Vector3 newLocation = new Vector3(0, 0, 0);
+        Vector3 newItemLocation = new Vector3(0, 0, 0);
 
-        //One press of right = turns on investigating
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        //move right = turn item. 
+        if (Input.GetKey(KeyCode.Mouse1))
         {
-            if (isGrabbing && !isInvestigating)
+            if (isGrabbing)
             {
-                isInvestigating = true;
-                playerControlsTarget.isMovementDisabled = true;
+
                 CameraMouseTarget.TurnOffUse();
-                FreezeHoldingObject();
-            }
-            else
-            {
-                isInvestigating = false;
-                UnFreezeHoldingObject();
-                CameraMouseTarget.TurnOnUse();
-            }
-        }
 
-        //constant check of left click = actually investiagte
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            if (isInvestigating)
-            {
+                FreezeHoldingObject();
+                UnFreezeHoldingObject();
                 float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
                 float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
 
@@ -71,14 +55,17 @@ public class GrabItem : MonoBehaviour
 
                 // normal x
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.up, -(mouseX * SideMouseSensitivity));
-
                 //y
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * YRotationAmount * UpDownMouseSensitivity));
                 //z
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.forward, (mouseY * ZRotationAmount * UpDownMouseSensitivity));
             }
         }
-
+        else
+        {
+            CameraMouseTarget.TurnOnUse();
+        }
+   
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E))
         {
             shouldInteract = true;
@@ -89,11 +76,8 @@ public class GrabItem : MonoBehaviour
             shouldInteract = false;
         }
 
-  
-
         if (isGrabbing)
         {
-
             // scrolling
             float scrollDifference = Input.GetAxis("Mouse ScrollWheel");
             if (scrollDifference > 0f)
@@ -115,22 +99,21 @@ public class GrabItem : MonoBehaviour
 
             setDesiredLocation(new Vector3(0, 0, 2.15f + currentScrollDesiredLocationOffset));
 
-
             // x
             if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
           && (itemBeingHeld.transform.position.x >= desiredLocation.transform.position.x - (pullSpeed * Time.deltaTime)))
           || itemBeingHeld.transform.position.x == desiredLocation.transform.position.x)
             {
                 // just round up 
-                newLocation.x = desiredLocation.transform.position.x;
+                newItemLocation.x = desiredLocation.transform.position.x;
             }
             else if (itemBeingHeld.transform.position.x > desiredLocation.transform.position.x)
             {
-                newLocation.x = itemBeingHeld.transform.position.x - pullSpeed * Time.deltaTime;
+                newItemLocation.x = itemBeingHeld.transform.position.x - pullSpeed * Time.deltaTime;
             }
             else if (itemBeingHeld.transform.position.x < desiredLocation.transform.position.x)
             {
-                newLocation.x = itemBeingHeld.transform.position.x + pullSpeed * Time.deltaTime;
+                newItemLocation.x = itemBeingHeld.transform.position.x + pullSpeed * Time.deltaTime;
             }
 
             //y 
@@ -139,15 +122,15 @@ public class GrabItem : MonoBehaviour
          || itemBeingHeld.transform.position.y == desiredLocation.transform.position.y)
             {
                 // just round up
-                newLocation.y = desiredLocation.transform.position.y;
+                newItemLocation.y = desiredLocation.transform.position.y;
             }
             else if (itemBeingHeld.transform.position.y > desiredLocation.transform.position.y)
             {
-                newLocation.y = itemBeingHeld.transform.position.y - pullSpeed * Time.deltaTime;
+                newItemLocation.y = itemBeingHeld.transform.position.y - pullSpeed * Time.deltaTime;
             }
             else if (itemBeingHeld.transform.position.y < desiredLocation.transform.position.y)
             {
-                newLocation.y = itemBeingHeld.transform.position.y + pullSpeed * Time.deltaTime;
+                newItemLocation.y = itemBeingHeld.transform.position.y + pullSpeed * Time.deltaTime;
             }
 
             
@@ -157,18 +140,18 @@ public class GrabItem : MonoBehaviour
          || itemBeingHeld.transform.position.z  == desiredLocation.transform.position.z)
             {
                 // just round up
-                newLocation.z = desiredLocation.transform.position.z;
+                newItemLocation.z = desiredLocation.transform.position.z;
             }
             else if (itemBeingHeld.transform.position.z > desiredLocation.transform.position.z )
             {
-                newLocation.z = itemBeingHeld.transform.position.z - pullSpeed * Time.deltaTime;
+                newItemLocation.z = itemBeingHeld.transform.position.z - pullSpeed * Time.deltaTime;
             }
             else if (itemBeingHeld.transform.position.z < desiredLocation.transform.position.z )
             {
-                newLocation.z = itemBeingHeld.transform.position.z + pullSpeed * Time.deltaTime;
+                newItemLocation.z = itemBeingHeld.transform.position.z + pullSpeed * Time.deltaTime;
             }
 
-            itemBeingHeld.transform.position = newLocation;
+            itemBeingHeld.transform.position = newItemLocation;
         }
     }
 
@@ -180,7 +163,7 @@ public class GrabItem : MonoBehaviour
             {
                 itemBeingHeld = other;
 
-                if (isGrabbing && !isInvestigating)
+                if (isGrabbing)
                 {
                     //drop item 
                     isGrabbing = false;
@@ -198,7 +181,6 @@ public class GrabItem : MonoBehaviour
                     try
                     {
                         Vector3 holdingDesiredLocation = other.GetComponent<ItemsDistanceFromPlayer>().desiredDisatnceOffsetFromPlayer;
-
                         setDesiredLocation(holdingDesiredLocation);
                     }
                     catch
