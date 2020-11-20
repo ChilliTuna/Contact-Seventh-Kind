@@ -66,6 +66,10 @@ public class InteractWithUIObject : MonoBehaviour
                 {
                     ExitInteraction();
                 }
+                else
+                {
+                    currentInteraction.transform.Find("Computer").Find("Computer Screen").gameObject.GetComponent<ComputerMainScript>().ExitComputer();
+                }
             }
         }
         doInteraction = false;
