@@ -5,11 +5,12 @@ using System.Numerics;
 
 public class PlayerControls : MonoBehaviour
 {
-    public float startSpeed;
+    public float minSpeed;
     public float currentSpeed;
     public float maxSpeed;
     public float backMovementPenality;
     public float accerlationAmount;
+    public float deaccerlationAmount;
 
     public bool isMovementDisabled = false;
 
@@ -20,12 +21,15 @@ public class PlayerControls : MonoBehaviour
 
     void Start()
     {
- 
-        currentSpeed = startSpeed;
+
+        currentSpeed = minSpeed;
     }
 
     void Update()
     {
+        hAxis = 0;
+        vAxis = 0;
+
         if (!isMovementDisabled)
         {
             hAxis = Input.GetAxis("Horizontal");
@@ -40,40 +44,39 @@ public class PlayerControls : MonoBehaviour
                     currentSpeed = maxSpeed;
                 }
             }
-            else if (currentSpeed != startSpeed)
+            else if (currentSpeed != minSpeed)
             {
-                currentSpeed -= accerlationAmount * Time.deltaTime;
-                if (currentSpeed < startSpeed)
+                // Not moving = slow down
+                currentSpeed -= deaccerlationAmount * Time.deltaTime;
+                if (currentSpeed < minSpeed)
                 {
-                    currentSpeed = startSpeed;
+                    currentSpeed = minSpeed;
                 }
             }
         }
+
+        // If the player isn't moving so we don't need to change the Y position. The slopes were pulling the player down. 
+        if (hAxis == 0 && vAxis == 0)
+        {
+            OurRigid.useGravity = false;
+            OurRigid.velocity = new UnityEngine.Vector3();
+        }
+        else
+        {
+            OurRigid.useGravity = true;
+        }
+
     }
 
     void FixedUpdate()
     {
-        if (!isMovementDisabled)
-        {
-            float forwardMovementAmount = vAxis * currentSpeed;
-            float sideMovementAmount = hAxis * currentSpeed;
+        // actually move
 
-            OurRigid.position += forwardMovementAmount * transform.forward * (float)Time.deltaTime;
-            OurRigid.position += sideMovementAmount * transform.right * (float)Time.deltaTime;
+        UnityEngine.Vector3 amountToMove = new UnityEngine.Vector3(vAxis, hAxis, 0).normalized;
+        OurRigid.position += amountToMove.x * transform.forward * currentSpeed * Time.deltaTime;
+        OurRigid.position += amountToMove.y * transform.right * currentSpeed * Time.deltaTime;
 
-            //  this.transform.Translate(transform.forward * vAxis * Time.deltaTime);
-            //   this.transform.Translate(transform.right * hAxis * Time.deltaTime);
+     //   Debug.Log(amountToMove.x.ToString() + "  " + amountToMove.y.ToString());
 
-            if ((forwardMovementAmount > maxSpeed) || (forwardMovementAmount < -maxSpeed)
-                || (sideMovementAmount > maxSpeed) || (sideMovementAmount < -maxSpeed))
-            {
-                Debug.Log("UH OH!!!");
-            }
-            else
-            {
-               // Debug.Log("UP DOWN: " + forwardMovementAmount.ToString() + "  vAxis: " + vAxis.ToString());
-               // Debug.Log("LEFT RIGHT: " + sideMovementAmount.ToString() + "  hAxis: " + hAxis.ToString());
-            }
-        }
     }
 }
