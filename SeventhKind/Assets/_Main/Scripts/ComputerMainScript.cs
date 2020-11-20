@@ -57,7 +57,9 @@ public class ComputerMainScript : MonoBehaviour
     private GameObject emailScreen2;
     private GameObject notesScreen1;
     private GameObject notesScreen2;
-    private GameObject appsScreen2;
+    private GameObject appsScreen;
+
+    private GameObject currentScreen;
 
     [HideInInspector]
     public User activeUser;
@@ -147,7 +149,8 @@ public class ComputerMainScript : MonoBehaviour
         emailScreen2 = GetChildAtPath("Email Screen 2");
         notesScreen1 = GetChildAtPath("Notes Screen");
         notesScreen2 = GetChildAtPath("Notes Screen 2");
-        appsScreen2 = GetChildAtPath("Apps Screen");
+        appsScreen = GetChildAtPath("Apps Screen");
+        currentScreen = loginScreen1;
     }
 
     private void SetLoginMenuText()
@@ -166,6 +169,13 @@ public class ComputerMainScript : MonoBehaviour
     public void DeactivateGameObject(GameObject gameObject)
     {
         gameObject.SetActive(false);
+    }
+
+    public void ChangeCurrentScreen(GameObject gameObject)
+    {
+        DeactivateGameObject(currentScreen);
+        currentScreen = gameObject;
+        ActivateGameObject(currentScreen);
     }
 
     [HideInInspector]
@@ -306,18 +316,17 @@ public class ComputerMainScript : MonoBehaviour
             GetChildAtPath("Login Screen 2/Text_WrongPassword").SetActive(false);
             GetChildAtPath("Login Screen 2/Button_ForgotPassword/Text_Hint").SetActive(false);
             GetChildAtPath("Login Screen 2/Button_ForgotPassword/Text_Forgot").SetActive(true);
-            GetChildAtPath("Login Screen 2").SetActive(false);
-            GetChildAtPath("Apps Screen").SetActive(true);
+            gameObject.GetComponent<ComputerWorldTrigger>().ComputerProgressWorldState();
+            ChangeCurrentScreen(appsScreen);
         }
     }
 
     public void CancelLogin()
     {
+        GetChildAtPath("Login Screen 2/Text_WrongPassword").SetActive(false);
         GetChildAtPath("Login Screen 2/Button_ForgotPassword/Text_Hint").SetActive(false);
         GetChildAtPath("Login Screen 2/Button_ForgotPassword/Text_Forgot").SetActive(true);
-        GetChildAtPath("Login Screen 2/Text_WrongPassword").SetActive(false);
-        GetChildAtPath("Login Screen 2").SetActive(false);
-        GetChildAtPath("Login Screen").SetActive(true);
+        ChangeCurrentScreen(loginScreen1);
     }
 
     private void CheckPassword()
@@ -340,7 +349,8 @@ public class ComputerMainScript : MonoBehaviour
 
     public void ExitComputer()
     {
-        DeactivateGameObject(gameObject);
+        ChangeCurrentScreen(loginScreen1);
+        DeactivateGameObject(gameObject);        
         InteractWithUIObject playerScript = currentPlayer.GetComponent<InteractWithUIObject>();
         playerScript.ExitInteraction();
     }
