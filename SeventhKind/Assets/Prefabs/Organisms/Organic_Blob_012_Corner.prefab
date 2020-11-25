@@ -171,6 +171,11 @@ PrefabInstance:
       propertyPath: m_BlendShapeWeights.Array.data[1]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7561110372842451503, guid: c2a11d40ef0046c4ca8a8667aea82d94,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 056578258cb6a2840860e06652839bee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2a11d40ef0046c4ca8a8667aea82d94, type: 3}
 --- !u!1 &5270676269596812180 stripped
