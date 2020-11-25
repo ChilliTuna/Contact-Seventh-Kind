@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &7125845826199524561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10143514641339635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.079179324, y: 0.17916183, z: 0.0019427064}
+  m_Center: {x: 0.12289132, y: 0.007704536, z: 0.0015286535}
 --- !u!1 &1499536788400678579
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +255,7 @@ Transform:
   - {fileID: 1212810007861943227}
   - {fileID: 2483398775180763947}
   - {fileID: 1583639427276277204}
+  - {fileID: 7650969906411519852}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,19 +272,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.078975275, y: 0.17903379, z: 0}
   m_Center: {x: 0.04167764, y: 0.05304162, z: -2.220446e-16}
---- !u!65 &7125845826199524561
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10143514641339635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.079179324, y: 0.17916183, z: 0.0019427064}
-  m_Center: {x: 0.12289132, y: 0.007704536, z: 0.0015286535}
 --- !u!1 &7250729469409300287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2066,81 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &3540737348908019821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4077915606866358843}
+    m_Modifications:
+    - target: {fileID: 2659286736251395262, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_Name
+      value: Prefab_Ship_Room_Kitchen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2a0028fea902fb4e91d7910743e1326, type: 3}
+--- !u!4 &7650969906411519852 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6561337065055866625, guid: b2a0028fea902fb4e91d7910743e1326,
+    type: 3}
+  m_PrefabInstance: {fileID: 3540737348908019821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5800780792728825550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2131,6 +2207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ship_Room_Kitchen_001
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 066f340bdd22fcb46a4c72767973e708,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066f340bdd22fcb46a4c72767973e708, type: 3}
