@@ -1788,6 +1788,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.145445, y: 0.17678922, z: 0.0027450053}
   m_Center: {x: 0, y: -0.23589459, z: 0.0011173745}
+--- !u!65 &6344082720578461434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226052593343054815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.145445, y: 0.17678922, z: 0.0027450053}
+  m_Center: {x: 0, y: -0.23589459, z: 0.0011173745}
 --- !u!1 &4119714954114812216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +2047,7 @@ Transform:
   - {fileID: 8595674647487297380}
   - {fileID: 621765355949361259}
   - {fileID: 6436524257284009368}
+  - {fileID: 2582025078520086447}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2192,6 +2206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship_Room_Medbay_001_V002
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 22f02d2d0f6e6074e9fb309b2cbdf74b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22f02d2d0f6e6074e9fb309b2cbdf74b, type: 3}
 --- !u!4 &6436524257284009368 stripped
@@ -2280,15 +2299,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73f3cccf180e2df43905acbaa32d42d9, type: 3}
+--- !u!1 &1937389199895793528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6282044892447141114, guid: 73f3cccf180e2df43905acbaa32d42d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3617318773433179262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8595674647487297380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 73f3cccf180e2df43905acbaa32d42d9,
     type: 3}
   m_PrefabInstance: {fileID: 3617318773433179262}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1937389199895793528 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6282044892447141114, guid: 73f3cccf180e2df43905acbaa32d42d9,
+--- !u!1001 &4095866596314574841
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7182808051537807202}
+    m_Modifications:
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566570058886321349, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+        type: 3}
+      propertyPath: m_Name
+      value: Prefab_Ship_Room_Medbay
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e, type: 3}
+--- !u!4 &2582025078520086447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1946191480278290518, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
     type: 3}
-  m_PrefabInstance: {fileID: 3617318773433179262}
+  m_PrefabInstance: {fileID: 4095866596314574841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5226052593343054815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8093491704160529446, guid: 727d4cde2f382cb4eb555b1e9e4b5c0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4095866596314574841}
   m_PrefabAsset: {fileID: 0}

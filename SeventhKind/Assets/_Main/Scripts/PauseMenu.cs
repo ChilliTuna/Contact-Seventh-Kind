@@ -11,12 +11,16 @@ public class PauseMenu : MonoBehaviour
     CameraToMouse CamToMouse;
     public GameObject pauseMenu;
     bool paused;
+    InteractWithUIObject interactWithUIObject;
+    GrabItem grabbingItem;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         controlScript = player.GetComponent<PlayerControls>();
-
+        interactWithUIObject = player.GetComponent<InteractWithUIObject>();
+        grabbingItem = player.GetComponentInChildren<GrabItem>();
+       
         CamToMouse = player.GetComponentInChildren<CameraToMouse>();
     }
 
@@ -25,6 +29,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (!paused && Input.GetKeyDown(KeyCode.Escape) && !controlScript.isMovementDisabled)
         {
+
+            interactWithUIObject.enabled = false;
+            grabbingItem.enabled = false;
             paused = true;
             controlScript.enabled = false;
             CamToMouse.enabled = false;
@@ -41,6 +48,9 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeButton()
     {
+        interactWithUIObject.enabled = true;
+        grabbingItem.enabled = true;
+
         paused = false;
         controlScript.enabled = true;
         CamToMouse.enabled = true;

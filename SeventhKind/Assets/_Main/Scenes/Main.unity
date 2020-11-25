@@ -10937,6 +10937,46 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: minSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: deaccerlationAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: finalSceneLocation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: finalSceneLocation.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: finalSceneLocation.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: finalSceneMovement
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: isLockedIntoFinalScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735655369539444902, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+        type: 3}
+      propertyPath: camerTarget
+      value: 
+      objectReference: {fileID: 1820893635}
     - target: {fileID: 8735655369539444903, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22255,6 +22295,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1817617562}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820893635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8735655368536775596, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1048156282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98af2d769b730a344bbef00d02a202c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1828189873
 PrefabInstance:
   m_ObjectHideFlags: 0

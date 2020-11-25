@@ -18,6 +18,8 @@ public class GrabItem : MonoBehaviour
     public float currentScrollDesiredLocationOffset;
     public float scrollAmount;
 
+    bool isRotating;
+
     [HideInInspector]
     public bool isGrabbing;
 
@@ -43,9 +45,8 @@ public class GrabItem : MonoBehaviour
         {
             if (isGrabbing)
             {
-
+             
                 CameraMouseTarget.TurnOffUse();
-
                 FreezeHoldingObject();
                 UnFreezeHoldingObject();
                 float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
@@ -59,10 +60,14 @@ public class GrabItem : MonoBehaviour
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.left, -(mouseY * YRotationAmount * UpDownMouseSensitivity));
                 //z
                 itemBeingHeld.transform.RotateAround(itemBeingHeld.transform.position, Vector3.forward, (mouseY * ZRotationAmount * UpDownMouseSensitivity));
+
+              
+                isRotating = true;
             }
         }
-        else
+        else if (isRotating)
         {
+            isRotating = false;
             CameraMouseTarget.TurnOnUse();
         }
    
@@ -171,6 +176,9 @@ public class GrabItem : MonoBehaviour
                     playerControlsTarget.isMovementDisabled = false;
                     currentScrollDesiredLocationOffset = 0;
                     playerControlsTarget.isMovementDisabled = false;
+                   // CameraMouseTarget.TurnOnUse();
+                  
+
                 }
                 else
                 {
@@ -192,6 +200,7 @@ public class GrabItem : MonoBehaviour
                         itemBeingHeld.GetComponent<ItemOutput>().Interact();
                     }
                     catch {}
+                 //   CameraMouseTarget.TurnOffUse();
 
                 }
             }
