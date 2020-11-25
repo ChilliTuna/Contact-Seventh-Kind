@@ -1004,6 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 578722326538874454}
+  colliderInfrontOfPlayer: {fileID: 0}
 --- !u!1 &578722327048150819
 GameObject:
   m_ObjectHideFlags: 0
