@@ -73,12 +73,12 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _LightingEnabled: 1
-    - _Metallic: 1
+    - _Metallic: 0
     - _Mode: 3
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.835
+    - _Smoothness: 0.7
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
@@ -89,7 +89,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.61587757, g: 0.7042299, b: 0.754717, a: 1}
+    - _BaseColor: {r: 0.6158775, g: 0.7042299, b: 0.75471693, a: 0.16078432}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
