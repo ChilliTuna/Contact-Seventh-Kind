@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &4837132007089046605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095524523246206419}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4897649, y: 2.9142559, z: 1.6648707}
+  m_Center: {x: 0.083648294, y: 0, z: 0.0076270998}
 --- !u!1 &4434769908092484991
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +43,7 @@ Transform:
   m_Children:
   - {fileID: 5824345806354058301}
   - {fileID: 2141499912933428769}
+  - {fileID: 1118687000744554825}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -423,6 +437,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sideroom_Fridge
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f431fac330180a646a711d37c65aebd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f431fac330180a646a711d37c65aebd3, type: 3}
 --- !u!4 &2141499912933428769 stripped
@@ -430,4 +449,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f431fac330180a646a711d37c65aebd3,
     type: 3}
   m_PrefabInstance: {fileID: 6395839474759427387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7850481487784627830
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6111305518846603452}
+    m_Modifications:
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589412096071653112, guid: 16d370375e3790446842d3eb99ab3531,
+        type: 3}
+      propertyPath: m_Name
+      value: Sideroom_Fridge_001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16d370375e3790446842d3eb99ab3531, type: 3}
+--- !u!4 &1118687000744554825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7166595588360191807, guid: 16d370375e3790446842d3eb99ab3531,
+    type: 3}
+  m_PrefabInstance: {fileID: 7850481487784627830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1095524523246206419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7189599804794565541, guid: 16d370375e3790446842d3eb99ab3531,
+    type: 3}
+  m_PrefabInstance: {fileID: 7850481487784627830}
   m_PrefabAsset: {fileID: 0}

@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1402533031757604114}
+  - {fileID: 2184806766898537600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship_PaperStack_001_Stapled
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4406cf7e5fe9ee249a978013bdf81bee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4406cf7e5fe9ee249a978013bdf81bee, type: 3}
 --- !u!4 &1402533031757604114 stripped
@@ -141,4 +147,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4406cf7e5fe9ee249a978013bdf81bee,
     type: 3}
   m_PrefabInstance: {fileID: 6200463355546717704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6569426821513924506
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5636189285269122484}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0018
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0034
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0002
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: def88603b572ce74c96d153e4ed1d1c6, type: 2}
+    - target: {fileID: -927199367670048503, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+        type: 3}
+      propertyPath: m_Name
+      value: Ship_PaperStack_001_Stapled (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14f949dfe01a3bc4ab7bcdfa747ead37, type: 3}
+--- !u!4 &2184806766898537600 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 14f949dfe01a3bc4ab7bcdfa747ead37,
+    type: 3}
+  m_PrefabInstance: {fileID: 6569426821513924506}
   m_PrefabAsset: {fileID: 0}
