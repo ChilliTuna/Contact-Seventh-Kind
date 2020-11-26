@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f321e964c90996b4992f831038ae663a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Imaki Condensed
+  fontNames:
+  - Imaki Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 42b0a0654446f1c4483e9f274448a34d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
