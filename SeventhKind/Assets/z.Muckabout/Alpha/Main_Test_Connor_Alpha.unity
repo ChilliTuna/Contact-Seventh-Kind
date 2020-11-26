@@ -10629,6 +10629,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 646.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4746146433801899561, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: m_textInfo.characterCount

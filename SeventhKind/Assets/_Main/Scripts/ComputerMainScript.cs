@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ComputerMainScript : MonoBehaviour
 {
@@ -50,6 +51,10 @@ public class ComputerMainScript : MonoBehaviour
     public bool user3WorldStates = true;
     public string user3Hint;
     public Button user3Button;
+
+    [Space(20)]
+    public UnityEvent OnInteract;
+    public UnityEvent OnExit;
 
     private GameObject loginScreen1;
     private GameObject loginScreen2;
@@ -264,6 +269,15 @@ public class ComputerMainScript : MonoBehaviour
         }
     }
 
+    public void ExitComputer()
+    {
+        ChangeCurrentScreen(loginScreen1);
+        DeactivateGameObject(gameObject);
+        InteractWithUIObject playerScript = currentPlayer.GetComponent<InteractWithUIObject>();
+        playerScript.ExitInteraction();
+        OnExit.Invoke();
+    }
+
     #endregion Core
 
     #region Login System
@@ -345,14 +359,6 @@ public class ComputerMainScript : MonoBehaviour
     public void ClearInputField(TMP_InputField inputField)
     {
         inputField.text = "";
-    }
-
-    public void ExitComputer()
-    {
-        ChangeCurrentScreen(loginScreen1);
-        DeactivateGameObject(gameObject);        
-        InteractWithUIObject playerScript = currentPlayer.GetComponent<InteractWithUIObject>();
-        playerScript.ExitInteraction();
     }
 
     #endregion Login System
