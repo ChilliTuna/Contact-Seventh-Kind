@@ -26,7 +26,7 @@ public class InteractWithUIObject : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0)) && !grabSensorScript.isGrabbing)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0)) && !grabSensorScript.isGrabbing && !isInteracting)
         {
             Debug.Log("Click!");
             doInteraction = true;
@@ -83,7 +83,7 @@ public class InteractWithUIObject : MonoBehaviour
         gameObject.transform.rotation = previousRotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = false;
         mainCamera.GetComponent<CameraToMouse>().TurnOnUse();
-        HUD.SetActive(true);
+        HUD.transform.Find("Crosshair").gameObject.SetActive(true);
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         currentInteraction = null;
@@ -96,7 +96,7 @@ public class InteractWithUIObject : MonoBehaviour
         previousRotation = gameObject.transform.rotation;
         gameObject.GetComponent<PlayerControls>().isMovementDisabled = true;
         mainCamera.GetComponent<CameraToMouse>().TurnOffUse();
-        HUD.SetActive(false);
+        HUD.transform.Find("Crosshair").gameObject.SetActive(false);
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
     }

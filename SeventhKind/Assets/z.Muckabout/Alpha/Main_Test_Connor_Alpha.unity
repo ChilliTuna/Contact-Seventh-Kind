@@ -8063,6 +8063,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1459554849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5796238603878704949, guid: 00b6ddb97d366df49b5b0230613b15c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7888828282992521928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1551621748
 Mesh:
   m_ObjectHideFlags: 0
@@ -10632,17 +10638,67 @@ PrefabInstance:
     - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7888828282992521929}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FadeToBlack
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7888828282992521929}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: FadeFromBlack
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571900146793224457, guid: 01e8e94ac28194846b1288065d524b6f,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4746146433801899561, guid: 01e8e94ac28194846b1288065d524b6f,
         type: 3}
@@ -11434,6 +11490,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2566681425533646135, guid: 00b6ddb97d366df49b5b0230613b15c2,
+        type: 3}
+      propertyPath: blackPanel
+      value: 
+      objectReference: {fileID: 1459554849}
+    - target: {fileID: 5701593102586763435, guid: 00b6ddb97d366df49b5b0230613b15c2,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796238603878704949, guid: 00b6ddb97d366df49b5b0230613b15c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888828282176288856, guid: 00b6ddb97d366df49b5b0230613b15c2,
+        type: 3}
+      propertyPath: m_Name
+      value: Crosshair
+      objectReference: {fileID: 0}
     - target: {fileID: 7888828283160769345, guid: 00b6ddb97d366df49b5b0230613b15c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11546,3 +11622,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00b6ddb97d366df49b5b0230613b15c2, type: 3}
+--- !u!114 &7888828282992521929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2566681425533646135, guid: 00b6ddb97d366df49b5b0230613b15c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7888828282992521928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436781445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bab8ef6dcb112409a53a1c2ad805f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
