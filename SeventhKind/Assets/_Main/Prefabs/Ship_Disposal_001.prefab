@@ -28,6 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7691064701444008498}
+  - {fileID: 1681598075628691705}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44,6 +45,100 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 64.949005, y: 109.63939, z: 64.439125}
   m_Center: {x: -0.0023288727, y: -0.00017547607, z: -0.0056037903}
+--- !u!65 &3027991625270152657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903119130620148349}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.87695754, y: 1.4803784, z: 0.870073}
+  m_Center: {x: -0.00003145635, y: -0.0000022649765, z: -0.0000756681}
+--- !u!1001 &1318667214765021165
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8547722851154019653}
+    m_Modifications:
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090833732470977771, guid: 19113282dbe9577448c1d959af012a9e,
+        type: 3}
+      propertyPath: m_Name
+      value: SideRoom_DisposalUnit_001 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19113282dbe9577448c1d959af012a9e, type: 3}
+--- !u!4 &1681598075628691705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 367857361258411796, guid: 19113282dbe9577448c1d959af012a9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1318667214765021165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6903119130620148349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5584488405931453840, guid: 19113282dbe9577448c1d959af012a9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1318667214765021165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3442599864637325608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,6 +205,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SideRoom_DisposalUnit_001
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1de95c41b79d7f74b94ff1e3226d811f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1de95c41b79d7f74b94ff1e3226d811f, type: 3}
