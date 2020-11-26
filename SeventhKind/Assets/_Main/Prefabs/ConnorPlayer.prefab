@@ -427,14 +427,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7083d355b023b4d89fd5831f498cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 0
+  minSpeed: 4
   currentSpeed: 0
   maxSpeed: 4
   backMovementPenality: 1.5
   accerlationAmount: 1
-  deaccerlationAmount: 0
+  deaccerlationAmount: 2
   isMovementDisabled: 0
   OurRigid: {fileID: 8735655369539444899}
+  camerTarget: {fileID: 8735655368536775596}
+  isLockedIntoFinalScene: 0
+  finalSceneLocation: {x: 0, y: 3, z: -10}
+  finalSceneMovement: 10
 --- !u!114 &5806325365021645049
 MonoBehaviour:
   m_ObjectHideFlags: 0
