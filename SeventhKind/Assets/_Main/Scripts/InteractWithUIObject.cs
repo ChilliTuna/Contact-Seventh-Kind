@@ -43,6 +43,7 @@ public class InteractWithUIObject : MonoBehaviour
                 ComputerMainScript computerScript = currentInteraction.transform.GetChild(0).GetChild(0).GetComponent<ComputerMainScript>();
                 computerScript.gameObject.SetActive(true);
                 computerScript.currentPlayer = gameObject;
+                computerScript.OnInteract.Invoke();
             }
             else
             {
