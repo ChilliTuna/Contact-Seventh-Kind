@@ -27,7 +27,8 @@ public class GrabItem : MonoBehaviour
     public PlayerControls playerControlsTarget;
     public GameObject playerBody;
 
-    public Vector3 defaultdesiredLocation;
+    public Vector3 defaultdesiredLocation; // will make the current default location this. 
+    public Vector3 currentDesiredLocation;
 
     private bool shouldInteract;
     private Collider itemBeingHeld;
@@ -35,6 +36,11 @@ public class GrabItem : MonoBehaviour
     private float YRotationAmount;
     private float ZRotationAmount;
     private InteractWithUIObject interactScript;
+
+    private void Start()
+    {
+        currentDesiredLocation = defaultdesiredLocation;
+    }
 
     void Update()
     {
@@ -102,7 +108,7 @@ public class GrabItem : MonoBehaviour
                 }
             }
 
-            setDesiredLocation(new Vector3(0, 0, 2.15f + currentScrollDesiredLocationOffset));
+            setDesiredLocation(new Vector3(0, 0, currentDesiredLocation.z + currentScrollDesiredLocationOffset));
 
             // x
             if (((itemBeingHeld.transform.position.x <= desiredLocation.transform.position.x + (pullSpeed * Time.deltaTime))
@@ -176,7 +182,6 @@ public class GrabItem : MonoBehaviour
                     playerControlsTarget.isMovementDisabled = false;
                     currentScrollDesiredLocationOffset = 0;
                     playerControlsTarget.isMovementDisabled = false;
-                   // CameraMouseTarget.TurnOnUse();
                   
 
                 }
@@ -189,7 +194,7 @@ public class GrabItem : MonoBehaviour
                     try
                     {
                         Vector3 holdingDesiredLocation = other.GetComponent<ItemsDistanceFromPlayer>().desiredDisatnceOffsetFromPlayer;
-                        setDesiredLocation(holdingDesiredLocation);
+                        currentDesiredLocation = holdingDesiredLocation;
                     }
                     catch
                     {
@@ -276,7 +281,6 @@ public class GrabItem : MonoBehaviour
 
     private void setDesiredLocation(Vector3 newDesiredLocation)
     {
-        //desiredLocation.transform.position = new Vector3(x, y, z);
        desiredLocation.transform.localPosition = new Vector3(newDesiredLocation.x, newDesiredLocation.y, newDesiredLocation.z);
     }
 }
