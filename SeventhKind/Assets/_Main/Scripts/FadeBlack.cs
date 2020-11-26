@@ -12,6 +12,7 @@ public class FadeBlack : MonoBehaviour
     {
         shouldFade = true;
         fadeToBlack = true;
+        blackoutImage.GetComponent<Image>().enabled = true;
         StartCoroutine(DoFade(fadeSpeed));
     }
 
@@ -24,9 +25,14 @@ public class FadeBlack : MonoBehaviour
 
     public void FadeOpposite(float fadeSpeed)
     {
-        shouldFade = true;
-        fadeToBlack = !fadeToBlack;
-        StartCoroutine(DoFade(fadeSpeed));
+        if (fadeToBlack)
+        {
+            FadeFromBlack(fadeSpeed);
+        }
+        else
+        {
+            FadeToBlack(fadeSpeed);
+        }
     }
 
     private IEnumerator DoFade(float fadeSpeed = 5)
@@ -54,9 +60,9 @@ public class FadeBlack : MonoBehaviour
                     yield return null;
                 }
                 shouldFade = false;
+                blackoutImage.GetComponent<Image>().enabled = false;
             }
         }
-
         yield break;
     }
 }
