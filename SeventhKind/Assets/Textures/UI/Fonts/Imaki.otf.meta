@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 6d67abb5b24ed4745ac352b97d4fd81a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Imaki
+  fontNames:
+  - Imaki
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d7ae699391bb78647a99aa2ddba16941, type: 3}
+  - {fileID: 12800000, guid: a059b8e52398bed4db9e8d4fa9f348af, type: 3}
+  - {fileID: 12800000, guid: c82913b9a88530e4ca57b62b3ea26726, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
