@@ -409,9 +409,9 @@ public class ComputerMainScript : MonoBehaviour
 
     public void SetNoteText()
     {
-        GameObject subjectText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Text_Subject");
+        GameObject subjectText = GetChildAtPath("Notes Screen 2/Window Background/Text_Subject");
         subjectText.GetComponent<TextMeshProUGUI>().text = currentNote.subject;
-        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Background/Note Text Background/Scroll View/Viewport/Content/Text_NoteContent");
+        GameObject contentText = GetChildAtPath("Notes Screen 2/Window Background/Note Text Background/Scroll View/Viewport/Content/Text_NoteContent");
         contentText.GetComponent<TextMeshProUGUI>().text = currentNote.content;
         if (currentNote.unread && currentNote.notepadText != "")
         {
@@ -478,9 +478,9 @@ public class ComputerMainScript : MonoBehaviour
     {
         GameObject subjectText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Text_Subject");
         subjectText.GetComponent<TextMeshProUGUI>().text = currentEmail.subject;
-        GameObject recipientText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Participants Background/Text_Recipient");
+        GameObject recipientText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Text_Recipient");
         recipientText.GetComponent<TextMeshProUGUI>().text = "Recipient: " + currentEmail.recipient;
-        GameObject senderText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Participants Background/Text_Sender");
+        GameObject senderText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Text_Sender");
         senderText.GetComponent<TextMeshProUGUI>().text = "Sender: " + currentEmail.sender;
         GameObject contentText = GetChildAtPath("Email Screen 2/Window Background/Email Background/Email Text Background/Scroll View/Viewport/Content/Text_EmailContent");
         contentText.GetComponent<TextMeshProUGUI>().text = currentEmail.content;
