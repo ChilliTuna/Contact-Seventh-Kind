@@ -36,7 +36,7 @@ MonoBehaviour:
   m_ShadowDistance: 30
   m_ShadowCascades: 2
   m_Cascade2Split: 0.49999988
-  m_Cascade4Split: {x: 0.17800725, y: 0.31920087, z: 0.44544798}
+  m_Cascade4Split: {x: 0.2510666, y: 0.5018492, z: 0.7468178}
   m_ShadowDepthBias: 1
   m_ShadowNormalBias: 1
   m_SoftShadowsSupported: 1
