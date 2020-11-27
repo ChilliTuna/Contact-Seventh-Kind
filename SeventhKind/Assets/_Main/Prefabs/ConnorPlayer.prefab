@@ -430,7 +430,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.8730514, y: 1, z: 1}
+  m_Size: {x: 2.8730514, y: 0.15, z: 0.18}
   m_Center: {x: -0.17556185, y: 0, z: -7.1852746e-16}
 --- !u!114 &8735655369018985185
 MonoBehaviour:
@@ -551,6 +551,7 @@ MonoBehaviour:
   isLockedIntoFinalScene: 0
   finalSceneLocation: {x: 0, y: 3, z: -10}
   finalSceneMovement: 10
+  FinalLookat: {fileID: 0}
 --- !u!114 &5806325365021645049
 MonoBehaviour:
   m_ObjectHideFlags: 0
