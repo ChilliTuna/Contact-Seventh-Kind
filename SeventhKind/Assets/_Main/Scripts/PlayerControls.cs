@@ -24,7 +24,7 @@ public class PlayerControls : MonoBehaviour
     public UnityEngine.Vector3 finalSceneLocation;
 
     public float finalSceneMovement;
-
+    public Transform FinalLookat;
     void Start()
     {
 
@@ -137,12 +137,15 @@ public class PlayerControls : MonoBehaviour
             zValue = -finalSceneMovement;
         }
 
+        
         //actually move
 
         UnityEngine.Vector3 amountToMove = new UnityEngine.Vector3(xValue,yValue,zValue).normalized;
 
         this.transform.position = new UnityEngine.Vector3(this.transform.position.x + (xValue * finalSceneMovement *Time.deltaTime), this.transform.position.y + (yValue * finalSceneMovement * Time.deltaTime), this.transform.position.z + (zValue * finalSceneMovement * Time.deltaTime));
 
+       
+        gameObject.transform.LookAt(FinalLookat);
 
       // OurRigid.position += amountToMove.x * transform.forward * finalSceneMovement * Time.deltaTime;
       //  OurRigid.position += amountToMove.y * transform.right * finalSceneMovement * Time.deltaTime;
