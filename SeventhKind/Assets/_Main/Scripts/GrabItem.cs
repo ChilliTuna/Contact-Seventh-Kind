@@ -80,7 +80,18 @@ public class GrabItem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E))
         {
             shouldInteract = true;
-            Debug.Log("Button Pressed");
+            // Debug.Log("Button Pressed");
+
+            if (isGrabbing)
+            {
+                //drop item 
+                isGrabbing = false;
+                itemBeingHeld.GetComponent<Rigidbody>().useGravity = true; ;
+                playerControlsTarget.isMovementDisabled = false;
+                currentScrollDesiredLocationOffset = 0;
+                playerControlsTarget.isMovementDisabled = false;
+
+            }
         }
         else
         {
@@ -181,8 +192,7 @@ public class GrabItem : MonoBehaviour
                     other.GetComponent<Rigidbody>().useGravity = true; ;
                     playerControlsTarget.isMovementDisabled = false;
                     currentScrollDesiredLocationOffset = 0;
-                    playerControlsTarget.isMovementDisabled = false;
-                  
+                    playerControlsTarget.isMovementDisabled = false;                  
 
                 }
                 else
@@ -193,7 +203,7 @@ public class GrabItem : MonoBehaviour
                     playerControlsTarget.isMovementDisabled = true; // player stops moving  
                     try
                     {
-                        Vector3 holdingDesiredLocation = other.GetComponent<ItemsDistanceFromPlayer>().desiredDisatnceOffsetFromPlayer;
+                       Vector3 holdingDesiredLocation = other.GetComponent<ItemsDistanceFromPlayer>().desiredDisatnceOffsetFromPlayer;
                         currentDesiredLocation = holdingDesiredLocation;
                     }
                     catch
