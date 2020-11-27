@@ -38,11 +38,12 @@ public class AnimationDoorsEnd : MonoBehaviour
     {
         if (!hasRun)
         {
-
+            if (other.tag == "Player")
+            {
             StartCoroutine(CountV2(TimeBeforeEventHappens));
             controls.isMovementDisabled = true;
             cam2Mouse.enabled = false;
-
+            }
 
 
         }
