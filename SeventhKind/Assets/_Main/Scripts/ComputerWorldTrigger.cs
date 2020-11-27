@@ -16,7 +16,7 @@ public class ComputerWorldTrigger : MonoBehaviour
         if (computer.activeUser.progressesWorld)
         {
             gameMaster.GetComponent<WorldStateManager>().ProgressWorldState();
-            computer.activeUser.progressesWorld = true;
+            computer.activeUser.progressesWorld = false;
         }
     }
 }
