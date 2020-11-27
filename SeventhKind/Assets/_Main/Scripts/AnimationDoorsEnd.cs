@@ -9,6 +9,7 @@ public class AnimationDoorsEnd : MonoBehaviour
     public Animator doorAnim;
     public AudioClip Normal;
     public AudioClip MedBay;
+    public AudioClip Ending;
     AudioSource audio;
     bool hasRun = false;
 
@@ -25,6 +26,7 @@ public class AnimationDoorsEnd : MonoBehaviour
 
     void Start()
     {
+        fadeOut.FadeFromBlack(0.2f);
         player = GameObject.FindGameObjectWithTag("Player");
         controls = player.GetComponent<PlayerControls>();
         audio = GetComponent<AudioSource>();
@@ -70,6 +72,13 @@ public class AnimationDoorsEnd : MonoBehaviour
     {
         yield return new WaitForSeconds(timing);
         fadeOut.FadeToBlack(0.2f);
+        yield return new WaitUntil(() => fadeOut.shouldFade == false);
+            audio.clip = Ending;
+            audio.Play();
+            yield return new WaitUntil(() => audio.isPlaying == false);
+            yield return new WaitForSeconds(1);
+            SceneManager.LoadScene(0);
+        
     }
 
     IEnumerator CountV2(float timing)

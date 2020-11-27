@@ -61,6 +61,7 @@ MonoBehaviour:
   doorAnim: {fileID: 0}
   Normal: {fileID: 8300000, guid: c1e9b8e6b9a6d1945b0ef590c1734ca7, type: 3}
   MedBay: {fileID: 8300000, guid: be77719091788f44fbd78c843586ce6c, type: 3}
+  Ending: {fileID: 8300000, guid: 5aecefe219b1a7f4689476d8fc491e9b, type: 3}
   TimeBeforeEventHappens: 0.5
   TimeBeforeDoorsOpen: 1.1
   TimeBeforePlayerStartsWalking: 1.1

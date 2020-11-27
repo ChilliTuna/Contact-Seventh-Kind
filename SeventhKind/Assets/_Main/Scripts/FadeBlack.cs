@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 using UnityEngine.UI;
 
 public class FadeBlack : MonoBehaviour
 {
     public Image blackoutImage;
-    private bool shouldFade;
+    public bool shouldFade;
     private bool fadeToBlack;
 
     public void FadeToBlack(float fadeSpeed)
@@ -51,8 +51,7 @@ public class FadeBlack : MonoBehaviour
                     yield return null;
                 }
                 shouldFade = false;
-                yield return new WaitForSeconds(1);
-                SceneManager.LoadScene(0);
+
             }
             else
             {
