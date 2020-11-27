@@ -25076,7 +25076,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -161.39513, w: 0}
   m_textInfo:
     textComponent: {fileID: 981585127}
     characterCount: 0
@@ -26980,7 +26980,7 @@ PrefabInstance:
     - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
       propertyPath: maxScrollDesiredLocationOffset
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
@@ -26990,7 +26990,7 @@ PrefabInstance:
     - target: {fileID: 8735655369018985185, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
       propertyPath: currentScrollDesiredLocationOffset
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8735655369539444896, guid: d3ece4809f91ae34e838ca9a63cfbf2b,
         type: 3}
@@ -40020,7 +40020,7 @@ PrefabInstance:
     - target: {fileID: 6205065502330674052, guid: 8ee050d078b16d442acf9abef8b309c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.6095996
+      value: 8.21
       objectReference: {fileID: 0}
     - target: {fileID: 6205065502330674052, guid: 8ee050d078b16d442acf9abef8b309c2,
         type: 3}
