@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class AnimationDoorsEnd : MonoBehaviour
 {
 
@@ -11,8 +11,22 @@ public class AnimationDoorsEnd : MonoBehaviour
     public AudioClip MedBay;
     AudioSource audio;
     bool hasRun = false;
+
+    GameObject player;
+    PlayerControls controls;
+
+    public float TimeBeforeEventHappens;
+    public float TimeBeforeDoorsOpen;
+    public float TimeBeforePlayerStartsWalking;
+    public float TimeBeforeFadeOut;
+
+    public FadeBlack fadeOut;
+    public CameraToMouse cam2Mouse;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        controls = player.GetComponent<PlayerControls>();
         audio = GetComponent<AudioSource>();
         audio.clip = Normal;
         audio.loop = true;
@@ -24,14 +38,54 @@ public class AnimationDoorsEnd : MonoBehaviour
     {
         if (!hasRun)
         {
-            hasRun = true;
-            audio.loop = false;
-            audio.volume = 0.2f;
-            doorAnim.SetBool("IsOpening", true);
-            audio.clip = MedBay;
-            audio.Play();
+
+            StartCoroutine(CountV2(TimeBeforeEventHappens));
+            controls.isMovementDisabled = true;
+            cam2Mouse.enabled = false;
+
+
 
         }
     }
+
+
+    IEnumerator CountTo(float timing, bool iswalking)
+    {
+        yield return new WaitForSeconds(timing);
+        if (!iswalking)
+        {
+
+            audio.clip = MedBay;
+            audio.Play();
+        }
+        else
+        {
+            controls.isLockedIntoFinalScene = true;
+        }
+        
+    }
+
+    IEnumerator Count(float timing)
+    {
+        yield return new WaitForSeconds(timing);
+        fadeOut.FadeToBlack(0.2f);
+    }
+
+    IEnumerator CountV2(float timing)
+    {
+        yield return new WaitForSeconds(timing);
+        Cursor.visible = false;
+
+        hasRun = true;
+        audio.loop = false;
+        audio.volume = 0.2f;
+        doorAnim.SetBool("IsOpening", true);
+        StartCoroutine(CountTo(TimeBeforeDoorsOpen, false));
+
+        StartCoroutine(CountTo(TimeBeforePlayerStartsWalking, true));
+        StartCoroutine(Count(TimeBeforeFadeOut));
+    }
+
+
 }
 
