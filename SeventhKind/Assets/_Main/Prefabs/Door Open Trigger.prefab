@@ -61,6 +61,12 @@ MonoBehaviour:
   doorAnim: {fileID: 0}
   Normal: {fileID: 8300000, guid: c1e9b8e6b9a6d1945b0ef590c1734ca7, type: 3}
   MedBay: {fileID: 8300000, guid: be77719091788f44fbd78c843586ce6c, type: 3}
+  TimeBeforeEventHappens: 0.5
+  TimeBeforeDoorsOpen: 1.1
+  TimeBeforePlayerStartsWalking: 1.1
+  TimeBeforeFadeOut: 4.5
+  fadeOut: {fileID: 0}
+  cam2Mouse: {fileID: 0}
 --- !u!82 &3753164344280775299
 AudioSource:
   m_ObjectHideFlags: 0
