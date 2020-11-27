@@ -13,6 +13,7 @@ public class Keypad : MonoBehaviour
     public AudioClip failSound;
 
     public UnityEvent OnSuccess;
+    public UnityEvent OnButtonPress;
 
     private string inputCode = "";
     private RaycastHit raycastHit;
@@ -53,8 +54,9 @@ public class Keypad : MonoBehaviour
                         {
                             if (raycastHit.collider.gameObject.name == "0" + i + "_ButtonCollider")
                             {
-                                inputCode += i;
                                 Debug.Log("Boop" + i);
+                                OnButtonPress.Invoke();
+                                inputCode += i;
                                 if (Convert.ToInt32(inputCode) == code)
                                 {
                                     Succeed();
