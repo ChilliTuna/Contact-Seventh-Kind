@@ -11,9 +11,17 @@ public class SoundManipulator : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
-    public void PlayAtRandomPitch()
+    public void PlayAtRandomPitch(float range)
     {
-        audioSource.pitch = Random.Range(0.5f, 2);
+        if (range > 3)
+        {
+            range = 3;
+        }
+        if (range < 0)
+        {
+            range = 0; 
+        }
+        audioSource.pitch = Random.Range(1 - (range / 3), 1 + (range / 1.5f));
         audioSource.Play();
     }
 }
